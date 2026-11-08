@@ -1,0 +1,7 @@
+scenario,method,matched,missed,false_positive,id_switches,track_ids,rmse_px
+separate,nearest,129,0,0,0,3,0.0059
+separate,lap,129,0,0,0,3,0.0059
+separate,kalman,129,0,0,0,3,0.0059
+crossing,nearest,125,0,0,2,4,0.006
+crossing,lap,125,0,0,0,3,0.006
+crossing,kalman,125,0,0,0,3,0.006
