@@ -2,6 +2,23 @@
 
 Nhóm 9 · Xử lý ảnh · PTIT
 
+## Bản cải tiến và tài liệu bảo vệ
+
+- [Cơ sở thuật toán, công thức và liên hệ code](docs/LY_THUYET.md).
+- [Giao thức thực nghiệm, định nghĩa metric và phần còn cần kiểm chứng](docs/THUC_NGHIEM.md).
+- [Kết quả chạy mới và phân tích giới hạn](docs/KET_QUA.md).
+- Bộ chấm xét toàn bộ frame; tên `rmse_px` đổi thành `matched_detection_rmse_px` để phân biệt với trạng thái Kalman.
+- `--threshold otsu` bổ sung ngưỡng tự động; `--solver scipy` là lựa chọn tăng tốc solver. Mặc định vẫn giữ ngưỡng 110 và Hungarian tự cài để minh họa thuật toán.
+- CSV `*_states.csv` tách vị trí đã lọc/dự đoán khỏi `method.csv` chứa detection quan sát. Không trộn dự đoán vào chỉ số phát hiện.
+
+```powershell
+python -m unittest discover -s tests -v
+python experiments.py
+python tracking.py data/crossing.mp4 --method kalman --threshold otsu --solver scipy --output output
+```
+
+Bộ stress gồm 150 cấu hình tổng hợp, không thay thế video thật. Kết quả Fiji cũ được chấm lại; chưa chạy Fiji trên bộ stress mới. Xem giao thức để hoàn thành hai phần này trên máy nhóm.
+
 Hai video tổng hợp, mỗi video 43 khung hình, 320 × 180, 15 fps. Nền tối có nhiễu và vật thể sáng. Trong `crossing`, vật thể 1 được ẩn có chủ đích ở frame 20–23 (đánh số từ 0). Cột `visible` đánh dấu khi vật thể xuất hiện trong ảnh.
 
 ## Xem demo ngay

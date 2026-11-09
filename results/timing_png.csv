@@ -1,9 +1,9 @@
 scenario,stage,median_ms_per_frame
-separate,detection,16.0582
-separate,nearest,0.0405
-separate,hungarian,0.2881
-separate,kalman,0.5153
-crossing,detection,5.4221
-crossing,nearest,0.0886
-crossing,hungarian,1.0272
-crossing,kalman,0.3185
+separate,detection,2.9941
+separate,nearest,0.0197
+separate,hungarian,0.1634
+separate,kalman,0.2731
+crossing,detection,2.4082
+crossing,nearest,0.0247
+crossing,hungarian,0.1686
+crossing,kalman,0.2785

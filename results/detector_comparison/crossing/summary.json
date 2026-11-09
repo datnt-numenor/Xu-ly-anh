@@ -1,0 +1,8 @@
+{
+  "matched": 125,
+  "unmatched_trackmate": 0,
+  "unmatched_python": 0,
+  "matched_centroid_rmse_px": 0.0042,
+  "gate_px": 2,
+  "note": "Agreement only; ignores track IDs and is not ground-truth accuracy."
+}

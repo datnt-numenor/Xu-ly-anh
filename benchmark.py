@@ -7,6 +7,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 from scipy.optimize import linear_sum_assignment
 
+from evaluation import FIELDS, score
 from tracking import METHODS, associate, detect, encoder, hungarian, overlay, run_video, write_csv
 
 ROOT = Path(__file__).resolve().parent
@@ -44,29 +45,6 @@ def generate(name):
             raise RuntimeError("Unable to write sample video.")
     write_csv(data / f"{name}_truth.csv", ("frame", "object_id", "x", "y", "visible"), truth)
     return truth
-
-
-def score(truth, observations):
-    last_id, rows, errors = {}, [], []
-    switches = missed = false_positive = 0
-    for frame in range(FRAMES):
-        gt = [(i, x, y) for f, i, x, y, visible in truth if f == frame and visible]
-        pred = [(i, x, y) for f, i, x, y in observations if f == frame]
-        a = np.asarray([p[1:] for p in gt]).reshape(-1, 2)
-        b = np.asarray([p[1:] for p in pred]).reshape(-1, 2)
-        distances = np.linalg.norm(a[:, None] - b[None, :], axis=2)
-        pairs = associate(distances, 8, "hungarian")
-        missed += len(gt) - len(pairs)
-        false_positive += len(pred) - len(pairs)
-        for i, j in pairs:
-            object_id, track_id = gt[i][0], pred[j][0]
-            switched = object_id in last_id and last_id[object_id] != track_id
-            switches += switched
-            last_id[object_id] = track_id
-            errors.append(distances[i, j])
-            rows.append((frame, object_id, track_id, round(distances[i, j], 4), int(switched)))
-    rmse = round(float(np.sqrt(np.mean(np.square(errors)))), 4) if errors else ""
-    return (len(errors), missed, false_positive, switches, len({r[1] for r in observations}), rmse), rows
 
 
 def segmentation_panel():
@@ -108,7 +86,7 @@ def main():
             summary.append((name, method, *metrics))
             write_csv(output / f"{method}_evaluation.csv",
                       ("frame", "object_id", "track_id", "error_px", "id_switch"), rows)
-    fields = ("scenario", "method", "matched", "missed", "false_positive", "id_switches", "track_ids", "rmse_px")
+    fields = ("scenario", "method", *FIELDS)
     write_csv(ROOT / "results/summary.csv", fields, summary)
     segmentation_panel()
     print((ROOT / "results/summary.csv").read_text())
