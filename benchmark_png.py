@@ -6,13 +6,15 @@ from time import perf_counter
 import numpy as np
 from PIL import Image
 
-from benchmark import ROOT, score
+from benchmark import ROOT
+from evaluation import FIELDS, score
 from tracking import METHODS, Tracker, detect, write_csv
 
 def main():
     rows, timing, sweep = [], [], []
     for scenario in ("separate", "crossing"):
         output = ROOT / "results" / scenario
+        output.mkdir(parents=True, exist_ok=True)
         frames = [np.asarray(Image.open(p).convert("L")) for p in sorted((ROOT / "data" / scenario).glob("frame_*.png"))]
         truth = np.loadtxt(ROOT / "data" / f"{scenario}_truth.csv", delimiter=",", skiprows=1, dtype=int)
         def detect_all(threshold):
@@ -41,17 +43,21 @@ def main():
             write_csv(output / f"png_{method}_evaluation.csv",
                       ("frame", "object_id", "track_id", "error_px", "id_switch"), matches)
         if scenario == "crossing":
+            cached = {110: spots}
             for key, options in (("threshold", (15, 50, 110, 210, 218, 230)),
                                  ("gate", (4, 6, 8, 12, 24, 36)),
                                  ("max_missing", (0, 2, 3, 4, 5, 8))):
                 for value in options:
                     config = dict(threshold=110, gate=24, max_missing=5)
                     config[key] = value
+                    threshold = config["threshold"]
+                    if threshold not in cached:
+                        cached[threshold] = detect_all(threshold)
                     for method in METHODS:
-                        result = track_all(detect_all(config["threshold"]), method,
+                        result = track_all(cached[threshold], method,
                                            config["gate"], config["max_missing"])
                         sweep.append((key, value, method, *score(truth, result)[0]))
-    fields = ("matched", "missed", "false_positive", "id_switches", "track_ids", "rmse_px")
+    fields = FIELDS
     write_csv(ROOT / "results/summary_png.csv", ("scenario", "method", *fields), rows)
     write_csv(ROOT / "results/timing_png.csv", ("scenario", "stage", "median_ms_per_frame"), timing)
     write_csv(ROOT / "results/sweep_png.csv", ("parameter", "value", "method", *fields), sweep)

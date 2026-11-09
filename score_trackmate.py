@@ -3,10 +3,9 @@ import argparse
 import csv
 from pathlib import Path
 
-from benchmark import score
+from evaluation import FIELDS, score
 from tracking import write_csv
 
-FIELDS = ("matched", "missed", "false_positive", "id_switches", "track_ids", "rmse_px")
 
 
 def read_rows(path, columns, types):
@@ -20,12 +19,13 @@ def main():
     parser.add_argument("truth", type=Path)
     parser.add_argument("trackmate_csv", type=Path)
     parser.add_argument("--details", type=Path)
+    parser.add_argument("--gate", type=float, default=8.0, help="Evaluation radius in pixels")
     args = parser.parse_args()
     truth = read_rows(args.truth, ("frame", "object_id", "x", "y", "visible"),
                       (int, int, float, float, int))
     tracks = read_rows(args.trackmate_csv, ("frame", "track_id", "x", "y"),
                        (int, int, float, float))
-    metrics, matches = score(truth, tracks)
+    metrics, matches = score(truth, tracks, args.gate)
     for key, value in zip(FIELDS, metrics):
         print(f"{key}: {value}")
     if args.details:

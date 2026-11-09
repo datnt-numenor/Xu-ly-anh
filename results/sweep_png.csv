@@ -1,4 +1,4 @@
-parameter,value,method,matched,missed,false_positive,id_switches,track_ids,rmse_px
+parameter,value,method,matched,missed,false_positive,id_switches,track_ids,matched_detection_rmse_px
 threshold,15,nearest,0,125,0,0,0,
 threshold,15,hungarian,0,125,0,0,0,
 threshold,15,kalman,0,125,0,0,0,
