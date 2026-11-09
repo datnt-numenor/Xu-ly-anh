@@ -95,7 +95,7 @@ def figure_noise():
         sigma = [float(r["noise_sigma"]) for r in data]
         axes[0].plot(sigma, [float(r["idf1"]) for r in data], marker="o", markersize=5,
                      linewidth=2, color=color, label=label)
-        axes[1].plot(sigma, [float(r["rmse_px"]) for r in data], marker="o", markersize=5,
+        axes[1].plot(sigma, [float(r["matched_detection_rmse_px"]) for r in data], marker="o", markersize=5,
                      linewidth=2, color=color, label=label)
     axes[0].set_ylabel("IDF1")
     axes[0].set_ylim(0, 1.05)
@@ -181,7 +181,7 @@ def figure_detectors():
             ("TrackMate\nLoG", fiji.get("log_kalman"), orange))
     fig, axes = plt.subplots(1, 3, figsize=(10, 3.1))
     for ax, key, name in ((axes[0], "idf1", "IDF1"), (axes[1], "missed", "Số vật bỏ sót"),
-                          (axes[2], "rmse_px", "RMSE vị trí (px)")):
+                          (axes[2], "matched_detection_rmse_px", "RMSE vị trí (px)")):
         for i, (text, row, color) in enumerate(bars):
             if row is None:
                 ax.text(i, 0, "chưa chạy", ha="center", va="bottom", color=MUTED, fontsize=7, rotation=90)

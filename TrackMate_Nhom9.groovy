@@ -18,6 +18,9 @@ import fiji.plugin.trackmate.tracking.jaqaman.SimpleSparseLAPTrackerFactory
 import fiji.plugin.trackmate.tracking.kalman.KalmanTrackerFactory
 import fiji.plugin.trackmate.tracking.kdtree.NearestNeighborTrackerFactory
 
+if (!outputDir.isDirectory() && !outputDir.mkdirs()) {
+    throw new IllegalArgumentException("Unable to create output folder: " + outputDir)
+}
 def paths = framesDir.listFiles().findAll { it.name ==~ /frame_[0-9]+[.]png/ }.sort { it.name }
 if (paths.isEmpty()) throw new IllegalArgumentException("No sample frames found.")
 def first = IJ.openImage(paths.first().absolutePath)

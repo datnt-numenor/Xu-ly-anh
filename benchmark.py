@@ -6,6 +6,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 from scipy.optimize import linear_sum_assignment
 
+from evaluation import METRICS, score_with_identity as score
 from tracking import METHODS, associate, detect, encoder, hungarian, overlay, run_video, write_csv
 
 ROOT = Path(__file__).resolve().parent
@@ -13,8 +14,6 @@ WIDTH, HEIGHT, FPS = 320, 180, 15
 # Scenario name -> number of frames.
 SCENARIOS = {"separate": 43, "crossing": 43, "dense": 30, "noisy": 43}
 NOISY_SIGMA, NOISY_SEED = 100, 1
-MATCH_RADIUS = 8
-METRICS = ("matched", "missed", "false_positive", "id_switches", "track_ids", "mota", "idf1", "rmse_px")
 
 
 def positions(name, frame):
@@ -88,47 +87,6 @@ def generate(name):
             raise RuntimeError("Unable to write sample video.")
     write_csv(data / f"{name}_truth.csv", ("frame", "object_id", "x", "y", "visible"), truth)
     return truth
-
-
-def score(truth, observations):
-    """CLEAR-MOT style scoring with an 8 px matching radius.
-
-    MOTA = 1 - (missed + false positives + ID switches) / ground-truth objects.
-    IDF1 = 2 IDTP / (ground-truth objects + predictions), where IDTP comes from
-    the best one-to-one pairing of true objects and track IDs over the whole video.
-    """
-    gt_ids = sorted({int(row[1]) for row in truth})
-    track_ids = sorted({int(row[1]) for row in observations})
-    overlap = np.zeros((len(gt_ids), len(track_ids)))
-    last_id, rows, errors = {}, [], []
-    switches = missed = false_positive = total_gt = 0
-    for frame in sorted({int(row[0]) for row in truth}):
-        gt = [(i, x, y) for f, i, x, y, visible in truth if f == frame and visible]
-        pred = [(i, x, y) for f, i, x, y in observations if f == frame]
-        a = np.asarray([p[1:] for p in gt], dtype=float).reshape(-1, 2)
-        b = np.asarray([p[1:] for p in pred], dtype=float).reshape(-1, 2)
-        distances = np.linalg.norm(a[:, None] - b[None, :], axis=2)
-        for i, j in zip(*np.nonzero(distances <= MATCH_RADIUS)):
-            overlap[gt_ids.index(gt[i][0]), track_ids.index(pred[j][0])] += 1
-        pairs = associate(distances, MATCH_RADIUS, "hungarian")
-        total_gt += len(gt)
-        missed += len(gt) - len(pairs)
-        false_positive += len(pred) - len(pairs)
-        for i, j in pairs:
-            object_id, track_id = gt[i][0], pred[j][0]
-            switched = object_id in last_id and last_id[object_id] != track_id
-            switches += switched
-            last_id[object_id] = track_id
-            errors.append(distances[i, j])
-            rows.append((frame, object_id, track_id, round(distances[i, j], 4), int(switched)))
-    r, c = linear_sum_assignment(-overlap)
-    id_true_positive = overlap[r, c].sum()
-    total = total_gt + len(observations)
-    mota = round(1 - (missed + false_positive + switches) / total_gt, 4) if total_gt else ""
-    idf1 = round(2 * id_true_positive / total, 4) if total else ""
-    rmse = round(float(np.sqrt(np.mean(np.square(errors)))), 4) if errors else ""
-    metrics = (len(errors), missed, false_positive, switches, len(track_ids), mota, idf1, rmse)
-    return metrics, rows
 
 
 def segmentation_panel():

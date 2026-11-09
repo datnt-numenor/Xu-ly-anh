@@ -2,6 +2,25 @@
 
 Nhóm 9 · Xử lý ảnh · PTIT
 
+## Bản cải tiến và tài liệu bảo vệ
+
+- [Cơ sở thuật toán, công thức và liên hệ code](docs/LY_THUYET.md).
+- [Giao thức thực nghiệm, định nghĩa metric và phần còn cần kiểm chứng](docs/THUC_NGHIEM.md).
+- [Kết quả chạy mới và phân tích giới hạn](docs/KET_QUA.md).
+- Bộ chấm (`evaluation.py`) xét toàn bộ frame; tên `rmse_px` đổi thành `matched_detection_rmse_px` để phân biệt với trạng thái Kalman. `score_with_identity` bổ sung MOTA và IDF1, dùng cho mọi bảng `summary*.csv`.
+- `--threshold otsu` bổ sung ngưỡng tự động; `--solver scipy` là lựa chọn tăng tốc solver. Mặc định vẫn giữ ngưỡng 110 và Hungarian tự cài để minh họa thuật toán.
+- CSV `*_states.csv` tách vị trí đã lọc/dự đoán khỏi `method.csv` chứa detection quan sát. Không trộn dự đoán vào chỉ số phát hiện.
+
+```powershell
+python -m unittest discover -s tests -v
+python experiments.py
+python tracking.py data/crossing.mp4 --method kalman --threshold otsu --solver scipy --output output
+```
+
+Bộ stress gồm 150 cấu hình tổng hợp, không thay thế video thật. Kết quả Fiji cũ được chấm lại; chưa chạy Fiji trên bộ stress mới. Xem giao thức để hoàn thành hai phần này trên máy nhóm.
+
+## Dữ liệu thử
+
 Bốn video tổng hợp 320 × 180, 15 fps, nền tối có nhiễu và vật thể sáng. Mỗi kịch bản kiểm tra một điểm yếu riêng:
 
 | Kịch bản | Frame | Nội dung | Thuật toán cần có |
@@ -120,7 +139,7 @@ Mỗi frame, vật thật và vị trí dự đoán được ghép bằng Hungar
 - `id_switches`: số lần một vật thật đổi sang ID khác so với lần khớp trước. `track_ids` là số ID đã tạo.
 - `mota` = 1 − (missed + false_positive + id_switches) / số vật thật (CLEAR MOT, Bernardin & Stiefelhagen 2008).
 - `idf1` = 2·IDTP / (số vật thật + số dự đoán). IDTP lấy từ cách ghép một-một tốt nhất giữa vật thật và ID trên toàn video (Ristani và cộng sự 2016). MOTA chỉ phạt khoảnh khắc đổi ID. IDF1 phạt cả quãng mang sai ID, nên `crossing` với Nearest có MOTA 0,98 nhưng IDF1 chỉ 0,69.
-- `rmse_px`: sai số vị trí centroid của các cặp khớp.
+- `matched_detection_rmse_px`: sai số vị trí centroid của các cặp khớp.
 
 ## Kết quả chính
 

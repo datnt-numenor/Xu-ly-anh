@@ -3,22 +3,38 @@ import argparse
 import csv
 import json
 import subprocess
+from collections import deque
 from dataclasses import dataclass, field
 from pathlib import Path
 
 import numpy as np
 from PIL import Image, ImageDraw
 from scipy import ndimage
+from scipy.optimize import linear_sum_assignment
 
 METHODS = ("nearest", "hungarian", "kalman")
 COLORS = ("#ff845e", "#4ae3c2", "#f7cc55", "#bca2ff", "#6cbfff")
 
 
 def write_csv(path, columns, rows):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as output:
-        writer = csv.writer(output)
+        writer = csv.writer(output, lineterminator="\n")
         writer.writerow(columns)
         writer.writerows(rows)
+
+
+def otsu_threshold(frame):
+    """8-bit Otsu threshold; choose the first maximum for deterministic plateaus."""
+    hist = np.bincount(frame.ravel(), minlength=256).astype(float)
+    weight = hist.cumsum()
+    moment = (hist * np.arange(256)).cumsum()
+    denominator = weight * (weight[-1] - weight)
+    variance = np.zeros(256)
+    valid = denominator > 0
+    variance[valid] = (moment[-1] * weight[valid] - moment[valid] * weight[-1]) ** 2 / denominator[valid]
+    return int(np.argmax(variance)) if valid.any() else int(frame.flat[0])
 
 
 def detect(frame, threshold, min_area, max_area, blur=0.0, opening=True, connectivity=8):
@@ -27,6 +43,9 @@ def detect(frame, threshold, min_area, max_area, blur=0.0, opening=True, connect
     blur > 0 applies a Gaussian filter with that sigma first to suppress noise.
     opening=False and connectivity=4 mimic TrackMate's thresholding detector.
     """
+    if frame.ndim != 2 or frame.dtype != np.uint8 or frame.size == 0:
+        raise ValueError("Detector expects a nonempty 2D uint8 grayscale frame.")
+    threshold = otsu_threshold(frame) if threshold == "otsu" else threshold
     if blur > 0:
         frame = ndimage.gaussian_filter(frame.astype(float), blur)
     mask = frame > threshold
@@ -75,7 +94,9 @@ def hungarian(cost):
     return [(row - 1, col) for col, row in enumerate(row_at_column[1:])]
 
 
-def associate(distances, gate, method):
+def associate(distances, gate, method, solver="educational"):
+    if method not in METHODS or solver not in ("educational", "scipy"):
+        raise ValueError("Unknown method or assignment solver.")
     tracks, spots = distances.shape
     if not tracks or not spots:
         return []
@@ -98,7 +119,8 @@ def associate(distances, gate, method):
     cost[:tracks, :spots] = np.where(distances <= gate, distances, penalty * (size + 1))
     cost[:tracks, spots:] = penalty
     cost[tracks:, :spots] = penalty
-    return [(i, j) for i, j in hungarian(cost) if i < tracks and j < spots]
+    pairs = hungarian(cost) if solver == "educational" else zip(*linear_sum_assignment(cost))
+    return [(i, j) for i, j in pairs if i < tracks and j < spots and distances[i, j] <= gate]
 
 
 F = np.eye(4)
@@ -115,7 +137,7 @@ class Track:
     state: np.ndarray
     covariance: np.ndarray = field(default_factory=lambda: np.diag([4., 4., 100., 100.]))
     misses: int = 0
-    points: list = field(default_factory=list)
+    points: deque = field(default_factory=lambda: deque(maxlen=30))
 
     def predict(self):
         self.state = F @ self.state
@@ -134,7 +156,13 @@ class Track:
 
 
 class Tracker:
-    def __init__(self, method, gate, max_missing):
+    def __init__(self, method, gate, max_missing, solver="educational"):
+        if method not in METHODS or solver not in ("educational", "scipy"):
+            raise ValueError("Unknown method or assignment solver.")
+        if not np.isfinite(gate) or gate <= 0 or max_missing < 0 or int(max_missing) != max_missing:
+            raise ValueError("Expected positive finite gate and nonnegative integer max_missing.")
+        self.solver = solver
+        self.last_frame = None
         self.method = method
         self.gate = gate
         self.max_missing = max_missing
@@ -142,13 +170,23 @@ class Tracker:
         self.next_id = 1
 
     def update(self, frame, spots):
+        if not np.isfinite(frame) or frame < 0 or int(frame) != frame:
+            raise ValueError("Frame must be a nonnegative integer.")
+        if self.last_frame is not None and frame != self.last_frame + 1:
+            raise ValueError("Call update for every consecutive frame, including empty detections.")
+        spots = np.asarray(spots, dtype=float)
+        if spots.size == 0:
+            spots = np.empty((0, 2))
+        if spots.ndim != 2 or spots.shape[1] != 2 or not np.isfinite(spots).all():
+            raise ValueError("Spots must be a finite Nx2 array.")
+        self.last_frame = frame
         use_kalman = self.method == "kalman"
         if use_kalman:
             for track in self.active:
                 track.predict()
         positions = np.asarray([t.state[:2] for t in self.active]).reshape(-1, 2)
         distances = np.linalg.norm(positions[:, None] - spots[None, :], axis=2)
-        matches = associate(distances, self.gate, self.method)
+        matches = associate(distances, self.gate, self.method, self.solver)
         assigned_tracks = {i for i, _ in matches}
         assigned_spots = {j for _, j in matches}
         visible = []
@@ -205,7 +243,7 @@ def overlay(frame, tracks, label, index):
     draw = ImageDraw.Draw(image)
     for track in tracks:
         color = COLORS[(track.id - 1) % len(COLORS)]
-        recent = track.points[-30:]
+        recent = list(track.points)
         for (t0, x0, y0), (t1, x1, y1) in zip(recent, recent[1:]):
             if t1 == t0 + 1:
                 draw.line((x0, y0, x1, y1), fill=color, width=2)
@@ -217,24 +255,43 @@ def overlay(frame, tracks, label, index):
     return image
 
 
-def run_video(args):
+def run_video(args, collect=True):
+    """Stream CSV/video output; collect observations only for benchmark callers."""
+    from contextlib import ExitStack
     width, height, rate = video_info(args.video)
     args.output.mkdir(parents=True, exist_ok=True)
-    tracker = Tracker(args.method, args.gate, args.max_missing)
-    detections, observations = [], []
-    name = f"{args.method}_blur" if args.blur else args.method
-    with encoder(args.output / f"{name}.mp4", width, height, rate) as output:
-        for index, frame in enumerate(video_frames(args.video, width, height)):
-            _, points = detect(frame, args.threshold, args.min_area, args.max_area, args.blur)
-            tracks = tracker.update(index, points)
-            detections.extend((index, *point) for point in points)
-            observations.extend((index, t.id, *t.points[-1][1:]) for t in tracks)
-            output.stdin.write(overlay(frame, tracks, name, index).tobytes())
-        output.stdin.close()
+    tracker = Tracker(args.method, args.gate, args.max_missing, getattr(args, "solver", "educational"))
+    blur = getattr(args, "blur", 0.0)
+    stem = f"{args.method}_blur" if blur else args.method
+    observations = []
+    with ExitStack() as stack:
+        def csv_sink(name, columns):
+            handle = stack.enter_context((args.output / name).open("w", newline="", encoding="utf-8"))
+            writer = csv.writer(handle, lineterminator="\n")
+            writer.writerow(columns)
+            return writer
+        detection_csv = csv_sink("detections.csv", ("frame", "x", "y"))
+        observation_csv = csv_sink(f"{stem}.csv", ("frame", "track_id", "x", "y"))
+        state_csv = csv_sink(f"{stem}_states.csv",
+                             ("frame", "track_id", "state_x", "state_y", "vx_px_per_frame",
+                              "vy_px_per_frame", "observed", "misses"))
+        output = stack.enter_context(encoder(args.output / f"{stem}.mp4", width, height, rate))
+        try:
+            for index, frame in enumerate(video_frames(args.video, width, height)):
+                _, points = detect(frame, args.threshold, args.min_area, args.max_area, blur)
+                tracks = tracker.update(index, points)
+                detection_csv.writerows((index, *point) for point in points)
+                rows = [(index, t.id, *t.points[-1][1:]) for t in tracks]
+                observation_csv.writerows(rows)
+                state_csv.writerows((index, t.id, *t.state, int(t.misses == 0), t.misses)
+                                    for t in tracker.active)
+                if collect:
+                    observations.extend(rows)
+                output.stdin.write(overlay(frame, tracks, stem, index).tobytes())
+        finally:
+            output.stdin.close()
         if output.wait():
             raise RuntimeError("FFmpeg failed to encode the overlay.")
-    write_csv(args.output / "detections.csv", ("frame", "x", "y"), detections)
-    write_csv(args.output / f"{name}.csv", ("frame", "track_id", "x", "y"), observations)
     return observations
 
 
@@ -243,7 +300,8 @@ def main():
     parser.add_argument("video", type=Path)
     parser.add_argument("--output", type=Path, default=Path("output"))
     parser.add_argument("--method", choices=METHODS, default="kalman")
-    parser.add_argument("--threshold", type=int, default=110)
+    parser.add_argument("--threshold", default="110", help="Integer in [0,255], or otsu")
+    parser.add_argument("--solver", choices=("educational", "scipy"), default="educational")
     parser.add_argument("--blur", type=float, default=0.0,
                         help="Gaussian sigma applied before thresholding (0 = off)")
     parser.add_argument("--min-area", type=int, default=35)
@@ -251,13 +309,18 @@ def main():
     parser.add_argument("--gate", type=float, default=24)
     parser.add_argument("--max-missing", type=int, default=5)
     args = parser.parse_args()
-    if not 0 <= args.threshold <= 255 or not 0 < args.min_area <= args.max_area:
+    if args.threshold != "otsu":
+        try:
+            args.threshold = int(args.threshold)
+        except ValueError:
+            parser.error("Expected an integer threshold or otsu.")
+    if (args.threshold != "otsu" and not 0 <= args.threshold <= 255) or not 0 < args.min_area <= args.max_area:
         parser.error("Expected threshold in [0, 255] and 0 < min-area <= max-area.")
     if not 0 <= args.blur <= 10:
         parser.error("Expected blur in [0, 10].")
     if not np.isfinite(args.gate) or args.gate <= 0 or args.max_missing < 0:
         parser.error("Expected a positive finite gate and nonnegative max-missing.")
-    run_video(args)
+    run_video(args, collect=False)
 
 
 if __name__ == "__main__":

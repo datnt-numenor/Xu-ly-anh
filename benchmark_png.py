@@ -5,7 +5,8 @@ from time import perf_counter
 import numpy as np
 from PIL import Image
 
-from benchmark import METRICS, ROOT, SCENARIOS, label, render, score, variants
+from benchmark import ROOT, SCENARIOS, label, render, variants
+from evaluation import METRICS, score_with_identity as score
 from tracking import METHODS, Tracker, detect, write_csv
 
 NOISE_LEVELS = (0, 20, 40, 60, 80, 100, 120, 140)
@@ -82,6 +83,7 @@ def main():
     rows, timing, sweep = [], [], []
     for scenario in SCENARIOS:
         output = ROOT / "results" / scenario
+        output.mkdir(parents=True, exist_ok=True)
         frames = [np.asarray(Image.open(p).convert("L"))
                   for p in sorted((ROOT / "data" / scenario).glob("frame_*.png"))]
         truth = np.loadtxt(ROOT / "data" / f"{scenario}_truth.csv", delimiter=",", skiprows=1, dtype=int)
@@ -101,15 +103,18 @@ def main():
             write_csv(output / f"png_{name}_evaluation.csv",
                       ("frame", "object_id", "track_id", "error_px", "id_switch"), matches)
         if scenario == "crossing":
+            cached = {110: spots[0.0]}
             for key, options in (("threshold", (15, 50, 110, 210, 218, 230)),
                                  ("gate", (4, 6, 8, 12, 24, 36)),
                                  ("max_missing", (0, 2, 3, 4, 5, 8))):
                 for value in options:
                     config = dict(threshold=110, gate=24, max_missing=5)
                     config[key] = value
+                    threshold = config["threshold"]
+                    if threshold not in cached:
+                        cached[threshold] = detect_all(frames, threshold)
                     for method in METHODS:
-                        result = track_all(detect_all(frames, config["threshold"]), method,
-                                           config["gate"], config["max_missing"])
+                        result = track_all(cached[threshold], method, config["gate"], config["max_missing"])
                         sweep.append((key, value, method, *score(truth, result)[0]))
     write_csv(ROOT / "results/summary_png.csv", ("scenario", "method", *METRICS), rows)
     write_csv(ROOT / "results/timing_png.csv", ("scenario", "stage", "median_ms_per_frame"), timing)

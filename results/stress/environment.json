@@ -1,0 +1,43 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "processor": "x86_64",
+  "logical_cpus": 9,
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "pillow": "13.0.0",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "frames": 80,
+  "image_size": [
+    180,
+    320
+  ],
+  "solver": "scipy",
+  "gate": 24,
+  "evaluation_gate": 8,
+  "max_missing": 5,
+  "detector_area": [
+    35,
+    240
+  ],
+  "timing": "assignment only, warmup + 9 repeats; excludes I/O",
+  "thread_env": {
+    "OMP_NUM_THREADS": null,
+    "OPENBLAS_NUM_THREADS": null,
+    "MKL_NUM_THREADS": null
+  },
+  "source_sha256": {
+    "tracking.py": "f0fef602a925e333b2f5c82d41d1efef29f0428e6d26883ba05ae51c321a3125",
+    "evaluation.py": "87d7e9415a6cd73915ca85aa6f676911c15d8e24d0b898a1db4d9956334b057a",
+    "experiments.py": "4eb3b5f11729fe390d2f308b06781aeb29248ef799171bfa4bd40fcdd6fce63f"
+  },
+  "base_commit": "2caf8dcbff83ccc3e39df429ef523abca2bcac04",
+  "cpu_model": "AMD EPYC 9V74 80-Core Processor"
+}

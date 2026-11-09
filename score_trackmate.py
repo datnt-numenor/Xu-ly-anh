@@ -8,7 +8,8 @@ import argparse
 import csv
 from pathlib import Path
 
-from benchmark import METRICS, ROOT, SCENARIOS, score
+from benchmark import ROOT, SCENARIOS
+from evaluation import METRICS, score_with_identity as score
 from tracking import write_csv
 
 DETAIL_FIELDS = ("frame", "object_id", "track_id", "error_px", "id_switch")
@@ -29,7 +30,7 @@ def read_tracks(path):
     return read_rows(path, ("frame", "track_id", "x", "y"), (int, int, float, float))
 
 
-def score_folder(folder):
+def score_folder(folder, gate=8.0):
     summary = []
     for scenario in SCENARIOS:
         truth_path = ROOT / "data" / f"{scenario}_truth.csv"
@@ -37,7 +38,7 @@ def score_folder(folder):
         rank = {name: i for i, name in enumerate(TRACKER_ORDER)}
         for path in sorted(paths, key=lambda p: rank.get(p.stem[len(scenario) + 1:], len(rank))):
             tracker = path.stem[len(scenario) + 1:]
-            metrics, matches = score(read_truth(truth_path), read_tracks(path))
+            metrics, matches = score(read_truth(truth_path), read_tracks(path), gate)
             summary.append((scenario, tracker, *metrics))
             write_csv(folder / f"{path.stem}_evaluation.csv", DETAIL_FIELDS, matches)
     write_csv(folder / "summary.csv", ("scenario", "method", *METRICS), summary)
@@ -50,13 +51,14 @@ def main():
     parser.add_argument("trackmate_csv", type=Path, nargs="?")
     parser.add_argument("--details", type=Path, help="write per-frame matches to this CSV")
     parser.add_argument("--folder", type=Path, help="score every TrackMate CSV in this folder")
+    parser.add_argument("--gate", type=float, default=8.0, help="Evaluation radius in pixels")
     args = parser.parse_args()
     if args.folder:
-        score_folder(args.folder)
+        score_folder(args.folder, args.gate)
         return
     if not (args.truth and args.trackmate_csv):
         parser.error("Give truth and TrackMate CSV, or --folder.")
-    metrics, matches = score(read_truth(args.truth), read_tracks(args.trackmate_csv))
+    metrics, matches = score(read_truth(args.truth), read_tracks(args.trackmate_csv), args.gate)
     for key, value in zip(METRICS, metrics):
         print(f"{key}: {value}")
     if args.details:
