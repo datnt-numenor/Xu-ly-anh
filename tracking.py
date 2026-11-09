@@ -21,15 +21,19 @@ def write_csv(path, columns, rows):
         writer.writerows(rows)
 
 
-def detect(frame, threshold, min_area, max_area, blur=0.0):
+def detect(frame, threshold, min_area, max_area, blur=0.0, opening=True, connectivity=8):
     """Threshold, open, label and return (mask, centroids as x, y).
 
     blur > 0 applies a Gaussian filter with that sigma first to suppress noise.
+    opening=False and connectivity=4 mimic TrackMate's thresholding detector.
     """
     if blur > 0:
         frame = ndimage.gaussian_filter(frame.astype(float), blur)
-    mask = ndimage.binary_opening(frame > threshold, structure=np.ones((3, 3)))
-    labels, count = ndimage.label(mask, structure=np.ones((3, 3)))
+    mask = frame > threshold
+    if opening:
+        mask = ndimage.binary_opening(mask, structure=np.ones((3, 3)))
+    neighbours = np.ones((3, 3)) if connectivity == 8 else ndimage.generate_binary_structure(2, 1)
+    labels, count = ndimage.label(mask, structure=neighbours)
     areas = np.bincount(labels.ravel(), minlength=count + 1)
     indices = np.flatnonzero((areas >= min_area) & (areas <= max_area))
     indices = indices[indices != 0]
@@ -218,18 +222,19 @@ def run_video(args):
     args.output.mkdir(parents=True, exist_ok=True)
     tracker = Tracker(args.method, args.gate, args.max_missing)
     detections, observations = [], []
-    with encoder(args.output / f"{args.method}.mp4", width, height, rate) as output:
+    name = f"{args.method}_blur" if args.blur else args.method
+    with encoder(args.output / f"{name}.mp4", width, height, rate) as output:
         for index, frame in enumerate(video_frames(args.video, width, height)):
             _, points = detect(frame, args.threshold, args.min_area, args.max_area, args.blur)
             tracks = tracker.update(index, points)
             detections.extend((index, *point) for point in points)
             observations.extend((index, t.id, *t.points[-1][1:]) for t in tracks)
-            output.stdin.write(overlay(frame, tracks, args.method, index).tobytes())
+            output.stdin.write(overlay(frame, tracks, name, index).tobytes())
         output.stdin.close()
         if output.wait():
             raise RuntimeError("FFmpeg failed to encode the overlay.")
     write_csv(args.output / "detections.csv", ("frame", "x", "y"), detections)
-    write_csv(args.output / f"{args.method}.csv", ("frame", "track_id", "x", "y"), observations)
+    write_csv(args.output / f"{name}.csv", ("frame", "track_id", "x", "y"), observations)
     return observations
 
 

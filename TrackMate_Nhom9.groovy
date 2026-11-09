@@ -1,6 +1,7 @@
 // Fiji Script Editor, language Groovy. Targets TrackMate 8.x.
 #@ File(label="Folder containing frame_000.png, ...", style="directory") framesDir
 #@ File(label="Output folder", style="directory") outputDir
+#@ String(label="Detector", choices={"threshold", "log", "both"}, value="threshold") detectorChoice
 
 import ij.ImagePlus
 import ij.ImageStack
@@ -9,6 +10,7 @@ import fiji.plugin.trackmate.Model
 import fiji.plugin.trackmate.Settings
 import fiji.plugin.trackmate.Spot
 import fiji.plugin.trackmate.TrackMate
+import fiji.plugin.trackmate.detection.LogDetectorFactory
 import fiji.plugin.trackmate.detection.ThresholdDetectorFactory
 import fiji.plugin.trackmate.features.FeatureFilter
 import fiji.plugin.trackmate.io.TmXmlWriter
@@ -37,16 +39,33 @@ def methods = [
     kalman: new KalmanTrackerFactory()
 ]
 
-methods.each { name, factory ->
+// Threshold detector: quality = spot area, kept in [35, 240] px like the Python code.
+// LoG detector: Laplacian of Gaussian for blobs of radius 7 px. It smooths the
+// image before looking for maxima, which makes it robust to noise.
+// On the test videos true spots score >= 7 and noise maxima <= 2.5.
+def LOG_QUALITY = 5d
+def detectors = detectorChoice == "both" ? ["threshold", "log"] : [detectorChoice]
+
+[detectors, methods.keySet()].combinations().each { detector, name ->
+    def factory = methods[name]
     def model = new Model()
     model.setPhysicalUnits("pixel", "s")
     def settings = new Settings(imp)
-    settings.detectorFactory = new ThresholdDetectorFactory()
-    settings.detectorSettings = settings.detectorFactory.getDefaultSettings()
-    settings.detectorSettings.put("INTENSITY_THRESHOLD", 110d)
-    settings.detectorSettings.put("SIMPLIFY_CONTOURS", false)
-    settings.addSpotFilter(new FeatureFilter("QUALITY", 35d, true))
-    settings.addSpotFilter(new FeatureFilter("QUALITY", 240d, false))
+    if (detector == "log") {
+        settings.detectorFactory = new LogDetectorFactory()
+        settings.detectorSettings = settings.detectorFactory.getDefaultSettings()
+        settings.detectorSettings.put("RADIUS", 7d)
+        settings.detectorSettings.put("THRESHOLD", LOG_QUALITY)
+        settings.detectorSettings.put("DO_SUBPIXEL_LOCALIZATION", true)
+        settings.detectorSettings.put("DO_MEDIAN_FILTERING", false)
+    } else {
+        settings.detectorFactory = new ThresholdDetectorFactory()
+        settings.detectorSettings = settings.detectorFactory.getDefaultSettings()
+        settings.detectorSettings.put("INTENSITY_THRESHOLD", 110d)
+        settings.detectorSettings.put("SIMPLIFY_CONTOURS", false)
+        settings.addSpotFilter(new FeatureFilter("QUALITY", 35d, true))
+        settings.addSpotFilter(new FeatureFilter("QUALITY", 240d, false))
+    }
     settings.trackerFactory = factory
     settings.trackerSettings = factory.getDefaultSettings()
     settings.trackerSettings.put("LINKING_MAX_DISTANCE", 24d)
@@ -64,7 +83,7 @@ methods.each { name, factory ->
         throw new IllegalStateException(name + ": " + process.getErrorMessage())
     }
 
-    def prefix = framesDir.name + "_" + name
+    def prefix = framesDir.name + (detector == "log" ? "_log_" : "_") + name
     def writer = new TmXmlWriter(new File(outputDir, prefix + ".xml"))
     writer.appendModel(model)
     writer.appendSettings(settings)

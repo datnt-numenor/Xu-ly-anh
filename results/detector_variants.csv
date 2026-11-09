@@ -1,0 +1,7 @@
+scenario,detector,matched,missed,false_positive,id_switches,track_ids,mota,idf1,rmse_px
+crossing,threshold_open8,125,0,0,0,3,1.0,1.0,0.0044
+crossing,threshold_4conn,125,0,0,0,3,1.0,1.0,0.006
+crossing,gauss_threshold_open8,125,0,0,0,3,1.0,1.0,0.0
+noisy,threshold_open8,109,16,1,0,4,0.864,0.9277,1.6629
+noisy,threshold_4conn,125,0,0,0,3,1.0,1.0,0.3136
+noisy,gauss_threshold_open8,125,0,0,0,3,1.0,1.0,0.2787

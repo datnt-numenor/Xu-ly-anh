@@ -5,7 +5,7 @@ from time import perf_counter
 import numpy as np
 from PIL import Image
 
-from benchmark import METRICS, ROOT, SCENARIOS, render, score
+from benchmark import METRICS, ROOT, SCENARIOS, label, render, score, variants
 from tracking import METHODS, Tracker, detect, write_csv
 
 NOISE_LEVELS = (0, 20, 40, 60, 80, 100, 120, 140)
@@ -58,6 +58,26 @@ def noise_sweep():
     return rows
 
 
+DETECTOR_VARIANTS = (
+    ("threshold_open8", dict()),
+    ("threshold_4conn", dict(opening=False, connectivity=4)),
+    ("gauss_threshold_open8", dict(blur=1.5)),
+)
+
+
+def detector_variants():
+    """Kalman tracking on crossing and noisy with three detector variants."""
+    rows = []
+    for scenario in ("crossing", "noisy"):
+        frames = [np.asarray(Image.open(p).convert("L"))
+                  for p in sorted((ROOT / "data" / scenario).glob("frame_*.png"))]
+        truth = np.loadtxt(ROOT / "data" / f"{scenario}_truth.csv", delimiter=",", skiprows=1, dtype=int)
+        for name, options in DETECTOR_VARIANTS:
+            spots = [detect(frame, 110, 35, 240, **options)[1] for frame in frames]
+            rows.append((scenario, name, *score(truth, track_all(spots, "kalman"))[0]))
+    return rows
+
+
 def main():
     rows, timing, sweep = [], [], []
     for scenario in SCENARIOS:
@@ -65,15 +85,20 @@ def main():
         frames = [np.asarray(Image.open(p).convert("L"))
                   for p in sorted((ROOT / "data" / scenario).glob("frame_*.png"))]
         truth = np.loadtxt(ROOT / "data" / f"{scenario}_truth.csv", delimiter=",", skiprows=1, dtype=int)
-        spots = detect_all(frames)
+        spots = {0.0: detect_all(frames)}
         timing.append((scenario, "detection", timed(lambda: detect_all(frames), len(frames))))
-        for method in METHODS:
-            result = track_all(spots, method)
+        for method, blur in variants(scenario):
+            if blur not in spots:
+                spots[blur] = detect_all(frames, blur=blur)
+                timing.append((scenario, "detection_blur",
+                               timed(lambda: detect_all(frames, blur=blur), len(frames))))
+            name = label(method, blur)
+            result = track_all(spots[blur], method)
             metrics, matches = score(truth, result)
-            rows.append((scenario, method, *metrics))
-            timing.append((scenario, method, timed(lambda: track_all(spots, method), len(frames))))
-            write_csv(output / f"png_{method}.csv", ("frame", "track_id", "x", "y"), result)
-            write_csv(output / f"png_{method}_evaluation.csv",
+            rows.append((scenario, name, *metrics))
+            timing.append((scenario, name, timed(lambda: track_all(spots[blur], method), len(frames))))
+            write_csv(output / f"png_{name}.csv", ("frame", "track_id", "x", "y"), result)
+            write_csv(output / f"png_{name}_evaluation.csv",
                       ("frame", "object_id", "track_id", "error_px", "id_switch"), matches)
         if scenario == "crossing":
             for key, options in (("threshold", (15, 50, 110, 210, 218, 230)),
@@ -89,6 +114,7 @@ def main():
     write_csv(ROOT / "results/summary_png.csv", ("scenario", "method", *METRICS), rows)
     write_csv(ROOT / "results/timing_png.csv", ("scenario", "stage", "median_ms_per_frame"), timing)
     write_csv(ROOT / "results/sweep_png.csv", ("parameter", "value", "method", *METRICS), sweep)
+    write_csv(ROOT / "results/detector_variants.csv", ("scenario", "detector", *METRICS), detector_variants())
     write_csv(ROOT / "results/noise_sweep.csv", ("noise_sigma", "blur", "method", *METRICS), noise_sweep())
 
 

@@ -12,7 +12,7 @@ from benchmark import METRICS, ROOT, SCENARIOS, score
 from tracking import write_csv
 
 DETAIL_FIELDS = ("frame", "object_id", "track_id", "error_px", "id_switch")
-TRACKER_ORDER = ("nearest", "lap", "kalman")
+TRACKER_ORDER = ("nearest", "lap", "kalman", "log_nearest", "log_lap", "log_kalman")
 
 
 def read_rows(path, columns, types):

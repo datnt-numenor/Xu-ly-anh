@@ -11,19 +11,20 @@ from tracking import METHODS, associate, detect, encoder, hungarian, overlay, ru
 ROOT = Path(__file__).resolve().parent
 WIDTH, HEIGHT, FPS = 320, 180, 15
 # Scenario name -> number of frames.
-SCENARIOS = {"separate": 43, "crossing": 43, "dense": 30}
+SCENARIOS = {"separate": 43, "crossing": 43, "dense": 30, "noisy": 43}
+NOISY_SIGMA, NOISY_SEED = 100, 1
 MATCH_RADIUS = 8
 METRICS = ("matched", "missed", "false_positive", "id_switches", "track_ids", "mota", "idf1", "rmse_px")
 
 
 def positions(name, frame):
     if name == "dense":
-        # Two convoys with 16 px spacing. The upper one accelerates from 6 to
-        # 11 px/frame; once a step exceeds half the spacing (8 px), the closest
-        # spot belongs to the object behind. The lower one keeps 7 px/frame.
+        # Two convoys with 16 px spacing, moving right (top) and left (bottom),
+        # both accelerating from 6 to 11 px/frame. Once a step exceeds half the
+        # spacing (8 px, from frame 16), the closest spot belongs to the object behind.
         shift = sum(6 + t // 5 for t in range(frame))
         right = [(15 + 16 * k + shift, 62) for k in range(3)]
-        left = [(305 - 16 * k - 7 * frame, 118) for k in range(3)]
+        left = [(305 - 16 * k - shift, 118) for k in range(3)]
         return right + left
     return (
         (32 + 6 * frame, 66),
@@ -32,8 +33,28 @@ def positions(name, frame):
     )
 
 
+def variants(name):
+    """(method, blur) pairs to run; the noisy scenario also runs with smoothing."""
+    blurs = (0.0, 1.5) if name == "noisy" else (0.0,)
+    return [(method, blur) for blur in blurs for method in METHODS]
+
+
+def label(method, blur):
+    return f"{method}_blur" if blur else method
+
+
 def render(name, noise=5.0, seed=9):
-    """Yield (frame image, truth rows). noise is the Gaussian background sigma."""
+    """Yield (frame image, truth rows). noise is the Gaussian background sigma.
+
+    "noisy" is the crossing video with Gaussian sensor noise (sigma 100) added
+    to every pixel, identical to one run of the noise experiment.
+    """
+    if name == "noisy":
+        rng = np.random.default_rng(NOISY_SEED)
+        for image, rows in render("crossing"):
+            noisy = image.astype(float) + rng.normal(0, NOISY_SIGMA, image.shape)
+            yield np.clip(noisy, 0, 255).astype(np.uint8), rows
+        return
     rng = np.random.default_rng(seed)
     yy, xx = np.ogrid[:HEIGHT, :WIDTH]
     radius = 5 if name == "dense" else 7
@@ -141,13 +162,13 @@ def main():
     for name in SCENARIOS:
         truth = generate(name)
         output = ROOT / "results" / name
-        for method in METHODS:
+        for method, blur in variants(name):
             args = argparse.Namespace(video=ROOT / "data" / f"{name}.mp4", output=output,
-                                      method=method, threshold=110, min_area=35, max_area=240, blur=0.0,
+                                      method=method, threshold=110, min_area=35, max_area=240, blur=blur,
                                       gate=24, max_missing=5)
             metrics, rows = score(truth, run_video(args))
-            summary.append((name, method, *metrics))
-            write_csv(output / f"{method}_evaluation.csv",
+            summary.append((name, label(method, blur), *metrics))
+            write_csv(output / f"{label(method, blur)}_evaluation.csv",
                       ("frame", "object_id", "track_id", "error_px", "id_switch"), rows)
     write_csv(ROOT / "results/summary.csv", ("scenario", "method", *METRICS), summary)
     segmentation_panel()
