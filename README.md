@@ -48,7 +48,26 @@ Chạy headless không cần giao diện (đổi đường dẫn cho phù hợp)
 ImageJ-linux64 --headless --console --run TrackMate_Nhom9.groovy 'framesDir="data/noisy",outputDir="results/fiji",detectorChoice="both"'
 ```
 
-XML của `noisy` với detector threshold không được commit vì mỗi file khoảng 80 MB: TrackMate lưu cả hàng nghìn spot nhiễu trước khi lọc. CSV của chúng vẫn có trong repo. Mỗi spot hiện nhưng không được nối được xem là một quỹ đạo đơn khi chấm. Mở XML bằng **Plugins › Tracking › Load a TrackMate file** nếu stack nguồn khả dụng, hoặc chạy GUI để tạo overlay.
+Trước khi ghi XML, script xóa các spot bị bộ lọc loại, nên XML chỉ chứa spot đã theo dõi. Nếu không làm vậy, XML của `noisy` với detector threshold nặng khoảng 80 MB vì TrackMate lưu cả hàng nghìn spot nhiễu. XML của `separate` và `crossing` tạo bằng bản script cũ nên vẫn chứa cả spot bị lọc, nhưng các spot đã theo dõi vẫn giống hệt.
+
+### Ảnh chụp màn hình TrackMate
+
+`results/fiji/screenshots/` có hai bộ ảnh chụp từ giao diện TrackMate 7.14.0 thật, mỗi bước wizard một ảnh:
+
+| Thư mục | Nội dung |
+|---|---|
+| `crossing_threshold_kalman/` | Thresholding detector (ngưỡng 110, lọc Quality 35–240) và Kalman tracker trên `crossing` |
+| `noisy_log_kalman/` | LoG detector (đường kính 14 px, quality ≥ 5) và Kalman tracker trên `noisy`. Ảnh `05_ConfigureDetector.png` có histogram quality: nhiễu ở 0–2, vật thật ở 8–9 |
+
+Các ảnh trong mỗi bộ theo thứ tự: `01_hyperstack` (ảnh đã mở, phóng 200 %), `02_Start` (hiệu chuẩn), `03_ChooseDetector`, `04_Preview_image` (spot được khoanh ở frame 21, lúc vật 1 bị ẩn), `05_ConfigureDetector`, `06_ExecuteDetection` (log), `07_InitialFiltering`, `08_SpotFilter`, `09_ChooseTracker`, `10_ConfigureTracker`, `11_ExecuteTracking` (log, số track tìm được), `12_TrackFilter`, `13_ConfigureViews` (nút Tracks/Spots/TrackScheme), `14_TracksTable` (bảng Tracks, Track_0 có 1 khoảng trống dài 4 frame) và `15_Overlay` (quỹ đạo vẽ trên ảnh ở frame 26).
+
+Các ảnh được tạo bằng `TrackMate_screenshots.groovy`. Script mở Fiji có giao diện, điền sẵn tham số của nhóm rồi đi qua từng bước wizard và chụp lại. Trên Linux không có màn hình thì chạy qua Xvfb:
+
+```bash
+xvfb-run -a -s "-screen 0 1600x1000x24" ImageJ-linux64 --run TrackMate_screenshots.groovy 'framesDir="data/crossing",outputDir="results/fiji/screenshots/crossing_threshold_kalman",detectorChoice="threshold",trackerChoice="kalman",overlayFrame=26'
+```
+
+Khi thuyết trình nên bấm GUI trực tiếp theo các bước ở trên, ảnh chụp chỉ dùng cho báo cáo. Mỗi spot hiện nhưng không được nối được xem là một quỹ đạo đơn khi chấm. Mở XML bằng **Plugins › Tracking › Load a TrackMate file** nếu stack nguồn khả dụng, hoặc chạy GUI để tạo overlay.
 
 Sau khi cài các gói Python ở phần dưới, chấm một CSV hoặc cả thư mục (ghi lại `results/fiji/summary.csv` và các `*_evaluation.csv`), rồi vẽ lại biểu đồ:
 

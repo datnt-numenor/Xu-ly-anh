@@ -83,6 +83,13 @@ def detectors = detectorChoice == "both" ? ["threshold", "log"] : [detectorChoic
         throw new IllegalStateException(name + ": " + process.getErrorMessage())
     }
 
+    // Drop the spots rejected by the filters before saving, so the XML holds
+    // only the tracked spots (on noisy video it would otherwise be ~80 MB).
+    def kept = model.getSpots().iterable(true).toSet()
+    def rejected = model.getSpots().iterable(false).findAll { !kept.contains(it) }
+    model.beginUpdate()
+    try { rejected.each { model.removeSpot(it) } } finally { model.endUpdate() }
+
     def prefix = framesDir.name + (detector == "log" ? "_log_" : "_") + name
     def writer = new TmXmlWriter(new File(outputDir, prefix + ".xml"))
     writer.appendModel(model)
