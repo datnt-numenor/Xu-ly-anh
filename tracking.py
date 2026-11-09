@@ -21,7 +21,13 @@ def write_csv(path, columns, rows):
         writer.writerows(rows)
 
 
-def detect(frame, threshold, min_area, max_area):
+def detect(frame, threshold, min_area, max_area, blur=0.0):
+    """Threshold, open, label and return (mask, centroids as x, y).
+
+    blur > 0 applies a Gaussian filter with that sigma first to suppress noise.
+    """
+    if blur > 0:
+        frame = ndimage.gaussian_filter(frame.astype(float), blur)
     mask = ndimage.binary_opening(frame > threshold, structure=np.ones((3, 3)))
     labels, count = ndimage.label(mask, structure=np.ones((3, 3)))
     areas = np.bincount(labels.ravel(), minlength=count + 1)
@@ -214,7 +220,7 @@ def run_video(args):
     detections, observations = [], []
     with encoder(args.output / f"{args.method}.mp4", width, height, rate) as output:
         for index, frame in enumerate(video_frames(args.video, width, height)):
-            _, points = detect(frame, args.threshold, args.min_area, args.max_area)
+            _, points = detect(frame, args.threshold, args.min_area, args.max_area, args.blur)
             tracks = tracker.update(index, points)
             detections.extend((index, *point) for point in points)
             observations.extend((index, t.id, *t.points[-1][1:]) for t in tracks)
@@ -233,6 +239,8 @@ def main():
     parser.add_argument("--output", type=Path, default=Path("output"))
     parser.add_argument("--method", choices=METHODS, default="kalman")
     parser.add_argument("--threshold", type=int, default=110)
+    parser.add_argument("--blur", type=float, default=0.0,
+                        help="Gaussian sigma applied before thresholding (0 = off)")
     parser.add_argument("--min-area", type=int, default=35)
     parser.add_argument("--max-area", type=int, default=240)
     parser.add_argument("--gate", type=float, default=24)
@@ -240,6 +248,8 @@ def main():
     args = parser.parse_args()
     if not 0 <= args.threshold <= 255 or not 0 < args.min_area <= args.max_area:
         parser.error("Expected threshold in [0, 255] and 0 < min-area <= max-area.")
+    if not 0 <= args.blur <= 10:
+        parser.error("Expected blur in [0, 10].")
     if not np.isfinite(args.gate) or args.gate <= 0 or args.max_missing < 0:
         parser.error("Expected a positive finite gate and nonnegative max-missing.")
     run_video(args)

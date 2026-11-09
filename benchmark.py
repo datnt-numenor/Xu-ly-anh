@@ -1,6 +1,5 @@
-"""Generate two reproducible videos and score all three trackers."""
+"""Generate reproducible test videos and score all three trackers."""
 import argparse
-import csv
 from pathlib import Path
 
 import numpy as np
@@ -10,32 +9,56 @@ from scipy.optimize import linear_sum_assignment
 from tracking import METHODS, associate, detect, encoder, hungarian, overlay, run_video, write_csv
 
 ROOT = Path(__file__).resolve().parent
-WIDTH, HEIGHT, FPS, FRAMES = 320, 180, 15, 43
+WIDTH, HEIGHT, FPS = 320, 180, 15
+# Scenario name -> number of frames.
+SCENARIOS = {"separate": 43, "crossing": 43, "dense": 30}
+MATCH_RADIUS = 8
+METRICS = ("matched", "missed", "false_positive", "id_switches", "track_ids", "mota", "idf1", "rmse_px")
+
+
+def positions(name, frame):
+    if name == "dense":
+        # Two convoys with 16 px spacing. The upper one accelerates from 6 to
+        # 11 px/frame; once a step exceeds half the spacing (8 px), the closest
+        # spot belongs to the object behind. The lower one keeps 7 px/frame.
+        shift = sum(6 + t // 5 for t in range(frame))
+        right = [(15 + 16 * k + shift, 62) for k in range(3)]
+        left = [(305 - 16 * k - 7 * frame, 118) for k in range(3)]
+        return right + left
+    return (
+        (32 + 6 * frame, 66),
+        (288 - 6 * frame, 105 if name == "separate" else 66),
+        (85 + 2 * frame, 146 - frame // 3),
+    )
+
+
+def render(name, noise=5.0, seed=9):
+    """Yield (frame image, truth rows). noise is the Gaussian background sigma."""
+    rng = np.random.default_rng(seed)
+    yy, xx = np.ogrid[:HEIGHT, :WIDTH]
+    radius = 5 if name == "dense" else 7
+    for frame in range(SCENARIOS[name]):
+        image = np.clip(25 + rng.normal(0, noise, (HEIGHT, WIDTH)), 0, 255).astype(np.uint8)
+        rows = []
+        for object_id, (x, y) in enumerate(positions(name, frame), 1):
+            visible = not (name == "crossing" and object_id == 1 and 20 <= frame <= 23)
+            rows.append((frame, object_id, x, y, int(visible)))
+            if visible:
+                image[(xx - x)**2 + (yy - y)**2 <= radius**2] = 218
+        # Isolated bright pixels, removed by the morphological opening.
+        for x, y in rng.integers((1, 1), (WIDTH - 1, HEIGHT - 1), (25, 2)):
+            image[y, x] = 205
+        yield image, rows
 
 
 def generate(name):
     data = ROOT / "data"
-    data.mkdir(exist_ok=True)
     frames_dir = data / name
-    frames_dir.mkdir(exist_ok=True)
-    rng = np.random.default_rng(9)
-    yy, xx = np.ogrid[:HEIGHT, :WIDTH]
+    frames_dir.mkdir(parents=True, exist_ok=True)
     truth = []
     with encoder(data / f"{name}.mp4", WIDTH, HEIGHT, FPS) as video:
-        for frame in range(FRAMES):
-            image = np.clip(25 + rng.normal(0, 5, (HEIGHT, WIDTH)), 0, 255).astype(np.uint8)
-            positions = (
-                (32 + 6 * frame, 66),
-                (288 - 6 * frame, 105 if name == "separate" else 66),
-                (85 + 2 * frame, 146 - frame // 3),
-            )
-            for object_id, (x, y) in enumerate(positions, 1):
-                visible = not (name == "crossing" and object_id == 1 and 20 <= frame <= 23)
-                truth.append((frame, object_id, x, y, int(visible)))
-                if visible:
-                    image[(xx - x)**2 + (yy - y)**2 <= 7**2] = 218
-            for x, y in rng.integers((1, 1), (WIDTH - 1, HEIGHT - 1), (25, 2)):
-                image[y, x] = 205
+        for frame, (image, rows) in enumerate(render(name)):
+            truth.extend(rows)
             png = Image.fromarray(image)
             png.save(frames_dir / f"frame_{frame:03d}.png")
             video.stdin.write(png.convert("RGB").tobytes())
@@ -47,15 +70,27 @@ def generate(name):
 
 
 def score(truth, observations):
+    """CLEAR-MOT style scoring with an 8 px matching radius.
+
+    MOTA = 1 - (missed + false positives + ID switches) / ground-truth objects.
+    IDF1 = 2 IDTP / (ground-truth objects + predictions), where IDTP comes from
+    the best one-to-one pairing of true objects and track IDs over the whole video.
+    """
+    gt_ids = sorted({int(row[1]) for row in truth})
+    track_ids = sorted({int(row[1]) for row in observations})
+    overlap = np.zeros((len(gt_ids), len(track_ids)))
     last_id, rows, errors = {}, [], []
-    switches = missed = false_positive = 0
-    for frame in range(FRAMES):
+    switches = missed = false_positive = total_gt = 0
+    for frame in sorted({int(row[0]) for row in truth}):
         gt = [(i, x, y) for f, i, x, y, visible in truth if f == frame and visible]
         pred = [(i, x, y) for f, i, x, y in observations if f == frame]
-        a = np.asarray([p[1:] for p in gt]).reshape(-1, 2)
-        b = np.asarray([p[1:] for p in pred]).reshape(-1, 2)
+        a = np.asarray([p[1:] for p in gt], dtype=float).reshape(-1, 2)
+        b = np.asarray([p[1:] for p in pred], dtype=float).reshape(-1, 2)
         distances = np.linalg.norm(a[:, None] - b[None, :], axis=2)
-        pairs = associate(distances, 8, "hungarian")
+        for i, j in zip(*np.nonzero(distances <= MATCH_RADIUS)):
+            overlap[gt_ids.index(gt[i][0]), track_ids.index(pred[j][0])] += 1
+        pairs = associate(distances, MATCH_RADIUS, "hungarian")
+        total_gt += len(gt)
         missed += len(gt) - len(pairs)
         false_positive += len(pred) - len(pairs)
         for i, j in pairs:
@@ -65,8 +100,14 @@ def score(truth, observations):
             last_id[object_id] = track_id
             errors.append(distances[i, j])
             rows.append((frame, object_id, track_id, round(distances[i, j], 4), int(switched)))
+    r, c = linear_sum_assignment(-overlap)
+    id_true_positive = overlap[r, c].sum()
+    total = total_gt + len(observations)
+    mota = round(1 - (missed + false_positive + switches) / total_gt, 4) if total_gt else ""
+    idf1 = round(2 * id_true_positive / total, 4) if total else ""
     rmse = round(float(np.sqrt(np.mean(np.square(errors)))), 4) if errors else ""
-    return (len(errors), missed, false_positive, switches, len({r[1] for r in observations}), rmse), rows
+    metrics = (len(errors), missed, false_positive, switches, len(track_ids), mota, idf1, rmse)
+    return metrics, rows
 
 
 def segmentation_panel():
@@ -97,19 +138,18 @@ def main():
     assert len(associate(np.array([[2., 3.], [4., 9.]]), 5, "nearest")) == 1
     assert len(associate(np.array([[2., 3.], [4., 9.]]), 5, "hungarian")) == 2
     summary = []
-    for name in ("separate", "crossing"):
+    for name in SCENARIOS:
         truth = generate(name)
         output = ROOT / "results" / name
         for method in METHODS:
             args = argparse.Namespace(video=ROOT / "data" / f"{name}.mp4", output=output,
-                                      method=method, threshold=110, min_area=35, max_area=240,
+                                      method=method, threshold=110, min_area=35, max_area=240, blur=0.0,
                                       gate=24, max_missing=5)
             metrics, rows = score(truth, run_video(args))
             summary.append((name, method, *metrics))
             write_csv(output / f"{method}_evaluation.csv",
                       ("frame", "object_id", "track_id", "error_px", "id_switch"), rows)
-    fields = ("scenario", "method", "matched", "missed", "false_positive", "id_switches", "track_ids", "rmse_px")
-    write_csv(ROOT / "results/summary.csv", fields, summary)
+    write_csv(ROOT / "results/summary.csv", ("scenario", "method", *METRICS), summary)
     segmentation_panel()
     print((ROOT / "results/summary.csv").read_text())
 

@@ -1,7 +1,10 @@
-scenario,method,matched,missed,false_positive,id_switches,track_ids,rmse_px
-separate,nearest,129,0,0,0,3,0.0043
-separate,hungarian,129,0,0,0,3,0.0043
-separate,kalman,129,0,0,0,3,0.0043
-crossing,nearest,125,0,0,2,3,0.0044
-crossing,hungarian,125,0,0,2,3,0.0044
-crossing,kalman,125,0,0,0,3,0.0044
+scenario,method,matched,missed,false_positive,id_switches,track_ids,mota,idf1,rmse_px
+separate,nearest,129,0,0,0,3,1.0,1.0,0.0043
+separate,hungarian,129,0,0,0,3,1.0,1.0,0.0043
+separate,kalman,129,0,0,0,3,1.0,1.0,0.0043
+crossing,nearest,125,0,0,2,3,0.984,0.688,0.0044
+crossing,hungarian,125,0,0,2,3,0.984,0.688,0.0044
+crossing,kalman,125,0,0,0,3,1.0,1.0,0.0044
+dense,nearest,180,0,0,42,20,0.7667,0.7667,0.0054
+dense,hungarian,180,0,0,0,6,1.0,1.0,0.0054
+dense,kalman,180,0,0,0,6,1.0,1.0,0.0054
