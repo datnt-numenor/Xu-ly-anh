@@ -19,6 +19,25 @@ python tracking.py data/crossing.mp4 --method kalman --threshold otsu --solver s
 
 Bộ stress gồm 150 cấu hình tổng hợp, không thay thế video thật. Kết quả Fiji cũ được chấm lại; chưa chạy Fiji trên bộ stress mới. Xem giao thức để hoàn thành hai phần này trên máy nhóm.
 
+## Web demo
+
+Gom mọi tính năng vào một trang web chạy cục bộ, gọi trực tiếp `tracking.py` và `evaluation.py`:
+
+```powershell
+python -m pip install -r requirements.txt
+python webapp/app.py            # tự mở http://127.0.0.1:5000
+```
+
+| Tab | Nội dung |
+|---|---|
+| 1. Dữ liệu | Xem trước 4 kịch bản kèm ground truth; tải lên video (cần FFmpeg) hoặc chuỗi ảnh của riêng mình |
+| 2. Phát hiện | Chỉnh ngưỡng/Otsu, làm mượt Gauss, opening, liên thông, diện tích, thêm nhiễu; xem từng bước mặt nạ, histogram, spot |
+| 3. Theo dõi & so sánh | Chạy Nearest/Hungarian/Kalman cạnh nhau, phát lại theo frame, vệt quỹ đạo, vị trí Kalman dự đoán, dòng thời gian ID, MOTA/IDF1 và danh sách frame đổi ID |
+| 4. Ghép cặp | Kéo thả track/spot để thấy vì sao ghép tham lam sai còn Hungarian đúng; ma trận chi phí, đối chiếu SciPy |
+| 5. Kết quả & TrackMate | Bảng Python vs TrackMate, video kết quả, ảnh từng bước wizard Fiji, thời gian xử lý, biểu đồ và hình báo cáo |
+
+Các nút "Kịch bản trình diễn" ở tab 3 dựng sẵn cấu hình cho phần thuyết trình. Phím cách để phát/dừng, ← → để lùi/tiến từng frame.
+
 ## Dữ liệu thử
 
 Bốn video tổng hợp 320 × 180, 15 fps, nền tối có nhiễu và vật thể sáng. Mỗi kịch bản kiểm tra một điểm yếu riêng:

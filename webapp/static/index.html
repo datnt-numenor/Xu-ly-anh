@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theo dõi đối tượng – Nhóm 9</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">◎</span>
+    <div>
+      <h1>Phát hiện &amp; theo dõi đối tượng chuyển động</h1>
+      <p>Nhóm 9 · Xử lý ảnh · PTIT</p>
+    </div>
+  </div>
+  <nav class="tabs" id="tabs">
+    <button data-tab="data" class="active">1. Dữ liệu</button>
+    <button data-tab="detect">2. Phát hiện</button>
+    <button data-tab="track">3. Theo dõi &amp; so sánh</button>
+    <button data-tab="assoc">4. Ghép cặp</button>
+    <button data-tab="results">5. Kết quả &amp; TrackMate</button>
+  </nav>
+</header>
+
+<main>
+<!-- ============================================================ DATA -->
+<section id="tab-data" class="tab active">
+  <div class="intro">
+    <h2>Pipeline</h2>
+    <ol class="pipeline">
+      <li><b>Ảnh xám</b><span>frame từ video / chuỗi PNG</span></li>
+      <li><b>Phân ngưỡng</b><span>ngưỡng cố định hoặc Otsu, làm mượt Gauss tùy chọn</span></li>
+      <li><b>Opening + gán nhãn</b><span>thành phần liên thông, lọc theo diện tích</span></li>
+      <li><b>Centroid</b><span>tâm khối của từng vùng = 1 spot</span></li>
+      <li><b>Ghép cặp</b><span>Nearest · Hungarian · Kalman + Hungarian</span></li>
+      <li><b>Đánh giá</b><span>MOTA, IDF1, ID switch so với ground truth</span></li>
+    </ol>
+  </div>
+  <h2>Bốn kịch bản thử</h2>
+  <p class="muted">320 × 180, 15 fps, nền tối có nhiễu, vật thể sáng. Ô vuông màu là vị trí ground truth, bấm vào thẻ để mở ở bước Theo dõi.</p>
+  <div id="scenario-cards" class="cards"></div>
+
+  <h2>Dùng dữ liệu riêng</h2>
+  <div class="panel upload">
+    <p>Tải lên <b>một video</b> (mp4, avi, mov… cần FFmpeg) hoặc <b>nhiều ảnh</b> (PNG/JPG, sắp theo tên). Ảnh được chuyển sang xám, thu nhỏ tối đa 640 px chiều ngang, tối đa 300 frame. Phù hợp nhất với vật sáng trên nền tối, camera cố định.</p>
+    <label class="file-drop" id="drop">
+      <input type="file" id="upload-input" multiple accept="video/*,image/*">
+      <span>Kéo thả tệp vào đây hoặc bấm để chọn</span>
+    </label>
+    <div id="upload-status" class="muted"></div>
+  </div>
+</section>
+
+<!-- ============================================================ DETECT -->
+<section id="tab-detect" class="tab">
+  <div class="layout">
+    <aside class="panel controls" id="det-controls">
+      <h3>Nguồn</h3>
+      <label>Video <select class="source-select" id="det-source"></select></label>
+      <label>Frame <output id="det-frame-out">0</output>
+        <input type="range" id="det-frame" min="0" max="42" value="21"></label>
+      <label>Nhiễu Gauss thêm vào σ <output id="det-noise-out">0</output>
+        <input type="range" id="det-noise" min="0" max="160" step="10" value="0"></label>
+      <h3>Phân ngưỡng</h3>
+      <label class="check"><input type="checkbox" id="det-otsu"> Ngưỡng Otsu tự động</label>
+      <label>Ngưỡng <output id="det-threshold-out">110</output>
+        <input type="range" id="det-threshold" min="0" max="255" value="110"></label>
+      <label>Làm mượt Gauss σ <output id="det-blur-out">0</output>
+        <input type="range" id="det-blur" min="0" max="4" step="0.25" value="0"></label>
+      <h3>Hình thái &amp; lọc</h3>
+      <label class="check"><input type="checkbox" id="det-opening" checked> Opening 3×3</label>
+      <label>Liên thông <select id="det-connectivity"><option value="8">8 lân cận</option><option value="4">4 lân cận</option></select></label>
+      <div class="row2">
+        <label>Diện tích min <input type="number" id="det-min-area" value="35" min="1"></label>
+        <label>max <input type="number" id="det-max-area" value="240" min="1"></label>
+      </div>
+      <div class="btn-row">
+        <button class="ghost" id="det-reset">Mặc định</button>
+        <button class="ghost" id="det-to-track">Dùng cho Theo dõi →</button>
+      </div>
+    </aside>
+    <div class="content">
+      <div class="stats" id="det-stats"></div>
+      <div class="grid2" id="det-panels">
+        <figure class="panel"><figcaption>① Ảnh vào + spot phát hiện</figcaption><canvas id="det-c-input"></canvas></figure>
+        <figure class="panel" id="det-smooth-fig"><figcaption>② Sau làm mượt Gauss</figcaption><canvas id="det-c-smooth"></canvas></figure>
+        <figure class="panel"><figcaption>③ Mặt nạ sau phân ngưỡng</figcaption><canvas id="det-c-raw"></canvas></figure>
+        <figure class="panel"><figcaption>④ Sau opening, lọc diện tích <span class="legend"><i class="ok"></i>giữ <i class="bad"></i>loại</span></figcaption><canvas id="det-c-mask"></canvas></figure>
+      </div>
+      <figure class="panel"><figcaption>Histogram mức xám (thang log) <span class="legend"><i class="thr"></i>ngưỡng đang dùng <i class="ots"></i>Otsu</span></figcaption><canvas id="det-hist" class="hist"></canvas></figure>
+      <details class="panel">
+        <summary>Danh sách thành phần liên thông</summary>
+        <div id="det-components"></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ TRACK -->
+<section id="tab-track" class="tab">
+  <div class="presets">
+    <span class="muted">Kịch bản trình diễn:</span>
+    <button data-preset="crossing">Crossing — vì sao cần Kalman</button>
+    <button data-preset="dense">Dense — vì sao cần Hungarian</button>
+    <button data-preset="noisy">Noisy — không làm mượt</button>
+    <button data-preset="noisy-blur">Noisy — làm mượt σ = 1,5</button>
+  </div>
+  <div class="layout">
+    <aside class="panel controls" id="trk-controls">
+      <h3>Nguồn</h3>
+      <label>Video <select class="source-select" id="trk-source"></select></label>
+      <label>Nhiễu Gauss thêm vào σ <output id="trk-noise-out">0</output>
+        <input type="range" id="trk-noise" min="0" max="160" step="10" value="0"></label>
+      <h3>Phương pháp</h3>
+      <div class="method-picks">
+        <label class="check"><input type="checkbox" name="trk-method" value="nearest" checked> Nearest neighbor</label>
+        <label class="check"><input type="checkbox" name="trk-method" value="hungarian" checked> Hungarian</label>
+        <label class="check"><input type="checkbox" name="trk-method" value="kalman" checked> Kalman + Hungarian</label>
+      </div>
+      <label>Gate (px) <output id="trk-gate-out">24</output>
+        <input type="range" id="trk-gate" min="2" max="60" value="24"></label>
+      <label>max_missing (frame) <output id="trk-missing-out">5</output>
+        <input type="range" id="trk-missing" min="0" max="12" value="5"></label>
+      <label>Solver <select id="trk-solver"><option value="educational">Hungarian tự cài</option><option value="scipy">SciPy</option></select></label>
+      <h3>Phát hiện</h3>
+      <label class="check"><input type="checkbox" id="trk-otsu"> Ngưỡng Otsu</label>
+      <label>Ngưỡng <output id="trk-threshold-out">110</output>
+        <input type="range" id="trk-threshold" min="0" max="255" value="110"></label>
+      <label>Làm mượt Gauss σ <output id="trk-blur-out">0</output>
+        <input type="range" id="trk-blur" min="0" max="4" step="0.25" value="0"></label>
+      <div class="row2">
+        <label>Diện tích min <input type="number" id="trk-min-area" value="35" min="1"></label>
+        <label>max <input type="number" id="trk-max-area" value="240" min="1"></label>
+      </div>
+      <h3>Hiển thị</h3>
+      <label class="check"><input type="checkbox" id="show-trails" checked> Vệt quỹ đạo</label>
+      <label class="check"><input type="checkbox" id="show-dets"> Spot phát hiện (+)</label>
+      <label class="check"><input type="checkbox" id="show-truth"> Ground truth (□)</label>
+      <label class="check"><input type="checkbox" id="show-pred" checked> Vị trí dự đoán khi mất quan sát</label>
+    </aside>
+    <div class="content">
+      <div class="player panel">
+        <button id="play" class="primary" title="Phím cách">▶</button>
+        <button id="step-back" title="Phím ←">◀︎◀︎</button>
+        <button id="step-fwd" title="Phím →">▶︎▶︎</button>
+        <input type="range" id="trk-frame" min="0" max="42" value="0">
+        <output id="trk-frame-out" class="mono">000</output>
+        <label class="speed">Tốc độ <select id="trk-fps"><option>2</option><option>4</option><option selected>8</option><option>15</option></select> fps</label>
+        <span id="trk-status" class="muted"></span>
+      </div>
+      <div id="trk-views" class="views"></div>
+      <div class="panel">
+        <h3>Chỉ số đánh giá <span class="muted small">(ghép với ground truth bằng Hungarian, bán kính 8 px; ô xanh là tốt nhất)</span></h3>
+        <div id="trk-metrics"></div>
+        <div id="trk-switches"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ ASSOC -->
+<section id="tab-assoc" class="tab">
+  <div class="intro">
+    <h2>Ghép cặp track ↔ spot trong một frame</h2>
+    <p>Hình tròn là vị trí track ở frame trước (hoặc vị trí Kalman dự đoán), hình vuông là spot phát hiện ở frame hiện tại. <b>Kéo thả</b> để di chuyển. Nearest ghép tham lam theo khoảng cách nhỏ nhất trước; Hungarian tìm cách ghép tối ưu toàn cục (ưu tiên số cặp nhiều nhất, sau đó tổng khoảng cách nhỏ nhất). Vòng nét đứt là gate.</p>
+  </div>
+  <div class="presets">
+    <button data-assoc="dense">Ví dụ đoàn nối đuôi (dense)</button>
+    <button data-assoc="cross">Ví dụ giao nhau</button>
+    <button data-assoc="random">Ngẫu nhiên</button>
+    <button data-assoc="add-track">+ Track</button>
+    <button data-assoc="add-spot">+ Spot</button>
+    <button data-assoc="clear">Xóa</button>
+    <label class="inline">Gate <output id="assoc-gate-out">24</output> <input type="range" id="assoc-gate" min="5" max="80" value="24"></label>
+  </div>
+  <div class="grid2">
+    <figure class="panel"><figcaption>Nearest neighbor (tham lam) <span id="assoc-n-info" class="muted"></span></figcaption><canvas id="assoc-c-nearest" class="assoc"></canvas></figure>
+    <figure class="panel"><figcaption>Hungarian (tối ưu toàn cục) <span id="assoc-h-info" class="muted"></span></figcaption><canvas id="assoc-c-hungarian" class="assoc"></canvas></figure>
+  </div>
+  <div class="panel">
+    <h3>Ma trận chi phí (khoảng cách px) <span class="legend"><i class="n"></i>Nearest chọn <i class="h"></i>Hungarian chọn</span></h3>
+    <div id="assoc-matrix"></div>
+    <p id="assoc-check" class="muted small"></p>
+  </div>
+</section>
+
+<!-- ============================================================ RESULTS -->
+<section id="tab-results" class="tab">
+  <div class="panel">
+    <h3>Bảng tổng hợp <select id="res-metric">
+      <option value="idf1">IDF1</option><option value="mota">MOTA</option>
+      <option value="id_switches">ID switches</option><option value="track_ids">Số ID tạo ra</option>
+      <option value="matched_detection_rmse_px">RMSE (px)</option></select></h3>
+    <div id="res-pivot"></div>
+    <p class="muted small">Python: kết quả trong <code>results/summary.csv</code>. TrackMate: chạy Fiji headless, chấm lại bằng <code>score_trackmate.py</code> (<code>results/fiji/summary.csv</code>). LoG = detector Laplacian of Gaussian của TrackMate.</p>
+  </div>
+  <div class="panel">
+    <h3>Video kết quả đã lưu <select id="res-video-scenario"></select></h3>
+    <div id="res-videos" class="video-grid"></div>
+  </div>
+  <div class="panel">
+    <h3>Fiji TrackMate — từng bước wizard <select id="res-shot-set"></select></h3>
+    <div class="stepper">
+      <button id="shot-prev">◀</button>
+      <div class="shot"><img id="shot-img" alt=""><div id="shot-caption" class="muted"></div></div>
+      <button id="shot-next">▶</button>
+    </div>
+    <div id="shot-dots" class="dots"></div>
+  </div>
+  <div class="panel">
+    <h3>Thời gian xử lý (ms / frame, trung vị)</h3>
+    <div id="res-timing"></div>
+  </div>
+  <div class="panel">
+    <h3>Biểu đồ</h3>
+    <div id="res-figures" class="gallery"></div>
+  </div>
+  <div class="panel">
+    <h3>Hình trong báo cáo</h3>
+    <div id="res-report" class="gallery"></div>
+  </div>
+</section>
+</main>
+
+<div id="lightbox" class="lightbox" hidden><img alt=""><p></p></div>
+<div id="toast" class="toast" hidden></div>
+<script src="/static/app.js"></script>
+</body>
+</html>
