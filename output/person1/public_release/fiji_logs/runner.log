@@ -1,0 +1,15 @@
+# Sanitized copy; source log preserved unchanged locally.
+run_started_utc: 2026-11-14T16:10:28.362200+00:00
+commit: fed20818b9ff1688db89e25e8c882b0d74f00c83
+fiji_launcher: $FIJI\fiji-windows-x64.exe
+trackmate_version: 8.1.6
+protected_separate_seed0: validated_read_only csv=3 xml=3
+selected_scenarios: occlusion_seed0,overlap_seed0,turn_seed0,illumination_seed0
+occlusion_seed0: pre-existing complete output validated; skipped
+overlap_seed0: pre-existing complete output validated; skipped
+turn_seed0: pre-existing complete output validated; skipped
+illumination_seed0: pre-existing complete output validated; skipped
+total_validated_csv=15
+total_validated_xml=15
+validation_summary: $REPO\output\person1\fiji_stress\validation_summary.csv
+status: PASS; all five scenarios validated (3 CSV + 3 XML each)

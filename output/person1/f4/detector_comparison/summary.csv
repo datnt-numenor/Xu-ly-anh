@@ -1,0 +1,6 @@
+scenario,gate_px,fiji_spots,python_spots,matched,unmatched_fiji,unmatched_python,matched_centroid_rmse_px
+separate,2.0,240,240,240,0,0,0.035
+occlusion,2.0,236,236,236,0,0,0.0353
+overlap,2.0,234,234,234,0,0,0.0351
+turn,2.0,240,240,240,0,0,0.0347
+illumination,2.0,529,497,147,382,350,0.1643

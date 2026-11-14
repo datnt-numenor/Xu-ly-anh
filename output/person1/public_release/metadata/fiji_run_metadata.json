@@ -1,0 +1,33 @@
+{
+  "branch": "experiment/person1",
+  "commit": "fed20818b9ff1688db89e25e8c882b0d74f00c83",
+  "fiji_build": "portable distribution (no single Fiji release tag in launcher)",
+  "fiji_launcher_sha256": "fb0c5e6007d0c50a0f09cab493f886902f37eef1296180cba6ef350965bc1c8c",
+  "imagej_version": "1.54p",
+  "java_version": "openjdk version \"21.0.7\" 2025-04-15 LTS",
+  "p3_manifest": "output/person1/stress_manifest.csv",
+  "parameters": {
+    "detector": "threshold",
+    "kalman_max_frame_gap": 6,
+    "kalman_search_radius_px": 24,
+    "linking_max_distance_px": 24,
+    "quality_max": 240,
+    "quality_min": 35,
+    "simple_lap_gap_closing_max_distance_px": 36,
+    "simple_lap_max_frame_gap": 6,
+    "threshold": 110
+  },
+  "protected_separate_output": "output/person1/fiji_stress/separate_seed0",
+  "script": "TrackMate_Nhom9.groovy",
+  "source_paths": {
+    "illumination_seed0": "data/stress/illumination_seed0",
+    "occlusion_seed0": "data/stress/occlusion_seed0",
+    "overlap_seed0": "data/stress/overlap_seed0",
+    "separate_seed0": "data/stress/separate_seed0",
+    "turn_seed0": "data/stress/turn_seed0"
+  },
+  "source_sha256_manifest_verified": true,
+  "trackmate_jar_sha256": "4adca5067cac8f8f93a27e530946dd62b3585449a70fc2d02c1a660c2166bac9",
+  "trackmate_version_expected": "8.1.6",
+  "public_redaction": "Host-specific executable and input paths omitted; original run metadata retained locally."
+}

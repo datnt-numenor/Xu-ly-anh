@@ -1,0 +1,16 @@
+scenario,fiji_method,python_method,gt_visible,fiji_matched,python_matched,delta_matched,fiji_missed,python_missed,delta_missed,fiji_false_positive,python_false_positive,delta_false_positive,fiji_id_switches,python_id_switches,delta_id_switches,fiji_track_ids,python_track_ids,delta_track_ids,fiji_matched_detection_rmse_px,python_matched_detection_rmse_px,delta_matched_detection_rmse_px,fiji_mota,python_mota,delta_mota,fiji_idf1,python_idf1,delta_idf1
+separate,nearest,nearest,240,240,240,0,0,0,0,0,0,0,0,0,0,3,3,0,0.0667,0.0653,0.0014,1.0,1.0,0.0,1.0,1.0,0.0
+separate,lap,hungarian,240,240,240,0,0,0,0,0,0,0,0,0,0,3,3,0,0.0667,0.0653,0.0014,1.0,1.0,0.0,1.0,1.0,0.0
+separate,kalman,kalman,240,240,240,0,0,0,0,0,0,0,0,0,0,3,3,0,0.0667,0.0653,0.0014,1.0,1.0,0.0,1.0,1.0,0.0
+occlusion,nearest,nearest,236,236,236,0,0,0,0,0,0,0,1,0,1,4,3,1,0.0666,0.0652,0.0014,0.9958,1.0,-0.0042,0.8475,1.0,-0.1525
+occlusion,lap,hungarian,236,236,236,0,0,0,0,0,0,0,0,0,0,3,3,0,0.0666,0.0652,0.0014,1.0,1.0,0.0,1.0,1.0,0.0
+occlusion,kalman,kalman,236,236,236,0,0,0,0,0,0,0,0,0,0,3,3,0,0.0666,0.0652,0.0014,1.0,1.0,0.0,1.0,1.0,0.0
+overlap,nearest,nearest,240,234,234,0,6,6,0,0,0,0,3,2,1,6,3,3,0.1557,0.1549,0.0008,0.9625,0.9667,-0.0042,0.6582,0.6667,-0.0085
+overlap,lap,hungarian,240,234,234,0,6,6,0,0,0,0,2,2,0,3,3,0,0.1557,0.1549,0.0008,0.9667,0.9667,0.0,0.6667,0.6667,0.0
+overlap,kalman,kalman,240,234,234,0,6,6,0,0,0,0,2,2,0,3,3,0,0.1557,0.1549,0.0008,0.9667,0.9667,0.0,0.9873,0.9873,0.0
+turn,nearest,nearest,240,240,240,0,0,0,0,0,0,0,0,0,0,3,3,0,0.0667,0.0653,0.0014,1.0,1.0,0.0,1.0,1.0,0.0
+turn,lap,hungarian,240,240,240,0,0,0,0,0,0,0,0,0,0,3,3,0,0.0667,0.0653,0.0014,1.0,1.0,0.0,1.0,1.0,0.0
+turn,kalman,kalman,240,240,240,0,0,0,0,0,0,0,0,0,0,3,3,0,0.0667,0.0653,0.0014,1.0,1.0,0.0,1.0,1.0,0.0
+illumination,nearest,nearest,240,147,160,-13,93,80,13,382,337,45,0,1,-1,179,161,18,0.1783,0.1903,-0.012,-0.9792,-0.7417,-0.2375,0.3823,0.4315,-0.0492
+illumination,lap,hungarian,240,147,160,-13,93,80,13,382,337,45,0,1,-1,175,153,22,0.1783,0.1903,-0.012,-0.9792,-0.7417,-0.2375,0.3823,0.4315,-0.0492
+illumination,kalman,kalman,240,147,160,-13,93,80,13,382,337,45,0,1,-1,178,156,22,0.1783,0.1903,-0.012,-0.9792,-0.7417,-0.2375,0.3823,0.4315,-0.0492

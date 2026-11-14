@@ -1,0 +1,16 @@
+scenario,tracker,csv_rows,csv_frames,csv_frame_min,csv_frame_max,csv_missing_frames,csv_track_ids,trackmate_version,tracker_factory,xml_frames,xml_spot_frames
+separate_seed0,nearest,240,80,0,79,,3,8.1.6,NEAREST_NEIGHBOR_TRACKER,80,80
+separate_seed0,lap,240,80,0,79,,3,8.1.6,SIMPLE_SPARSE_LAP_TRACKER,80,80
+separate_seed0,kalman,240,80,0,79,,3,8.1.6,KALMAN_TRACKER,80,80
+occlusion_seed0,nearest,236,80,0,79,,4,8.1.6,NEAREST_NEIGHBOR_TRACKER,80,80
+occlusion_seed0,lap,236,80,0,79,,3,8.1.6,SIMPLE_SPARSE_LAP_TRACKER,80,80
+occlusion_seed0,kalman,236,80,0,79,,3,8.1.6,KALMAN_TRACKER,80,80
+overlap_seed0,nearest,234,80,0,79,,6,8.1.6,NEAREST_NEIGHBOR_TRACKER,80,80
+overlap_seed0,lap,234,80,0,79,,3,8.1.6,SIMPLE_SPARSE_LAP_TRACKER,80,80
+overlap_seed0,kalman,234,80,0,79,,3,8.1.6,KALMAN_TRACKER,80,80
+turn_seed0,nearest,240,80,0,79,,3,8.1.6,NEAREST_NEIGHBOR_TRACKER,80,80
+turn_seed0,lap,240,80,0,79,,3,8.1.6,SIMPLE_SPARSE_LAP_TRACKER,80,80
+turn_seed0,kalman,240,80,0,79,,3,8.1.6,KALMAN_TRACKER,80,80
+illumination_seed0,nearest,529,53,12,64,0;1;2;3;4;5;6;7;8;9;10;11;65;66;67;68;69;70;71;72;73;74;75;76;77;78;79,179,8.1.6,NEAREST_NEIGHBOR_TRACKER,80,80
+illumination_seed0,lap,529,53,12,64,0;1;2;3;4;5;6;7;8;9;10;11;65;66;67;68;69;70;71;72;73;74;75;76;77;78;79,175,8.1.6,SIMPLE_SPARSE_LAP_TRACKER,80,80
+illumination_seed0,kalman,529,53,12,64,0;1;2;3;4;5;6;7;8;9;10;11;65;66;67;68;69;70;71;72;73;74;75;76;77;78;79,178,8.1.6,KALMAN_TRACKER,80,80

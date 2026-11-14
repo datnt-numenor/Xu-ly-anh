@@ -1,0 +1,14 @@
+# Sanitized copy; source log preserved unchanged locally.
+timestamp_utc: 2026-11-14T16:08:20.821097+00:00
+scenario: overlap_seed0
+source_dir: $REPO\data\stress\overlap_seed0
+output_dir: $REPO\output\person1\fiji_stress\overlap_seed0
+commit: fed20818b9ff1688db89e25e8c882b0d74f00c83
+command: $FIJI\fiji-windows-x64.exe --headless --run $REPO\TrackMate_Nhom9.groovy framesDir='$REPO/data/stress/overlap_seed0',outputDir='$REPO/output/person1/fiji_stress/overlap_seed0',detectorChoice='threshold'
+exit_code: 0
+--- stdout ---
+(empty)
+--- stderr ---
+(empty)
+--- validation ---
+{"csv_count": 3, "scenario": "overlap_seed0", "trackers": {"kalman": {"frames": 80, "rows": 234, "track_ids": 3, "tracker_factory": "KALMAN_TRACKER", "trackmate_version": "8.1.6", "xml_frames": "80", "xml_spot_frames": 80}, "lap": {"frames": 80, "rows": 234, "track_ids": 3, "tracker_factory": "SIMPLE_SPARSE_LAP_TRACKER", "trackmate_version": "8.1.6", "xml_frames": "80", "xml_spot_frames": 80}, "nearest": {"frames": 80, "rows": 234, "track_ids": 6, "tracker_factory": "NEAREST_NEIGHBOR_TRACKER", "trackmate_version": "8.1.6", "xml_frames": "80", "xml_spot_frames": 80}}, "xml_count": 3}

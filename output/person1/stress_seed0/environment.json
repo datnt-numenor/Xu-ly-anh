@@ -1,0 +1,38 @@
+{
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "machine": "AMD64",
+  "processor": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+  "logical_cpus": 16,
+  "numpy": "2.4.3",
+  "scipy": "1.17.1",
+  "pillow": "12.1.1",
+  "seeds": [
+    0
+  ],
+  "frames": 80,
+  "image_size": [
+    180,
+    320
+  ],
+  "solver": "scipy",
+  "gate": 24,
+  "evaluation_gate": 8,
+  "max_missing": 5,
+  "detector_area": [
+    35,
+    240
+  ],
+  "timing": "assignment only, warmup + 9 repeats; excludes I/O",
+  "thread_env": {
+    "OMP_NUM_THREADS": null,
+    "OPENBLAS_NUM_THREADS": null,
+    "MKL_NUM_THREADS": null
+  },
+  "source_sha256": {
+    "tracking.py": "e161cef177dda5517bcffbb28aafe88d58e19d5c393e0066e1ac39dd9575158f",
+    "evaluation.py": "060f1baf524bee8332ac5af90467d5b9f1cf718efc4ef76bd6face15d97f7ca1",
+    "experiments.py": "b9c720cb95415e747d4d11d5ea70e4f4366a9dcc82f0a18b2173ee95166c2a1a"
+  },
+  "base_commit": "fed20818b9ff1688db89e25e8c882b0d74f00c83"
+}
