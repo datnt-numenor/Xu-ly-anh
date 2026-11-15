@@ -1,0 +1,17 @@
+# Sanitized copy; source log preserved unchanged locally.
+timestamp_utc: 2026-11-14T16:08:52.415286+00:00
+scenario: illumination_seed0
+source_dir: $REPO\data\stress\illumination_seed0
+output_dir: $REPO\output\person1\fiji_stress\illumination_seed0
+commit: fed20818b9ff1688db89e25e8c882b0d74f00c83
+command: $FIJI\fiji-windows-x64.exe --headless --run $REPO\TrackMate_Nhom9.groovy framesDir='$REPO/data/stress/illumination_seed0',outputDir='$REPO/output/person1/fiji_stress/illumination_seed0',detectorChoice='threshold'
+exit_code: 0
+--- stdout ---
+(empty)
+--- stderr ---
+(empty)
+--- error ---
+$REPO\output\person1\fiji_stress\illumination_seed0\illumination_seed0_nearest.csv: missing frame(s): [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79]
+
+--- post-run validation correction ---
+The initial validator incorrectly required every tracking CSV to contain a row in all 80 frames. That condition was removed: a frame with no kept detections is valid when all emitted frame values are within 0..79 and the XML declares the complete 80-frame input. Revalidation passed. CSV rows are present for frames 12..64 (53 frames); frames outside that interval have no emitted tracks under threshold=110. No Fiji output file was modified or rerun for this correction.

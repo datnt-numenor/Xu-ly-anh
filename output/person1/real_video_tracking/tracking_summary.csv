@@ -1,0 +1,7 @@
+configuration,threshold,tracker,input_frames,detection_rows,mean_detections_per_frame,max_detections_in_frame,track_observation_rows,mean_track_observations_per_frame,frames_with_track_observations,distinct_track_ids,max_active_track_ids,overlay_codec,overlay_frames,overlay_width,overlay_height,log_exit_code
+fixed_110_nearest,110,nearest,150,2054,13.693333333333333,26,2054,13.693333333333333,150,524,62,h264,150,320,180,0
+fixed_110_hungarian,110,hungarian,150,2054,13.693333333333333,26,2054,13.693333333333333,150,481,60,h264,150,320,180,0
+fixed_110_kalman,110,kalman,150,2054,13.693333333333333,26,2054,13.693333333333333,150,563,62,h264,150,320,180,0
+otsu_nearest,otsu,nearest,150,2548,16.986666666666668,27,2548,16.986666666666668,150,557,73,h264,150,320,180,0
+otsu_hungarian,otsu,hungarian,150,2548,16.986666666666668,27,2548,16.986666666666668,150,498,67,h264,150,320,180,0
+otsu_kalman,otsu,kalman,150,2548,16.986666666666668,27,2548,16.986666666666668,150,637,74,h264,150,320,180,0

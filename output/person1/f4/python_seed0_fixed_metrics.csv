@@ -1,0 +1,16 @@
+scenario,method,source,source_sha256,gt_visible,gt_frames,observation_rows,observation_frames,matched,missed,false_positive,id_switches,track_ids,matched_detection_rmse_px,mota,idf1
+separate,nearest,output\person1\stress_seed0\details\separate_fixed_nearest.csv,1d7147100d686888268135a5c7c235befe1ac31ca06529fc072915795a53090f,240,80,240,80,240,0,0,0,3,0.0653,1.0,1.0
+separate,hungarian,output\person1\stress_seed0\details\separate_fixed_hungarian.csv,d0756849c8c558ba15281e06d6824cc5d783767bd1a092d69e86604f4d0820b7,240,80,240,80,240,0,0,0,3,0.0653,1.0,1.0
+separate,kalman,output\person1\stress_seed0\details\separate_fixed_kalman.csv,d0756849c8c558ba15281e06d6824cc5d783767bd1a092d69e86604f4d0820b7,240,80,240,80,240,0,0,0,3,0.0653,1.0,1.0
+occlusion,nearest,output\person1\stress_seed0\details\occlusion_fixed_nearest.csv,91efdda5045a3785fff704e5f312987557789a063d1fcda2b0b9d2d1d68e1181,236,80,236,80,236,0,0,0,3,0.0652,1.0,1.0
+occlusion,hungarian,output\person1\stress_seed0\details\occlusion_fixed_hungarian.csv,313972136277dcb11b80e945131f5f7d62da419417521bfcbb04c14e280eec42,236,80,236,80,236,0,0,0,3,0.0652,1.0,1.0
+occlusion,kalman,output\person1\stress_seed0\details\occlusion_fixed_kalman.csv,313972136277dcb11b80e945131f5f7d62da419417521bfcbb04c14e280eec42,236,80,236,80,236,0,0,0,3,0.0652,1.0,1.0
+overlap,nearest,output\person1\stress_seed0\details\overlap_fixed_nearest.csv,2751edfbea8b9105ccbfe0be7fde7f55c7a3f0c3c12674b96d8feddee5793aa1,240,80,234,80,234,6,0,2,3,0.1549,0.9667,0.6667
+overlap,hungarian,output\person1\stress_seed0\details\overlap_fixed_hungarian.csv,1bfab975cb353c94d6db7d78292ac13bd57db247d9a79e8a0c1a21f0632d7d0f,240,80,234,80,234,6,0,2,3,0.1549,0.9667,0.6667
+overlap,kalman,output\person1\stress_seed0\details\overlap_fixed_kalman.csv,80d58508c03e4916ebdd281e5ff43de986b6fd492b0cef84ed8413677cdb18e5,240,80,234,80,234,6,0,2,3,0.1549,0.9667,0.9873
+turn,nearest,output\person1\stress_seed0\details\turn_fixed_nearest.csv,3e1badfac31a80e714ee60b628d6e0580fe706b4282b7771f9a45f7730f49f41,240,80,240,80,240,0,0,0,3,0.0653,1.0,1.0
+turn,hungarian,output\person1\stress_seed0\details\turn_fixed_hungarian.csv,40fdd7b4db85f695dcb989a41576d8a4d28619785bde7a50b958670be38863c6,240,80,240,80,240,0,0,0,3,0.0653,1.0,1.0
+turn,kalman,output\person1\stress_seed0\details\turn_fixed_kalman.csv,40fdd7b4db85f695dcb989a41576d8a4d28619785bde7a50b958670be38863c6,240,80,240,80,240,0,0,0,3,0.0653,1.0,1.0
+illumination,nearest,output\person1\stress_seed0\details\illumination_fixed_nearest.csv,8b0527fd0a8ee06d0371d874a04c3e2be9d4f7433e29c1f1d85ec1ab18f06f27,240,80,497,57,160,80,337,1,161,0.1903,-0.7417,0.4315
+illumination,hungarian,output\person1\stress_seed0\details\illumination_fixed_hungarian.csv,9a6ab2d8f23877c972e7aaf28fd4b6f6fcbef28264a7962229d51f4eee4ee47b,240,80,497,57,160,80,337,1,153,0.1903,-0.7417,0.4315
+illumination,kalman,output\person1\stress_seed0\details\illumination_fixed_kalman.csv,07c0ca1c104a8756eaba96fbe92a25b3ca7188f680fd9bd82369392ebe1da9c0,240,80,497,57,160,80,337,1,156,0.1903,-0.7417,0.4315
