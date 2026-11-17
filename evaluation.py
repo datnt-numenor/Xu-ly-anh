@@ -12,6 +12,7 @@ FIELDS = ("matched", "missed", "false_positive", "id_switches", "track_ids",
           "matched_detection_rmse_px")
 # FIELDS followed by the two summary metrics returned by score_with_identity.
 METRICS = FIELDS + ("mota", "idf1")
+EVALUATION_PROTOCOL = "centroid-distance-framewise-v1"
 
 
 def _index(rows, ground_truth):
@@ -83,10 +84,15 @@ def score(truth, observations, gate=8.0):
 
 
 def score_with_identity(truth, observations, gate=8.0):
-    """score() plus MOTA and IDF1, in METRICS order.
+    """score() plus repository-defined MOTA and centroid IDF1, in METRICS order.
+
+    Protocol: centroid-distance-framewise-v1. The CSV key "mota" is retained
+    for compatibility with stored evidence. Frame matching minimizes distance
+    independently; it does NOT preserve prior-frame pairs as CLEAR does.
+    Do not compare this score directly with MOTChallenge/CLEAR leaderboard MOTA.
 
     MOTA = 1 - (missed + false positives + ID switches) / visible truth objects
-    (Bernardin & Stiefelhagen 2008). IDF1 = 2 IDTP / (visible truth + predictions),
+    (formula only; matching differs from CLEAR). IDF1 = 2 IDTP / (visible truth + predictions),
     where IDTP comes from the best one-to-one pairing of true objects and track
     IDs over the whole video, counting frames where the pair is within gate
     (Ristani et al. 2016).
@@ -97,6 +103,8 @@ def score_with_identity(truth, observations, gate=8.0):
     pred_by_frame = _index(observations, False)
     gt_ids = sorted({i for objects in truth_by_frame.values() for i, _, _ in objects})
     track_ids = sorted({i for objects in pred_by_frame.values() for i, _, _ in objects})
+    gt_index = {identity: i for i, identity in enumerate(gt_ids)}
+    track_index = {identity: i for i, identity in enumerate(track_ids)}
     overlap = np.zeros((len(gt_ids), len(track_ids)))
     for frame, gt in truth_by_frame.items():
         pred = pred_by_frame.get(frame, [])
@@ -104,7 +112,7 @@ def score_with_identity(truth, observations, gate=8.0):
             continue
         distances = np.linalg.norm(np.asarray(gt)[:, None, 1:] - np.asarray(pred)[None, :, 1:], axis=2)
         for i, j in zip(*np.nonzero(distances <= gate)):
-            overlap[gt_ids.index(gt[i][0]), track_ids.index(pred[j][0])] += 1
+            overlap[gt_index[gt[i][0]], track_index[pred[j][0]] += 1
     id_true_positive = overlap[linear_sum_assignment(-overlap)].sum() if overlap.size else 0.0
     total_truth = matched + missed
     total = total_truth + sum(len(p) for p in pred_by_frame.values())

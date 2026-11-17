@@ -1,17 +1,17 @@
 {
   "format": "public-experiment-evidence-v1",
   "status": "PASS",
-  "branch": "experiment/person1",
-  "base_commit": "fed20818b9ff1688db89e25e8c882b0d74f00c83",
-  "file_count": 1172,
-  "total_bytes": 53850713,
-  "stage_path_count": 698,
+  "branch": "fix/review-and-submission",
+  "base_commit": "b2446e178a4d5c2a15307fa3d1529f4bde29a14b",
+  "file_count": 1177,
+  "total_bytes": 53888774,
+  "stage_path_count": 703,
   "stage_paths_file": "docs/public_stage_paths.txt",
   "files": [
     {
       "path": ".github/workflows/tests.yml",
-      "size_bytes": 420,
-      "sha256": "7f26174c9449f7723778c91df66d601f2182ea603a3f09a938083fe7929a7c47",
+      "size_bytes": 475,
+      "sha256": "2a3674d8b7e8a00f0deee9a0f69428b8915be7a409f63f14e13f4c890d0c11e5",
       "origin": "repository"
     },
     {
@@ -22,8 +22,8 @@
     },
     {
       "path": "README.md",
-      "size_bytes": 17301,
-      "sha256": "c6f9584c4c35067fb7fa93e2cbff8cbe69a4c22f7f887cc41028f241f7d89578",
+      "size_bytes": 19397,
+      "sha256": "0ebbcd1597d800101859b8f52bc3a71a281338ec74bb095650f902a40a0f7918",
       "origin": "repository"
     },
     {
@@ -46,8 +46,8 @@
     },
     {
       "path": "benchmark_png.py",
-      "size_bytes": 5763,
-      "sha256": "01d6fd95d1e65671b8c1de9df26225b7fa986f2448ff0013533b3181c829352f",
+      "size_bytes": 6693,
+      "sha256": "60872936932a784a28f898b6aac279674f621be8d0783bfbd06f890e71eead43",
       "origin": "repository"
     },
     {
@@ -1056,1812 +1056,6 @@
       "path": "data/separate_truth.csv",
       "size_bytes": 1859,
       "sha256": "c3e9b3d1638a02736d0b6af4ad1572f53845aca071b0eab290c9ffbb284b78e1",
-      "origin": "repository"
-    },
-    {
-      "path": "docs/KET_QUA.md",
-      "size_bytes": 7885,
-      "sha256": "08b83aefb0d87ef4cd25f087236b5f85a77cd003a9cd4fe0ff5930626f58a56d",
-      "origin": "repository"
-    },
-    {
-      "path": "docs/LY_THUYET.md",
-      "size_bytes": 7882,
-      "sha256": "0e6251e908eac53100c5c358da4c40113a9add283dba27788cd0af706583a197",
-      "origin": "repository"
-    },
-    {
-      "path": "docs/THUC_NGHIEM.md",
-      "size_bytes": 8437,
-      "sha256": "8d68040790f47b19600e8f1b27827d0accb0a9d420ebbf8ffc58a419251afd2b",
-      "origin": "git_HEAD"
-    },
-    {
-      "path": "evaluation.py",
-      "size_bytes": 5600,
-      "sha256": "31f78d1313d66be65a448459b97ae9506822ef44d211621c2a78723a50c72a21",
-      "origin": "repository"
-    },
-    {
-      "path": "experiments.py",
-      "size_bytes": 9947,
-      "sha256": "4eb3b5f11729fe390d2f308b06781aeb29248ef799171bfa4bd40fcdd6fce63f",
-      "origin": "repository"
-    },
-    {
-      "path": "plots.py",
-      "size_bytes": 10749,
-      "sha256": "f28b3d5d448c725618d54ce6b35d9500d27800fab5da928dc051a78383757fda",
-      "origin": "repository"
-    },
-    {
-      "path": "requirements.txt",
-      "size_bytes": 51,
-      "sha256": "0ab8163e7e558ddd16eb380da27913d2c6f3b054ac902e0379baeb1b0dbf221b",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/detections.csv",
-      "size_bytes": 1768,
-      "sha256": "c0ecf5627448740c2ea62e36be1dfbda58f831e6b14aea0674507408bd42d395",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/hungarian.csv",
-      "size_bytes": 2027,
-      "sha256": "fdcf9d35874b9fb888d16625888154b0dc8319a5934a3e3c2a46e838f243b58a",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/hungarian.mp4",
-      "size_bytes": 169054,
-      "sha256": "e72887842e4a05d6a8d267910f063e4ac6927a6fdfce07bf1b41e8ab289ece16",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/hungarian_evaluation.csv",
-      "size_bytes": 1642,
-      "sha256": "95b683129c8ded1499ab38f9a38e06b526a9923a64be8ca8a94893759317597c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/hungarian_states.csv",
-      "size_bytes": 3699,
-      "sha256": "e652c5c4c720e6711ae80939d23dc149ded395e37efc727c33d6206f8299791c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/kalman.csv",
-      "size_bytes": 2027,
-      "sha256": "58f02621764acc0525c7ab788cac89b06e4ac9d94b8474698c9332cad0416846",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/kalman.mp4",
-      "size_bytes": 170761,
-      "sha256": "326d0ad86499e068aaf39bae356886f86081622c3e0c4c6cabbcb1e5c615519c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/kalman_evaluation.csv",
-      "size_bytes": 1642,
-      "sha256": "ec323c954dc2d55c3f0fd101cc4e7949cb4dceefbc32757d9e6674ef132575de",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/kalman_states.csv",
-      "size_bytes": 9124,
-      "sha256": "432a39edd78543702529fdef9e23c6b114a05a80a9f9a987c8577cb7a25f7812",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/nearest.csv",
-      "size_bytes": 2027,
-      "sha256": "bf342d5457b9dfef85cc5092d2dec825968fb43a4fce298ac20bf366a0bfcdce",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/nearest.mp4",
-      "size_bytes": 169552,
-      "sha256": "254ac9ef1ab944e2d26d676c2238cf888ef52880f715fe27d7d03b2aa5c03c9d",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/nearest_evaluation.csv",
-      "size_bytes": 1642,
-      "sha256": "95b683129c8ded1499ab38f9a38e06b526a9923a64be8ca8a94893759317597c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/nearest_states.csv",
-      "size_bytes": 3699,
-      "sha256": "e652c5c4c720e6711ae80939d23dc149ded395e37efc727c33d6206f8299791c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/png_hungarian.csv",
-      "size_bytes": 2027,
-      "sha256": "fdcf9d35874b9fb888d16625888154b0dc8319a5934a3e3c2a46e838f243b58a",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/png_hungarian_evaluation.csv",
-      "size_bytes": 1642,
-      "sha256": "95b683129c8ded1499ab38f9a38e06b526a9923a64be8ca8a94893759317597c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/png_kalman.csv",
-      "size_bytes": 2027,
-      "sha256": "58f02621764acc0525c7ab788cac89b06e4ac9d94b8474698c9332cad0416846",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/png_kalman_evaluation.csv",
-      "size_bytes": 1642,
-      "sha256": "ec323c954dc2d55c3f0fd101cc4e7949cb4dceefbc32757d9e6674ef132575de",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/png_nearest.csv",
-      "size_bytes": 2027,
-      "sha256": "bf342d5457b9dfef85cc5092d2dec825968fb43a4fce298ac20bf366a0bfcdce",
-      "origin": "repository"
-    },
-    {
-      "path": "results/crossing/png_nearest_evaluation.csv",
-      "size_bytes": 1642,
-      "sha256": "95b683129c8ded1499ab38f9a38e06b526a9923a64be8ca8a94893759317597c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/detections.csv",
-      "size_bytes": 2510,
-      "sha256": "db97c38afc93c3051f2c41d82ee009ff95cd01fdf874d6a3c868c99a3520c416",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/hungarian.csv",
-      "size_bytes": 2879,
-      "sha256": "f7bd5c791279ebf5e8fc94f8273b7e8cdff2b9f15bb10d85706da6129be1ddb4",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/hungarian.mp4",
-      "size_bytes": 121387,
-      "sha256": "9491c3adcc0a58e2110287e5cc8cb707d493ab330bf2caf33d15ed32cf878b50",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/hungarian_evaluation.csv",
-      "size_bytes": 2324,
-      "sha256": "4753880da2cb4a66dd7521e1914b54a7aedfd70cfeca92544a8a65db16432dbd",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/hungarian_states.csv",
-      "size_bytes": 5099,
-      "sha256": "570e1cd02513c92df8ca42f05e39ddf928a0a5eb6fd81eb6ce418576198373f5",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/kalman.csv",
-      "size_bytes": 2879,
-      "sha256": "f7bd5c791279ebf5e8fc94f8273b7e8cdff2b9f15bb10d85706da6129be1ddb4",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/kalman.mp4",
-      "size_bytes": 121284,
-      "sha256": "e7c9bb9ded2929a0e2f18e60c196843345f6ac91ec9be2f40dfe2019b1ac977e",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/kalman_evaluation.csv",
-      "size_bytes": 2324,
-      "sha256": "4753880da2cb4a66dd7521e1914b54a7aedfd70cfeca92544a8a65db16432dbd",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/kalman_states.csv",
-      "size_bytes": 9872,
-      "sha256": "04df2abd0179813b4e7c3e0857e2310184bb09601042e624a90da08f593fb0b8",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/nearest.csv",
-      "size_bytes": 2948,
-      "sha256": "9c9692850c83b339565d3b0944ba4dfe2ec82e464d2a57c9ffdc30705d94deaf",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/nearest.mp4",
-      "size_bytes": 130891,
-      "sha256": "a3c8d8ab381bad5c8e341a641b9647e0ca65905bfa1ea0a7f337b814a235e342",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/nearest_evaluation.csv",
-      "size_bytes": 2393,
-      "sha256": "a1ba35a6a872e94c3664f84436843218cad792850c53bf34eefe534d26778fdf",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/nearest_states.csv",
-      "size_bytes": 8657,
-      "sha256": "ffc88bb21d1900e8d07e042e9cda8a80ad5ed924bb4a36cc614ece8b7de18321",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/png_hungarian.csv",
-      "size_bytes": 2879,
-      "sha256": "f7bd5c791279ebf5e8fc94f8273b7e8cdff2b9f15bb10d85706da6129be1ddb4",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/png_hungarian_evaluation.csv",
-      "size_bytes": 2324,
-      "sha256": "4753880da2cb4a66dd7521e1914b54a7aedfd70cfeca92544a8a65db16432dbd",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/png_kalman.csv",
-      "size_bytes": 2879,
-      "sha256": "f7bd5c791279ebf5e8fc94f8273b7e8cdff2b9f15bb10d85706da6129be1ddb4",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/png_kalman_evaluation.csv",
-      "size_bytes": 2324,
-      "sha256": "4753880da2cb4a66dd7521e1914b54a7aedfd70cfeca92544a8a65db16432dbd",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/png_nearest.csv",
-      "size_bytes": 2948,
-      "sha256": "9c9692850c83b339565d3b0944ba4dfe2ec82e464d2a57c9ffdc30705d94deaf",
-      "origin": "repository"
-    },
-    {
-      "path": "results/dense/png_nearest_evaluation.csv",
-      "size_bytes": 2393,
-      "sha256": "a1ba35a6a872e94c3664f84436843218cad792850c53bf34eefe534d26778fdf",
-      "origin": "repository"
-    },
-    {
-      "path": "results/detector_comparison/crossing/python_detections.csv",
-      "size_bytes": 2037,
-      "sha256": "54be44d5eef13969412cb5dacd320ed426c2ffd2f9f3727430447500376f5f2a",
-      "origin": "repository"
-    },
-    {
-      "path": "results/detector_comparison/crossing/summary.json",
-      "size_bytes": 209,
-      "sha256": "10cc1a1995b9b6ff092b807f0733f6d974714f17539afb922c20d10dbc917687",
-      "origin": "repository"
-    },
-    {
-      "path": "results/detector_comparison/separate/python_detections.csv",
-      "size_bytes": 2144,
-      "sha256": "080ad578ebe37ebc5ec79ac0edcaf82b43573e98fc16da0ef9fb0580c0875160",
-      "origin": "repository"
-    },
-    {
-      "path": "results/detector_comparison/separate/summary.json",
-      "size_bytes": 209,
-      "sha256": "8be672cec4b3b8b96eb7d204bfcb67cc2ca36a9b9dc05886762205e215d140f9",
-      "origin": "repository"
-    },
-    {
-      "path": "results/detector_variants.csv",
-      "size_bytes": 423,
-      "sha256": "876a67ce268921dd88be7489414e20ca2862449aebcabc0d82341d3238861805",
-      "origin": "repository"
-    },
-    {
-      "path": "results/figures/idf1_methods.png",
-      "size_bytes": 65934,
-      "sha256": "e698b7e50b4787cb642a9fdaebe084b9be3b14a527b9a5232b798c1f628a8163",
-      "origin": "repository"
-    },
-    {
-      "path": "results/figures/noise_robustness.png",
-      "size_bytes": 101293,
-      "sha256": "2d0060f2e7b02e24ced304e335ca479f31b3c8c158b288e2d2b0c048bff39de3",
-      "origin": "repository"
-    },
-    {
-      "path": "results/figures/noisy_detectors.png",
-      "size_bytes": 140666,
-      "sha256": "7f6b404c8f0fc07de74a4cf441ff51fdc5b0828984b03909053627e7bcd65e24",
-      "origin": "repository"
-    },
-    {
-      "path": "results/figures/parameter_sweep.png",
-      "size_bytes": 77932,
-      "sha256": "c2fbc1b12822406d195bf06a140c9304895a6b55f1f40d9b347ea27c2ed3be61",
-      "origin": "repository"
-    },
-    {
-      "path": "results/figures/report/hinh_3_1_wizard.png",
-      "size_bytes": 80767,
-      "sha256": "503d0d602d87c4aff94ee34ebf1c9294df5aabf67963a4f0a1feaa447ddb90b0",
-      "origin": "repository"
-    },
-    {
-      "path": "results/figures/report/hinh_3_2_preview_overlay.png",
-      "size_bytes": 136055,
-      "sha256": "9eb20c24731470e8531167974d639e3a18c5afd3f80ed5e81bbb0a370b4e53e8",
-      "origin": "repository"
-    },
-    {
-      "path": "results/figures/report/hinh_3_3_tracks_table.png",
-      "size_bytes": 19402,
-      "sha256": "9a0c4a1a6ab76b90d2842a87d142c3c532d9e5d0a4be364e981bdb9db02ef267",
-      "origin": "repository"
-    },
-    {
-      "path": "results/figures/report/hinh_3_4_log_noisy.png",
-      "size_bytes": 22280,
-      "sha256": "374faec69dd065bd1b2c53ac64bdb09d5adcd7f31f051d1b21d23718fe4423be",
-      "origin": "repository"
-    },
-    {
-      "path": "results/figures/report/hinh_4_1_segmentation.png",
-      "size_bytes": 72310,
-      "sha256": "b94709216e85fe66e46259609983d49dab2631c85b5b6b3aa1bcf0014f0f58e1",
-      "origin": "repository"
-    },
-    {
-      "path": "results/figures/report/hinh_5_1_scenarios.png",
-      "size_bytes": 178255,
-      "sha256": "b091de584f367c16740ce6d5f0c3d98fe45f247eaf9b3b1b5f3ab29dae2e7527",
-      "origin": "repository"
-    },
-    {
-      "path": "results/figures/report/hinh_5_2_idf1.png",
-      "size_bytes": 65934,
-      "sha256": "e698b7e50b4787cb642a9fdaebe084b9be3b14a527b9a5232b798c1f628a8163",
-      "origin": "repository"
-    },
-    {
-      "path": "results/figures/report/hinh_5_3_trajectories.png",
-      "size_bytes": 313921,
-      "sha256": "7c0a27b8d84c8a59b8d2d4ec8e3f320784e1613158cfa9e1e5b169887cf3bef4",
-      "origin": "repository"
-    },
-    {
-      "path": "results/figures/report/hinh_5_4_sweep.png",
-      "size_bytes": 77932,
-      "sha256": "c2fbc1b12822406d195bf06a140c9304895a6b55f1f40d9b347ea27c2ed3be61",
-      "origin": "repository"
-    },
-    {
-      "path": "results/figures/report/hinh_5_5_noise.png",
-      "size_bytes": 101293,
-      "sha256": "2d0060f2e7b02e24ced304e335ca479f31b3c8c158b288e2d2b0c048bff39de3",
-      "origin": "repository"
-    },
-    {
-      "path": "results/figures/report/hinh_5_6_detectors.png",
-      "size_bytes": 140666,
-      "sha256": "7f6b404c8f0fc07de74a4cf441ff51fdc5b0828984b03909053627e7bcd65e24",
-      "origin": "repository"
-    },
-    {
-      "path": "results/figures/trajectories.png",
-      "size_bytes": 313921,
-      "sha256": "7c0a27b8d84c8a59b8d2d4ec8e3f320784e1613158cfa9e1e5b169887cf3bef4",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/crossing_kalman.csv",
-      "size_bytes": 2041,
-      "sha256": "2921081f60e4251b6aa912bad5ec1f10e79b72500ccb3af7af280463c6272a91",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/crossing_kalman.xml",
-      "size_bytes": 354934,
-      "sha256": "1f978123f9b088e8c8a47642671fafed50fc1194042bff3478a4d5ccc9b9672a",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/crossing_kalman_evaluation.csv",
-      "size_bytes": 1645,
-      "sha256": "30fd967da0d6fce3f29f1bc1ea614e4dc11b15db5e13287c285847e35ae68dde",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/crossing_lap.csv",
-      "size_bytes": 2041,
-      "sha256": "36756376a7ea777aedca3d86a97b0f3f9ebb22d76e90c29f2cf2037211f1c208",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/crossing_lap.xml",
-      "size_bytes": 355491,
-      "sha256": "a5a81f20bf53a11e12be18299c97ec6a2d454ec82ee01798d9f77e66f6f034d9",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/crossing_lap_evaluation.csv",
-      "size_bytes": 1645,
-      "sha256": "30fd967da0d6fce3f29f1bc1ea614e4dc11b15db5e13287c285847e35ae68dde",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/crossing_nearest.csv",
-      "size_bytes": 2041,
-      "sha256": "1f47920bf428b50e76b83e2a170b1ee028156814249403b442f008086cc546e9",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/crossing_nearest.xml",
-      "size_bytes": 352485,
-      "sha256": "c75d5d485ef6ad3d7238e973f76b5c7db9946908319f8c9e916f9273a2ff8ee3",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/crossing_nearest_evaluation.csv",
-      "size_bytes": 1645,
-      "sha256": "351f11a2a2afd6e937753948ad25cc4347158e56bde0a1da1f2d5c763629c9f0",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/dense_kalman.csv",
-      "size_bytes": 2904,
-      "sha256": "0ea07d09632264d51535d9a243719f5099944944d9e5b0856237d74989b0c4df",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/dense_kalman.xml",
-      "size_bytes": 284534,
-      "sha256": "1efcd3a21afefe261c03dcc310faa297fc4eb4566839a827256e46fa27944c7a",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/dense_kalman_evaluation.csv",
-      "size_bytes": 2327,
-      "sha256": "ee641fe4cda3af821059dc532193bfb24023a2a520f569ab2f04bfd7d1b0f844",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/dense_lap.csv",
-      "size_bytes": 2904,
-      "sha256": "cdc8cc63ef51334ac436cfe6e902c12f2e5798b2d7c64d7324af46ccc8b75ade",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/dense_lap.xml",
-      "size_bytes": 284913,
-      "sha256": "471adc28f9f3a62a3934e133f66213c4775ce6f562d89544a64b2822eaeb5260",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/dense_lap_evaluation.csv",
-      "size_bytes": 2327,
-      "sha256": "d52ba7e81146b8692267a6e2003fc74ae68615d2baf850de41a007a240ad1eb1",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/dense_nearest.csv",
-      "size_bytes": 2933,
-      "sha256": "5758137c090d6898298e5accf9390273edab87cea97d3111661626eea0729ef9",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/dense_nearest.xml",
-      "size_bytes": 282412,
-      "sha256": "a7a44e381b08997ce16b0742dc68d5a37109d15964bda5c7e6ebd1be6f7bb1ca",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/dense_nearest_evaluation.csv",
-      "size_bytes": 2356,
-      "sha256": "d04e94e19e3ab5538ef8f86bfa10614f961ffab9de089fb3594db133cc974337",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_kalman.csv",
-      "size_bytes": 5006,
-      "sha256": "e9c17796e2c70325c3b78030bf6989cb00e0a18cba41d90966ee2caf4658a030",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_kalman.xml",
-      "size_bytes": 323634,
-      "sha256": "563d90c1ccd87e1b1787cd2257bead8c3156efe8be85e6d67acf6242c8dea157",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_kalman_evaluation.csv",
-      "size_bytes": 2004,
-      "sha256": "2bde15a6824e3668c23553142f7c79045b98f3ac4a13af893c8364b1d870aa86",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_lap.csv",
-      "size_bytes": 5006,
-      "sha256": "448f150daa5385089e838a98acf2b2884be6c517c29168499494909487581401",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_lap.xml",
-      "size_bytes": 324191,
-      "sha256": "4326697038a93c213ad99cf9fc587ace176135c3a22196058e0cc38e2462d7b1",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_lap_evaluation.csv",
-      "size_bytes": 2004,
-      "sha256": "5f306c48b3cf3447dafbd13022d579fa1a4897bbae31ae0aec0739df1419e6b7",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_log_kalman.csv",
-      "size_bytes": 5195,
-      "sha256": "ee241e575deeb26396be21084d10d4db8901ab7f8a330e45a82fc4ec74ca82f0",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_log_kalman.xml",
-      "size_bytes": 40799,
-      "sha256": "658896af171f15cda1b6c1b1a8939625b1e965548ec7c81ccb4f57ad02f67534",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_log_kalman_evaluation.csv",
-      "size_bytes": 1996,
-      "sha256": "1a3558554cd9e19eabf37074b9880776b9dbc738f7319fb2c846da5025139d2d",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_log_lap.csv",
-      "size_bytes": 5195,
-      "sha256": "78284e40ce8b001d88e65ebbf5eebeb4dec51e40f7433b50288a4e8696d196c8",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_log_lap.xml",
-      "size_bytes": 41356,
-      "sha256": "f84916fe25ef47e0640f4725f757924bb42f4831ddf223b011bc576170aa241b",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_log_lap_evaluation.csv",
-      "size_bytes": 1996,
-      "sha256": "a950836dfcedd12b9b22b50253c2510600f84770ed2e736ecc3f06376572123f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_log_nearest.csv",
-      "size_bytes": 5195,
-      "sha256": "4064e3eaa726752d944b09f58b077fc8923307d9480ffe4b677a6b81d015f3b4",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_log_nearest.xml",
-      "size_bytes": 40788,
-      "sha256": "d6c08687d0e038d8289dfd48289995f0e7a8ff27ac3cfca940b812d020fb4101",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_log_nearest_evaluation.csv",
-      "size_bytes": 1996,
-      "sha256": "0d0a4eac56193125042f41f98278de7ccaf59b45b9de5a66192b4deca5b05ac1",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_nearest.csv",
-      "size_bytes": 5006,
-      "sha256": "bf1bd27f1182cabfa67024c9a447525e92a28d36ec21c2f44810b0ca5d72603a",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_nearest.xml",
-      "size_bytes": 323436,
-      "sha256": "d4248aa827088e703e46884abbd013dbb1cfff8ae91ab40fc793147327b72928",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/noisy_nearest_evaluation.csv",
-      "size_bytes": 2004,
-      "sha256": "00ccb5405df7cd8ecf75880106685cfc17b76bc522e45f90674b122b6996f83f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/crossing_threshold_kalman/01_hyperstack.png",
-      "size_bytes": 60513,
-      "sha256": "eadcb177108f6e6c0c7dd0a653cb7c89e0bc0a176a79eacceee87ab3fcd43bc2",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/crossing_threshold_kalman/02_Start.png",
-      "size_bytes": 24786,
-      "sha256": "72bdbeef42ee630947006159faf2854469e988a58c2a91af7fbea0f530bb7c3c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/crossing_threshold_kalman/03_ChooseDetector.png",
-      "size_bytes": 16058,
-      "sha256": "49c03b4058847c622a4c61764c981b2e8ea9d3f1683ff41f107c021b9c62e210",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/crossing_threshold_kalman/04_Preview_image.png",
-      "size_bytes": 60906,
-      "sha256": "1d621a2154929c7c0e0c6386182f792491abe23c73525b8487fc0e6cae1d5b9d",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/crossing_threshold_kalman/05_ConfigureDetector.png",
-      "size_bytes": 20929,
-      "sha256": "63b6974a27456a96fdcf3e107ed43a78382392cc88c3fb7cff6af76961a793cc",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/crossing_threshold_kalman/06_ExecuteDetection.png",
-      "size_bytes": 37396,
-      "sha256": "b0940f48417b36d9fb7c56bcffe1ce426988b2802cc8064891f9a734a632520f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/crossing_threshold_kalman/07_InitialFiltering.png",
-      "size_bytes": 16359,
-      "sha256": "9eb9ff9847b242343379e542bd165419cd2623dc40dff0b90aceb79c453a2b89",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/crossing_threshold_kalman/08_SpotFilter.png",
-      "size_bytes": 17078,
-      "sha256": "27e52c41d2bb580edfd543b6460a50eefd4d959c9822d5681feac136a6df2ce3",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/crossing_threshold_kalman/09_ChooseTracker.png",
-      "size_bytes": 26344,
-      "sha256": "90cac59548435e254e81efb279ee44551aa54506386beac25ec07a05385c7ba9",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/crossing_threshold_kalman/10_ConfigureTracker.png",
-      "size_bytes": 14964,
-      "sha256": "16812e01c9e01d8d077ac658cf6f8200619172a6a1376a9d79ab9a4f65b47386",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/crossing_threshold_kalman/11_ExecuteTracking.png",
-      "size_bytes": 37894,
-      "sha256": "8a63f185d4aa8e264088e418955944e4fe466e1f49bf28c9d53dbc012578fc28",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/crossing_threshold_kalman/12_TrackFilter.png",
-      "size_bytes": 10713,
-      "sha256": "9b8580a2a4038ab4eb3314fa55416bfe6c12911f84e0c34e3371c26a2ba7406e",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/crossing_threshold_kalman/13_ConfigureViews.png",
-      "size_bytes": 22359,
-      "sha256": "6fe71a93250aeee518976e199ee6d8f94d6361bacd163bd6bc5a0ee9f6dbbbf3",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/crossing_threshold_kalman/14_TracksTable.png",
-      "size_bytes": 19402,
-      "sha256": "9a0c4a1a6ab76b90d2842a87d142c3c532d9e5d0a4be364e981bdb9db02ef267",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/crossing_threshold_kalman/15_Overlay.png",
-      "size_bytes": 64191,
-      "sha256": "9ffbeb50926c514c262b77acda34edae0036565422982a5ad10295522f70b5c4",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/noisy_log_kalman/01_hyperstack.png",
-      "size_bytes": 77220,
-      "sha256": "3681bf88c216cd1b46fd70a6f5eef2e59369c0478bd5dc6172ecc54884f31efc",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/noisy_log_kalman/02_Start.png",
-      "size_bytes": 24796,
-      "sha256": "3deba7094c2891e3d7bcb7ac15584eeebd35d4134a4664dc7202065b0d650ce8",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/noisy_log_kalman/03_ChooseDetector.png",
-      "size_bytes": 13896,
-      "sha256": "db9d084cc5bf0047bec213d4735bad18cc4376d5ba6a2c4b36461c71a1a9f3fd",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/noisy_log_kalman/04_Preview_image.png",
-      "size_bytes": 79536,
-      "sha256": "ebf1de82a0ef205f7373848aafd2ae5cd7994746305004f6329386f47036b3c6",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/noisy_log_kalman/05_ConfigureDetector.png",
-      "size_bytes": 22280,
-      "sha256": "374faec69dd065bd1b2c53ac64bdb09d5adcd7f31f051d1b21d23718fe4423be",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/noisy_log_kalman/06_ExecuteDetection.png",
-      "size_bytes": 35179,
-      "sha256": "f9aeab916a8f2e658a6b18a57e4bda89d2731b0c5dbca873762b4ddf2f26aa30",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/noisy_log_kalman/07_InitialFiltering.png",
-      "size_bytes": 17640,
-      "sha256": "c30de17007b5832cefe31080e40e181a2ee8db6734aa6dd91ff51bb5627ece00",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/noisy_log_kalman/08_SpotFilter.png",
-      "size_bytes": 10396,
-      "sha256": "bfb7ff7b06fba23f11da668b02b1be505db6f5303c23f931689dc127c4106b74",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/noisy_log_kalman/09_ChooseTracker.png",
-      "size_bytes": 26344,
-      "sha256": "90cac59548435e254e81efb279ee44551aa54506386beac25ec07a05385c7ba9",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/noisy_log_kalman/10_ConfigureTracker.png",
-      "size_bytes": 14964,
-      "sha256": "16812e01c9e01d8d077ac658cf6f8200619172a6a1376a9d79ab9a4f65b47386",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/noisy_log_kalman/11_ExecuteTracking.png",
-      "size_bytes": 36855,
-      "sha256": "f4c9d5736794a8b99b93ee90b720acd1c246f081ca39a59fa7569349a8aa7a62",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/noisy_log_kalman/12_TrackFilter.png",
-      "size_bytes": 10713,
-      "sha256": "9b8580a2a4038ab4eb3314fa55416bfe6c12911f84e0c34e3371c26a2ba7406e",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/noisy_log_kalman/13_ConfigureViews.png",
-      "size_bytes": 22359,
-      "sha256": "6fe71a93250aeee518976e199ee6d8f94d6361bacd163bd6bc5a0ee9f6dbbbf3",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/noisy_log_kalman/14_TracksTable.png",
-      "size_bytes": 19718,
-      "sha256": "2b605efb3d3f8a837900393e178d549030381356b0cff9885d622200b5809fc4",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/screenshots/noisy_log_kalman/15_Overlay.png",
-      "size_bytes": 88394,
-      "sha256": "ef54a2e9c02cdcfa4db5cd6922ba5ed7e39b9d0bdfb077bef1984780bfb78c2e",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/separate_kalman.csv",
-      "size_bytes": 2160,
-      "sha256": "9b3f5359f701d5719fe9a74b8dae59ee18d22e36aea65c2292404acbbd286858",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/separate_kalman.xml",
-      "size_bytes": 357955,
-      "sha256": "266d9e5d17e1a2872bda5eee331f25227f22de837b873d234ad4bcf723ac2de4",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/separate_kalman_evaluation.csv",
-      "size_bytes": 1697,
-      "sha256": "414c22463cb3f98a7495e6b4ffc8ae5efd990b691889bbe104990be7314309a1",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/separate_lap.csv",
-      "size_bytes": 2160,
-      "sha256": "07e5d1e8d720ca1088b1590a2c38479962c4865dc341c8fafc310cf75e0e724d",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/separate_lap.xml",
-      "size_bytes": 358512,
-      "sha256": "502bd825587a78d7234f0dcaefbb5791013392606bcd1bfa8c9d3d112b4dab28",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/separate_lap_evaluation.csv",
-      "size_bytes": 1697,
-      "sha256": "23278fbc2f6bd02502d1c4df7ca3b31561228b07f269973387f7c22b28183dcf",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/separate_nearest.csv",
-      "size_bytes": 2160,
-      "sha256": "513ffa3a015c8fc6b67408ce9dd60b1daabef9fa75fea30b48566ab8ec4ed77f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/separate_nearest.xml",
-      "size_bytes": 355466,
-      "sha256": "98f7f076054944091dc6e01b360015e1eeea7473e18af96e6e200a21683f86b3",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/separate_nearest_evaluation.csv",
-      "size_bytes": 1697,
-      "sha256": "23278fbc2f6bd02502d1c4df7ca3b31561228b07f269973387f7c22b28183dcf",
-      "origin": "repository"
-    },
-    {
-      "path": "results/fiji/summary.csv",
-      "size_bytes": 735,
-      "sha256": "aadebcbd1a22a5cacc3a1fde8e479c619333e3cc8e4041845c03542672d789f7",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noise_sweep.csv",
-      "size_bytes": 2886,
-      "sha256": "9064042cb3502ead3d027a6e7f11e477ae16100c33b9d295dbfca13929b766a7",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/detections.csv",
-      "size_bytes": 4661,
-      "sha256": "9854f4e401747984ad9018e53669001fc8cfd1139bcad3e83bcce4c952054366",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/hungarian.csv",
-      "size_bytes": 4478,
-      "sha256": "06cd8587fa1996fb48b3d6c0c24c41f6eed751ca0a6302961308aad5de77bc99",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/hungarian.mp4",
-      "size_bytes": 971556,
-      "sha256": "fa01d81f02c3aa1b35bae0a5cd2a52d2bcdec1abe19ade3cbfce6bf11a6f5bee",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/hungarian_blur.csv",
-      "size_bytes": 4920,
-      "sha256": "d15fc7507e0991b44c66c62b8b11b43b2b0d2cf171f3405a19c41d1b10fae84e",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/hungarian_blur.mp4",
-      "size_bytes": 968338,
-      "sha256": "86cb22ef51cb7dc00de8ba33c5df9e4e0ea337c71e7b830da476d3d63bc01c91",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/hungarian_blur_evaluation.csv",
-      "size_bytes": 1999,
-      "sha256": "eae246eae82d070eb5354692b8909ae4f7202657247f6a144166518e0be3b6aa",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/hungarian_blur_states.csv",
-      "size_bytes": 6668,
-      "sha256": "d2e9264e423d1f8cc1593f79ce9c8dcc5bbba0c66075befa720ee09ff78158be",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/hungarian_evaluation.csv",
-      "size_bytes": 1770,
-      "sha256": "3a9871217bd8b3f1b726e350f1ba2265bb8e1f806526547391ca9e900b6e0c25",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/hungarian_states.csv",
-      "size_bytes": 7308,
-      "sha256": "5ff86f6df26bd497f71e3af6f84827315c2e7ed8f8480dbe80a4bdb50bfe666c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/kalman.csv",
-      "size_bytes": 4478,
-      "sha256": "eb650b931dad0b19f450b76c4e3f605f168e202da2a3454c8e1666572eb699d1",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/kalman.mp4",
-      "size_bytes": 971710,
-      "sha256": "341ff52167ad001fd3a3238b6baf81dfa9a5c57fb9f61836c60e8e00d541aff6",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/kalman_blur.csv",
-      "size_bytes": 4920,
-      "sha256": "6991f549640ba72f6c0f5b7c34a4b518229b98c2f0819e0a26264d149297650b",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/kalman_blur.mp4",
-      "size_bytes": 971929,
-      "sha256": "262f1032a979565d569090d1e407f2900c0b21146305bbd0c38a22412c640237",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/kalman_blur_evaluation.csv",
-      "size_bytes": 1999,
-      "sha256": "253c453f745a1e739ad1b67455b59ab90cece8b4887fd7ee5c53450a7940a346",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/kalman_blur_states.csv",
-      "size_bytes": 10930,
-      "sha256": "d73d0659f3f304fe2d7ac1c52bca2d024078712560a0099bedbcb67e943087f1",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/kalman_evaluation.csv",
-      "size_bytes": 1770,
-      "sha256": "2f52fb3a4dc11f9b7cede5d7e19d6daee19994e9d2cec22ab493830c7accfcec",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/kalman_states.csv",
-      "size_bytes": 11509,
-      "sha256": "e0e2a89ac7ee2c754e13f6e641390aed9952cd9b40072cdc35b34cfc6574de02",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/nearest.csv",
-      "size_bytes": 4478,
-      "sha256": "bf688a1a79c88b31032acefb3e2d97aa3514f5a0b7e5f1ca551021e257023b05",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/nearest.mp4",
-      "size_bytes": 973103,
-      "sha256": "e9944791601d171e6dbb1436a15113443404f4b2128636b4f0b536c7f2c82b9f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/nearest_blur.csv",
-      "size_bytes": 4920,
-      "sha256": "35da3e5aa1d8b7416bd7e30de88b6df65f2b8afb1b1824d32922084cb2b1b82e",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/nearest_blur.mp4",
-      "size_bytes": 977764,
-      "sha256": "881ac34b3d407980e2d336a5c7d51cc078bdd0d7676970aac0934d9498a18e59",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/nearest_blur_evaluation.csv",
-      "size_bytes": 1999,
-      "sha256": "eae246eae82d070eb5354692b8909ae4f7202657247f6a144166518e0be3b6aa",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/nearest_blur_states.csv",
-      "size_bytes": 6668,
-      "sha256": "d2e9264e423d1f8cc1593f79ce9c8dcc5bbba0c66075befa720ee09ff78158be",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/nearest_evaluation.csv",
-      "size_bytes": 1770,
-      "sha256": "9864c9c859348e75e9cb6e153f6160d02e8c714f832037ace68f72e074cdc7f3",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/nearest_states.csv",
-      "size_bytes": 7308,
-      "sha256": "a006788fdcf44b4a9d65a36626218375a21dab81ae409569476a465d5453885f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/png_hungarian.csv",
-      "size_bytes": 4415,
-      "sha256": "72170e11fe9da85d0eda88b5834e0466557264e7c47eb9bda4245f7fa5a9e504",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/png_hungarian_blur.csv",
-      "size_bytes": 4991,
-      "sha256": "acdc6c3df384c423da3c5d5b92d88f721c9174403a55e56b00a404d8cea20cc8",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/png_hungarian_blur_evaluation.csv",
-      "size_bytes": 1996,
-      "sha256": "9521eadd3cfffdc51f291ab3a3095bb83b80559c7c9337d3033004a64c60441c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/png_hungarian_evaluation.csv",
-      "size_bytes": 1744,
-      "sha256": "1238c164161e5bd999dfb9df5c61434e833bd121d1b973dda8620e4f068132db",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/png_kalman.csv",
-      "size_bytes": 4415,
-      "sha256": "f5b9413b65a034f3ab359444012b6522f92b12a149d47464a8410679bdc4afb1",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/png_kalman_blur.csv",
-      "size_bytes": 4991,
-      "sha256": "7f274440ac8206bbcbadf10e0ec8b80f7053931a8c214445d5515d5efe1fa18f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/png_kalman_blur_evaluation.csv",
-      "size_bytes": 1996,
-      "sha256": "2de327a8d13022bd65481f72cd5d1c35c9a0a2f3cf7c493fbbdeee00c936b162",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/png_kalman_evaluation.csv",
-      "size_bytes": 1744,
-      "sha256": "db063bf0f6b313dd47b2e7e7cfe2fe0d59786656334444132d0874c8189d140c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/png_nearest.csv",
-      "size_bytes": 4415,
-      "sha256": "d49827818000097ac4dba6fe20408b3b10722f493e391b01a26d83f9d81b04fb",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/png_nearest_blur.csv",
-      "size_bytes": 4991,
-      "sha256": "65a041ed5c2f30c0a5c1ffcd420e484cb0cb0f307e22ee2f78f0b5cfcc7d871a",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/png_nearest_blur_evaluation.csv",
-      "size_bytes": 1996,
-      "sha256": "9521eadd3cfffdc51f291ab3a3095bb83b80559c7c9337d3033004a64c60441c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/noisy/png_nearest_evaluation.csv",
-      "size_bytes": 1744,
-      "sha256": "1238c164161e5bd999dfb9df5c61434e833bd121d1b973dda8620e4f068132db",
-      "origin": "repository"
-    },
-    {
-      "path": "results/segmentation.png",
-      "size_bytes": 72310,
-      "sha256": "b94709216e85fe66e46259609983d49dab2631c85b5b6b3aa1bcf0014f0f58e1",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/detections.csv",
-      "size_bytes": 1867,
-      "sha256": "64f33b01f1a2c88400fb6ae4f0cca87227f6709056b9390eca9244f7e5582914",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/hungarian.csv",
-      "size_bytes": 2134,
-      "sha256": "6431888fef1b90d4a58a0785d0866b42a3319f6decc4f58196c01d1b3a8b7a9c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/hungarian.mp4",
-      "size_bytes": 164973,
-      "sha256": "053d8fa6906a5ab37e447739e64e81235040954437045e85e9a548f5d0525379",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/hungarian_evaluation.csv",
-      "size_bytes": 1694,
-      "sha256": "cb73b9dd112c0707e4d95cdb2eaa601aa48c4645c65ff651c0d55974a6b9cd04",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/hungarian_states.csv",
-      "size_bytes": 3742,
-      "sha256": "91bbc2d180f80bf8c4ea61da70ec14f2d0d0c251db972067f474b11cefe36e64",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/kalman.csv",
-      "size_bytes": 2134,
-      "sha256": "6431888fef1b90d4a58a0785d0866b42a3319f6decc4f58196c01d1b3a8b7a9c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/kalman.mp4",
-      "size_bytes": 164533,
-      "sha256": "7844131d4be2a7f06650ca782aaf98f7158e0eda028c1c644b6c6fdee043068e",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/kalman_evaluation.csv",
-      "size_bytes": 1694,
-      "sha256": "cb73b9dd112c0707e4d95cdb2eaa601aa48c4645c65ff651c0d55974a6b9cd04",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/kalman_states.csv",
-      "size_bytes": 9304,
-      "sha256": "5d8b003d7888985aebf1b3aefa1ed63fa3a4360b4dedb0db9497be7acb5c6261",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/nearest.csv",
-      "size_bytes": 2134,
-      "sha256": "aaee6a8cf0e96d8dd8b16e45fd8c6b28e40caf6619be80f20d7a5a7120963220",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/nearest.mp4",
-      "size_bytes": 164750,
-      "sha256": "da2bb4f774033a475893223569b1508dfe64f1853e06e365edd1f99bcd16e075",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/nearest_evaluation.csv",
-      "size_bytes": 1694,
-      "sha256": "cb73b9dd112c0707e4d95cdb2eaa601aa48c4645c65ff651c0d55974a6b9cd04",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/nearest_states.csv",
-      "size_bytes": 3742,
-      "sha256": "91bbc2d180f80bf8c4ea61da70ec14f2d0d0c251db972067f474b11cefe36e64",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/png_hungarian.csv",
-      "size_bytes": 2134,
-      "sha256": "6431888fef1b90d4a58a0785d0866b42a3319f6decc4f58196c01d1b3a8b7a9c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/png_hungarian_evaluation.csv",
-      "size_bytes": 1694,
-      "sha256": "cb73b9dd112c0707e4d95cdb2eaa601aa48c4645c65ff651c0d55974a6b9cd04",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/png_kalman.csv",
-      "size_bytes": 2134,
-      "sha256": "6431888fef1b90d4a58a0785d0866b42a3319f6decc4f58196c01d1b3a8b7a9c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/png_kalman_evaluation.csv",
-      "size_bytes": 1694,
-      "sha256": "cb73b9dd112c0707e4d95cdb2eaa601aa48c4645c65ff651c0d55974a6b9cd04",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/png_nearest.csv",
-      "size_bytes": 2134,
-      "sha256": "aaee6a8cf0e96d8dd8b16e45fd8c6b28e40caf6619be80f20d7a5a7120963220",
-      "origin": "repository"
-    },
-    {
-      "path": "results/separate/png_nearest_evaluation.csv",
-      "size_bytes": 1694,
-      "sha256": "cb73b9dd112c0707e4d95cdb2eaa601aa48c4645c65ff651c0d55974a6b9cd04",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/aggregate.csv",
-      "size_bytes": 9437,
-      "sha256": "63bc9ba1c17d35066d1180cca8a979990c0d4344d45af093934f5cd6324c1e6b",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_fixed_hungarian.csv",
-      "size_bytes": 18400,
-      "sha256": "9a6ab2d8f23877c972e7aaf28fd4b6f6fcbef28264a7962229d51f4eee4ee47b",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_fixed_hungarian_evaluation.csv",
-      "size_bytes": 2590,
-      "sha256": "ced202c553ed99ad07c4e6c269b39b4126a137986cdede6e1f543f6d2e617b30",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_fixed_hungarian_states.csv",
-      "size_bytes": 51357,
-      "sha256": "122cda3713b6d49b29bcd2fe923407177d152a2b9caa949c98cf21194acb477c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_fixed_kalman.csv",
-      "size_bytes": 18402,
-      "sha256": "07c0ca1c104a8756eaba96fbe92a25b3ca7188f680fd9bd82369392ebe1da9c0",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_fixed_kalman_evaluation.csv",
-      "size_bytes": 2589,
-      "sha256": "48b0ec85b6054690cb39885cf0b5b700ba84e68c011eb29139b3a0692ae5855d",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_fixed_kalman_states.csv",
-      "size_bytes": 55810,
-      "sha256": "4bb060d0e0337b2b8b9c08178379a6716599f7aeeda32a58ce1125d71801cfff",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_fixed_nearest.csv",
-      "size_bytes": 18408,
-      "sha256": "8b0527fd0a8ee06d0371d874a04c3e2be9d4f7433e29c1f1d85ec1ab18f06f27",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_fixed_nearest_evaluation.csv",
-      "size_bytes": 2590,
-      "sha256": "4951e5e7f95a8727bacc10adade71481cdb1a82ada84ec23e939502d4170ca96",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_fixed_nearest_states.csv",
-      "size_bytes": 53292,
-      "sha256": "ac8cc32c5092d0a176b2836594d59807427561051711b0f5cd01eb2a0a39bc8d",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_otsu_hungarian.csv",
-      "size_bytes": 9637,
-      "sha256": "5f09e51918c0e3695ad5ec4729292f04833055f35a72dfeefd790646f7f24108",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_otsu_hungarian_evaluation.csv",
-      "size_bytes": 3827,
-      "sha256": "a8f933f95dba46d6ac39f50f3514cb93f1952abc1feaa080a66ea52ae32764a2",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_otsu_hungarian_states.csv",
-      "size_bytes": 10138,
-      "sha256": "d149b903948d41b679cff5a9bc8fd036a56514d8f9abd8a06f9b0674f75f50f4",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_otsu_kalman.csv",
-      "size_bytes": 9637,
-      "sha256": "5f09e51918c0e3695ad5ec4729292f04833055f35a72dfeefd790646f7f24108",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_otsu_kalman_evaluation.csv",
-      "size_bytes": 3827,
-      "sha256": "a8f933f95dba46d6ac39f50f3514cb93f1952abc1feaa080a66ea52ae32764a2",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_otsu_kalman_states.csv",
-      "size_bytes": 10594,
-      "sha256": "bffcffe8a45114f7f7ee627087c2b478da03cca6f2622f8ffff0ec605a450bba",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_otsu_nearest.csv",
-      "size_bytes": 9637,
-      "sha256": "4ab07e4d29547acfbcfd812538ed8e52984ec7b0cdae8df847a1d16abc75e111",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_otsu_nearest_evaluation.csv",
-      "size_bytes": 3827,
-      "sha256": "a8f933f95dba46d6ac39f50f3514cb93f1952abc1feaa080a66ea52ae32764a2",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/illumination_otsu_nearest_states.csv",
-      "size_bytes": 10138,
-      "sha256": "d149b903948d41b679cff5a9bc8fd036a56514d8f9abd8a06f9b0674f75f50f4",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_fixed_hungarian.csv",
-      "size_bytes": 6862,
-      "sha256": "313972136277dcb11b80e945131f5f7d62da419417521bfcbb04c14e280eec42",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_fixed_hungarian_evaluation.csv",
-      "size_bytes": 3754,
-      "sha256": "450613646ed5a3e7233474ddb30baaea70812e39bd838f75f455d412b5c5827a",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_fixed_hungarian_states.csv",
-      "size_bytes": 7479,
-      "sha256": "797f5bc7156cb17952797e8656e6b01100418020da55cc1193f845dca5919320",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_fixed_kalman.csv",
-      "size_bytes": 6862,
-      "sha256": "313972136277dcb11b80e945131f5f7d62da419417521bfcbb04c14e280eec42",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_fixed_kalman_evaluation.csv",
-      "size_bytes": 3754,
-      "sha256": "450613646ed5a3e7233474ddb30baaea70812e39bd838f75f455d412b5c5827a",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_fixed_kalman_states.csv",
-      "size_bytes": 9113,
-      "sha256": "aea67642b562b66ca24afb55d4665da0242a25772b6d763b6daa4e1d813a3cc1",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_fixed_nearest.csv",
-      "size_bytes": 6862,
-      "sha256": "91efdda5045a3785fff704e5f312987557789a063d1fcda2b0b9d2d1d68e1181",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_fixed_nearest_evaluation.csv",
-      "size_bytes": 3754,
-      "sha256": "450613646ed5a3e7233474ddb30baaea70812e39bd838f75f455d412b5c5827a",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_fixed_nearest_states.csv",
-      "size_bytes": 7479,
-      "sha256": "797f5bc7156cb17952797e8656e6b01100418020da55cc1193f845dca5919320",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_otsu_hungarian.csv",
-      "size_bytes": 6862,
-      "sha256": "313972136277dcb11b80e945131f5f7d62da419417521bfcbb04c14e280eec42",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_otsu_hungarian_evaluation.csv",
-      "size_bytes": 3754,
-      "sha256": "450613646ed5a3e7233474ddb30baaea70812e39bd838f75f455d412b5c5827a",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_otsu_hungarian_states.csv",
-      "size_bytes": 7479,
-      "sha256": "797f5bc7156cb17952797e8656e6b01100418020da55cc1193f845dca5919320",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_otsu_kalman.csv",
-      "size_bytes": 6862,
-      "sha256": "313972136277dcb11b80e945131f5f7d62da419417521bfcbb04c14e280eec42",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_otsu_kalman_evaluation.csv",
-      "size_bytes": 3754,
-      "sha256": "450613646ed5a3e7233474ddb30baaea70812e39bd838f75f455d412b5c5827a",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_otsu_kalman_states.csv",
-      "size_bytes": 9113,
-      "sha256": "aea67642b562b66ca24afb55d4665da0242a25772b6d763b6daa4e1d813a3cc1",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_otsu_nearest.csv",
-      "size_bytes": 6862,
-      "sha256": "91efdda5045a3785fff704e5f312987557789a063d1fcda2b0b9d2d1d68e1181",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_otsu_nearest_evaluation.csv",
-      "size_bytes": 3754,
-      "sha256": "450613646ed5a3e7233474ddb30baaea70812e39bd838f75f455d412b5c5827a",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/occlusion_otsu_nearest_states.csv",
-      "size_bytes": 7479,
-      "sha256": "797f5bc7156cb17952797e8656e6b01100418020da55cc1193f845dca5919320",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_fixed_hungarian.csv",
-      "size_bytes": 6737,
-      "sha256": "1bfab975cb353c94d6db7d78292ac13bd57db247d9a79e8a0c1a21f0632d7d0f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_fixed_hungarian_evaluation.csv",
-      "size_bytes": 3726,
-      "sha256": "fd8cd55d3d5478567d4265f4cac18581b73586e8fb502f8a2cb9765a57a9386c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_fixed_hungarian_states.csv",
-      "size_bytes": 7334,
-      "sha256": "eb3e56c4e647ca76c532c1a0556c2f39a4faffc0bc17d8132ecab5102de0e74f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_fixed_kalman.csv",
-      "size_bytes": 6737,
-      "sha256": "80d58508c03e4916ebdd281e5ff43de986b6fd492b0cef84ed8413677cdb18e5",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_fixed_kalman_evaluation.csv",
-      "size_bytes": 3726,
-      "sha256": "649dc8774bf87f5c9012e9d432eedbcd0692f06c418324147b03acbaedb1efe2",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_fixed_kalman_states.csv",
-      "size_bytes": 8373,
-      "sha256": "78f39828e44c77338ed13daffab1b8357abe3876e81d2fdf0aa88926d78e61fb",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_fixed_nearest.csv",
-      "size_bytes": 6737,
-      "sha256": "2751edfbea8b9105ccbfe0be7fde7f55c7a3f0c3c12674b96d8feddee5793aa1",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_fixed_nearest_evaluation.csv",
-      "size_bytes": 3726,
-      "sha256": "fd8cd55d3d5478567d4265f4cac18581b73586e8fb502f8a2cb9765a57a9386c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_fixed_nearest_states.csv",
-      "size_bytes": 7334,
-      "sha256": "eb3e56c4e647ca76c532c1a0556c2f39a4faffc0bc17d8132ecab5102de0e74f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_otsu_hungarian.csv",
-      "size_bytes": 6737,
-      "sha256": "1bfab975cb353c94d6db7d78292ac13bd57db247d9a79e8a0c1a21f0632d7d0f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_otsu_hungarian_evaluation.csv",
-      "size_bytes": 3726,
-      "sha256": "fd8cd55d3d5478567d4265f4cac18581b73586e8fb502f8a2cb9765a57a9386c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_otsu_hungarian_states.csv",
-      "size_bytes": 7334,
-      "sha256": "eb3e56c4e647ca76c532c1a0556c2f39a4faffc0bc17d8132ecab5102de0e74f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_otsu_kalman.csv",
-      "size_bytes": 6737,
-      "sha256": "80d58508c03e4916ebdd281e5ff43de986b6fd492b0cef84ed8413677cdb18e5",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_otsu_kalman_evaluation.csv",
-      "size_bytes": 3726,
-      "sha256": "649dc8774bf87f5c9012e9d432eedbcd0692f06c418324147b03acbaedb1efe2",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_otsu_kalman_states.csv",
-      "size_bytes": 8373,
-      "sha256": "78f39828e44c77338ed13daffab1b8357abe3876e81d2fdf0aa88926d78e61fb",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_otsu_nearest.csv",
-      "size_bytes": 6737,
-      "sha256": "2751edfbea8b9105ccbfe0be7fde7f55c7a3f0c3c12674b96d8feddee5793aa1",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_otsu_nearest_evaluation.csv",
-      "size_bytes": 3726,
-      "sha256": "fd8cd55d3d5478567d4265f4cac18581b73586e8fb502f8a2cb9765a57a9386c",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/overlap_otsu_nearest_states.csv",
-      "size_bytes": 7334,
-      "sha256": "eb3e56c4e647ca76c532c1a0556c2f39a4faffc0bc17d8132ecab5102de0e74f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_fixed_hungarian.csv",
-      "size_bytes": 6939,
-      "sha256": "d0756849c8c558ba15281e06d6824cc5d783767bd1a092d69e86604f4d0820b7",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_fixed_hungarian_evaluation.csv",
-      "size_bytes": 3816,
-      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_fixed_hungarian_states.csv",
-      "size_bytes": 7440,
-      "sha256": "cb2648aed67d158d82ee8cf61fb9cf0c8bdb310a96cddb07020ffa3f600f500f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_fixed_kalman.csv",
-      "size_bytes": 6939,
-      "sha256": "d0756849c8c558ba15281e06d6824cc5d783767bd1a092d69e86604f4d0820b7",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_fixed_kalman_evaluation.csv",
-      "size_bytes": 3816,
-      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_fixed_kalman_states.csv",
-      "size_bytes": 9115,
-      "sha256": "f6ba5281e229c00e859116c6722cf90a47fe9d31fcc26fb831b1e65654ecfa77",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_fixed_nearest.csv",
-      "size_bytes": 6939,
-      "sha256": "1d7147100d686888268135a5c7c235befe1ac31ca06529fc072915795a53090f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_fixed_nearest_evaluation.csv",
-      "size_bytes": 3816,
-      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_fixed_nearest_states.csv",
-      "size_bytes": 7440,
-      "sha256": "cb2648aed67d158d82ee8cf61fb9cf0c8bdb310a96cddb07020ffa3f600f500f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_otsu_hungarian.csv",
-      "size_bytes": 6939,
-      "sha256": "d0756849c8c558ba15281e06d6824cc5d783767bd1a092d69e86604f4d0820b7",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_otsu_hungarian_evaluation.csv",
-      "size_bytes": 3816,
-      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_otsu_hungarian_states.csv",
-      "size_bytes": 7440,
-      "sha256": "cb2648aed67d158d82ee8cf61fb9cf0c8bdb310a96cddb07020ffa3f600f500f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_otsu_kalman.csv",
-      "size_bytes": 6939,
-      "sha256": "d0756849c8c558ba15281e06d6824cc5d783767bd1a092d69e86604f4d0820b7",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_otsu_kalman_evaluation.csv",
-      "size_bytes": 3816,
-      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_otsu_kalman_states.csv",
-      "size_bytes": 9115,
-      "sha256": "f6ba5281e229c00e859116c6722cf90a47fe9d31fcc26fb831b1e65654ecfa77",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_otsu_nearest.csv",
-      "size_bytes": 6939,
-      "sha256": "1d7147100d686888268135a5c7c235befe1ac31ca06529fc072915795a53090f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_otsu_nearest_evaluation.csv",
-      "size_bytes": 3816,
-      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/separate_otsu_nearest_states.csv",
-      "size_bytes": 7440,
-      "sha256": "cb2648aed67d158d82ee8cf61fb9cf0c8bdb310a96cddb07020ffa3f600f500f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_fixed_hungarian.csv",
-      "size_bytes": 6922,
-      "sha256": "40fdd7b4db85f695dcb989a41576d8a4d28619785bde7a50b958670be38863c6",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_fixed_hungarian_evaluation.csv",
-      "size_bytes": 3816,
-      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_fixed_hungarian_states.csv",
-      "size_bytes": 7423,
-      "sha256": "f69ab49703e2a20e11568b73175e90d4b8d12db6fdde3b0916d9ad284269e3ba",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_fixed_kalman.csv",
-      "size_bytes": 6922,
-      "sha256": "40fdd7b4db85f695dcb989a41576d8a4d28619785bde7a50b958670be38863c6",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_fixed_kalman_evaluation.csv",
-      "size_bytes": 3816,
-      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_fixed_kalman_states.csv",
-      "size_bytes": 9109,
-      "sha256": "64d37bafbc83ed21d3b541d37076137c86dfbabdb74a8c71a8545b576d570f3f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_fixed_nearest.csv",
-      "size_bytes": 6922,
-      "sha256": "3e1badfac31a80e714ee60b628d6e0580fe706b4282b7771f9a45f7730f49f41",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_fixed_nearest_evaluation.csv",
-      "size_bytes": 3816,
-      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_fixed_nearest_states.csv",
-      "size_bytes": 7423,
-      "sha256": "f69ab49703e2a20e11568b73175e90d4b8d12db6fdde3b0916d9ad284269e3ba",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_otsu_hungarian.csv",
-      "size_bytes": 6922,
-      "sha256": "40fdd7b4db85f695dcb989a41576d8a4d28619785bde7a50b958670be38863c6",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_otsu_hungarian_evaluation.csv",
-      "size_bytes": 3816,
-      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_otsu_hungarian_states.csv",
-      "size_bytes": 7423,
-      "sha256": "f69ab49703e2a20e11568b73175e90d4b8d12db6fdde3b0916d9ad284269e3ba",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_otsu_kalman.csv",
-      "size_bytes": 6922,
-      "sha256": "40fdd7b4db85f695dcb989a41576d8a4d28619785bde7a50b958670be38863c6",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_otsu_kalman_evaluation.csv",
-      "size_bytes": 3816,
-      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_otsu_kalman_states.csv",
-      "size_bytes": 9109,
-      "sha256": "64d37bafbc83ed21d3b541d37076137c86dfbabdb74a8c71a8545b576d570f3f",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_otsu_nearest.csv",
-      "size_bytes": 6922,
-      "sha256": "3e1badfac31a80e714ee60b628d6e0580fe706b4282b7771f9a45f7730f49f41",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_otsu_nearest_evaluation.csv",
-      "size_bytes": 3816,
-      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/details/turn_otsu_nearest_states.csv",
-      "size_bytes": 7423,
-      "sha256": "f69ab49703e2a20e11568b73175e90d4b8d12db6fdde3b0916d9ad284269e3ba",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/environment.json",
-      "size_bytes": 1067,
-      "sha256": "c6e782a32cd7818eecef78962f7192a25b2da7add0aff2caf540127c56ed0110",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/per_run.csv",
-      "size_bytes": 9142,
-      "sha256": "007086a31a90ee35b2f4808b54eb67a714dc931476492a612578d6f844587618",
-      "origin": "repository"
-    },
-    {
-      "path": "results/stress/solver_timing.csv",
-      "size_bytes": 375,
-      "sha256": "e499ebdc86c06401bef7750bdaf19db7dd6d79756fc3fde6fca7b48984bdb050",
-      "origin": "repository"
-    },
-    {
-      "path": "results/summary.csv",
-      "size_bytes": 787,
-      "sha256": "83a9308572eada0b4bdfde370932abfcb37ec26bab1151d134a26ed963419159",
-      "origin": "repository"
-    },
-    {
-      "path": "results/summary_png.csv",
-      "size_bytes": 788,
-      "sha256": "8d6ebaaf273b120d8901c2e1d3317f420680cc64557c2059630cdd4605c07442",
-      "origin": "repository"
-    },
-    {
-      "path": "results/sweep_png.csv",
-      "size_bytes": 2731,
-      "sha256": "6c857ec006a9f674048a73c42d30d7938a4f14fbd8722da86078bf9ec3930d68",
-      "origin": "repository"
-    },
-    {
-      "path": "results/timing_png.csv",
-      "size_bytes": 513,
-      "sha256": "75deeb288ed304f0c24d234ca43f7967ddd55c0d4385a37bde3b47186df3af2b",
-      "origin": "repository"
-    },
-    {
-      "path": "score_trackmate.py",
-      "size_bytes": 2993,
-      "sha256": "ebcd006962b2ed25d32196ad26fa76d51083da916b3966ea990263e972d22c5c",
-      "origin": "repository"
-    },
-    {
-      "path": "tests/test_pipeline.py",
-      "size_bytes": 6558,
-      "sha256": "9f5de5fd43ba24260e5d333313c86dc6af3a0845d084de88feb6d2883e569a81",
-      "origin": "repository"
-    },
-    {
-      "path": "tracking.py",
-      "size_bytes": 14475,
-      "sha256": "9c98d670f4ed9b313aba82cdcebae407d4807e02513c812fb4901b160cfd2ec1",
       "origin": "repository"
     },
     {
@@ -5295,10 +3489,40 @@
       "origin": "working_tree"
     },
     {
+      "path": "docs/BAO_CAO_NHOM9.md",
+      "origin": "working_tree",
+      "size_bytes": 15031,
+      "sha256": "960b276e7d9a21ed56f49b659950bd419a388e157eab35d8726184d406b6ea50"
+    },
+    {
       "path": "docs/GIT_STAGING_PLAN.md",
       "size_bytes": 1647,
       "sha256": "66265eafe0319a4ace7512fc3c34b76727b230018280efba189b32a83ad58cb6",
       "origin": "working_tree"
+    },
+    {
+      "path": "docs/KET_QUA.md",
+      "size_bytes": 8264,
+      "sha256": "4380bbabdf1eaa4fc5e1a97da71b190ac1d491f7d5fa066311e2f646296533b4",
+      "origin": "repository"
+    },
+    {
+      "path": "docs/LY_THUYET.md",
+      "size_bytes": 7882,
+      "sha256": "0e6251e908eac53100c5c358da4c40113a9add283dba27788cd0af706583a197",
+      "origin": "repository"
+    },
+    {
+      "path": "docs/METRICS.md",
+      "origin": "working_tree",
+      "size_bytes": 3239,
+      "sha256": "74c37f4a5e2d27a41c3125a007b39e29370f04138ea42251bec4d6dfc99dc475"
+    },
+    {
+      "path": "docs/NOP_BAI.md",
+      "origin": "working_tree",
+      "size_bytes": 5823,
+      "sha256": "8af34b45e4719d17dad08e67a159fb67f66b19639eb1ec0454b3d5068e9b602b"
     },
     {
       "path": "docs/PUBLIC_RELEASE_SCOPE.md",
@@ -5307,10 +3531,34 @@
       "origin": "working_tree"
     },
     {
+      "path": "docs/SLIDE_VA_DEMO.md",
+      "origin": "working_tree",
+      "size_bytes": 3291,
+      "sha256": "021a9af4039247a55d846afd7623333ce8144b054ac898e3240e18a61f8cd32e"
+    },
+    {
+      "path": "docs/THUC_NGHIEM.md",
+      "size_bytes": 8937,
+      "sha256": "0875c3451c2d05e9fdebbee0117b1a799d004d48287ffcbb30c5dc98dc69c9b6",
+      "origin": "git_HEAD"
+    },
+    {
       "path": "docs/public_stage_paths.txt",
-      "size_bytes": 35244,
-      "sha256": "b2ed5e15f12fd9ee0f0e2d9c6c17adcdcb8491fd31175aaaa28178c27842e5b1",
+      "size_bytes": 35353,
+      "sha256": "d0a1644a2245a05534b18e18f2b8b8e1bf06e16cf58aebaa0e917acf7a576c25",
       "origin": "working_tree"
+    },
+    {
+      "path": "evaluation.py",
+      "size_bytes": 6134,
+      "sha256": "89f2a59b0c4a92fff9f564e89f31456ad48d23a9ea11dba5b08001bc2b054907",
+      "origin": "repository"
+    },
+    {
+      "path": "experiments.py",
+      "size_bytes": 9947,
+      "sha256": "4eb3b5f11729fe390d2f308b06781aeb29248ef799171bfa4bd40fcdd6fce63f",
+      "origin": "repository"
     },
     {
       "path": "output/person1/f4/comparison.csv",
@@ -5692,8 +3940,8 @@
     },
     {
       "path": "output/person1/public_release/report.md",
-      "size_bytes": 18932,
-      "sha256": "f1ec6c4481569a3c27e397e859fc0f1bd9b8cbe4b576c8f50371fd69fa0bc4dd",
+      "size_bytes": 19434,
+      "sha256": "5b062713ec7021dcfa69e8c11b1a539f4617c680eb6468a056a715fc0ab2fc6c",
       "origin": "working_tree"
     },
     {
@@ -6975,9 +5223,1773 @@
       "origin": "working_tree"
     },
     {
+      "path": "plots.py",
+      "size_bytes": 10749,
+      "sha256": "f28b3d5d448c725618d54ce6b35d9500d27800fab5da928dc051a78383757fda",
+      "origin": "repository"
+    },
+    {
+      "path": "requirements.txt",
+      "size_bytes": 51,
+      "sha256": "0ab8163e7e558ddd16eb380da27913d2c6f3b054ac902e0379baeb1b0dbf221b",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/detections.csv",
+      "size_bytes": 1768,
+      "sha256": "c0ecf5627448740c2ea62e36be1dfbda58f831e6b14aea0674507408bd42d395",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/hungarian.csv",
+      "size_bytes": 2027,
+      "sha256": "fdcf9d35874b9fb888d16625888154b0dc8319a5934a3e3c2a46e838f243b58a",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/hungarian.mp4",
+      "size_bytes": 169054,
+      "sha256": "e72887842e4a05d6a8d267910f063e4ac6927a6fdfce07bf1b41e8ab289ece16",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/hungarian_evaluation.csv",
+      "size_bytes": 1642,
+      "sha256": "95b683129c8ded1499ab38f9a38e06b526a9923a64be8ca8a94893759317597c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/hungarian_states.csv",
+      "size_bytes": 3699,
+      "sha256": "e652c5c4c720e6711ae80939d23dc149ded395e37efc727c33d6206f8299791c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/kalman.csv",
+      "size_bytes": 2027,
+      "sha256": "58f02621764acc0525c7ab788cac89b06e4ac9d94b8474698c9332cad0416846",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/kalman.mp4",
+      "size_bytes": 170761,
+      "sha256": "326d0ad86499e068aaf39bae356886f86081622c3e0c4c6cabbcb1e5c615519c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/kalman_evaluation.csv",
+      "size_bytes": 1642,
+      "sha256": "ec323c954dc2d55c3f0fd101cc4e7949cb4dceefbc32757d9e6674ef132575de",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/kalman_states.csv",
+      "size_bytes": 9124,
+      "sha256": "432a39edd78543702529fdef9e23c6b114a05a80a9f9a987c8577cb7a25f7812",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/nearest.csv",
+      "size_bytes": 2027,
+      "sha256": "bf342d5457b9dfef85cc5092d2dec825968fb43a4fce298ac20bf366a0bfcdce",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/nearest.mp4",
+      "size_bytes": 169552,
+      "sha256": "254ac9ef1ab944e2d26d676c2238cf888ef52880f715fe27d7d03b2aa5c03c9d",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/nearest_evaluation.csv",
+      "size_bytes": 1642,
+      "sha256": "95b683129c8ded1499ab38f9a38e06b526a9923a64be8ca8a94893759317597c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/nearest_states.csv",
+      "size_bytes": 3699,
+      "sha256": "e652c5c4c720e6711ae80939d23dc149ded395e37efc727c33d6206f8299791c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/png_hungarian.csv",
+      "size_bytes": 2027,
+      "sha256": "fdcf9d35874b9fb888d16625888154b0dc8319a5934a3e3c2a46e838f243b58a",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/png_hungarian_evaluation.csv",
+      "size_bytes": 1642,
+      "sha256": "95b683129c8ded1499ab38f9a38e06b526a9923a64be8ca8a94893759317597c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/png_kalman.csv",
+      "size_bytes": 2027,
+      "sha256": "58f02621764acc0525c7ab788cac89b06e4ac9d94b8474698c9332cad0416846",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/png_kalman_evaluation.csv",
+      "size_bytes": 1642,
+      "sha256": "ec323c954dc2d55c3f0fd101cc4e7949cb4dceefbc32757d9e6674ef132575de",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/png_nearest.csv",
+      "size_bytes": 2027,
+      "sha256": "bf342d5457b9dfef85cc5092d2dec825968fb43a4fce298ac20bf366a0bfcdce",
+      "origin": "repository"
+    },
+    {
+      "path": "results/crossing/png_nearest_evaluation.csv",
+      "size_bytes": 1642,
+      "sha256": "95b683129c8ded1499ab38f9a38e06b526a9923a64be8ca8a94893759317597c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/detections.csv",
+      "size_bytes": 2510,
+      "sha256": "db97c38afc93c3051f2c41d82ee009ff95cd01fdf874d6a3c868c99a3520c416",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/hungarian.csv",
+      "size_bytes": 2879,
+      "sha256": "f7bd5c791279ebf5e8fc94f8273b7e8cdff2b9f15bb10d85706da6129be1ddb4",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/hungarian.mp4",
+      "size_bytes": 121387,
+      "sha256": "9491c3adcc0a58e2110287e5cc8cb707d493ab330bf2caf33d15ed32cf878b50",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/hungarian_evaluation.csv",
+      "size_bytes": 2324,
+      "sha256": "4753880da2cb4a66dd7521e1914b54a7aedfd70cfeca92544a8a65db16432dbd",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/hungarian_states.csv",
+      "size_bytes": 5099,
+      "sha256": "570e1cd02513c92df8ca42f05e39ddf928a0a5eb6fd81eb6ce418576198373f5",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/kalman.csv",
+      "size_bytes": 2879,
+      "sha256": "f7bd5c791279ebf5e8fc94f8273b7e8cdff2b9f15bb10d85706da6129be1ddb4",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/kalman.mp4",
+      "size_bytes": 121284,
+      "sha256": "e7c9bb9ded2929a0e2f18e60c196843345f6ac91ec9be2f40dfe2019b1ac977e",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/kalman_evaluation.csv",
+      "size_bytes": 2324,
+      "sha256": "4753880da2cb4a66dd7521e1914b54a7aedfd70cfeca92544a8a65db16432dbd",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/kalman_states.csv",
+      "size_bytes": 9872,
+      "sha256": "04df2abd0179813b4e7c3e0857e2310184bb09601042e624a90da08f593fb0b8",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/nearest.csv",
+      "size_bytes": 2948,
+      "sha256": "9c9692850c83b339565d3b0944ba4dfe2ec82e464d2a57c9ffdc30705d94deaf",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/nearest.mp4",
+      "size_bytes": 130891,
+      "sha256": "a3c8d8ab381bad5c8e341a641b9647e0ca65905bfa1ea0a7f337b814a235e342",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/nearest_evaluation.csv",
+      "size_bytes": 2393,
+      "sha256": "a1ba35a6a872e94c3664f84436843218cad792850c53bf34eefe534d26778fdf",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/nearest_states.csv",
+      "size_bytes": 8657,
+      "sha256": "ffc88bb21d1900e8d07e042e9cda8a80ad5ed924bb4a36cc614ece8b7de18321",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/png_hungarian.csv",
+      "size_bytes": 2879,
+      "sha256": "f7bd5c791279ebf5e8fc94f8273b7e8cdff2b9f15bb10d85706da6129be1ddb4",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/png_hungarian_evaluation.csv",
+      "size_bytes": 2324,
+      "sha256": "4753880da2cb4a66dd7521e1914b54a7aedfd70cfeca92544a8a65db16432dbd",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/png_kalman.csv",
+      "size_bytes": 2879,
+      "sha256": "f7bd5c791279ebf5e8fc94f8273b7e8cdff2b9f15bb10d85706da6129be1ddb4",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/png_kalman_evaluation.csv",
+      "size_bytes": 2324,
+      "sha256": "4753880da2cb4a66dd7521e1914b54a7aedfd70cfeca92544a8a65db16432dbd",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/png_nearest.csv",
+      "size_bytes": 2948,
+      "sha256": "9c9692850c83b339565d3b0944ba4dfe2ec82e464d2a57c9ffdc30705d94deaf",
+      "origin": "repository"
+    },
+    {
+      "path": "results/dense/png_nearest_evaluation.csv",
+      "size_bytes": 2393,
+      "sha256": "a1ba35a6a872e94c3664f84436843218cad792850c53bf34eefe534d26778fdf",
+      "origin": "repository"
+    },
+    {
+      "path": "results/detector_comparison/crossing/python_detections.csv",
+      "size_bytes": 2037,
+      "sha256": "54be44d5eef13969412cb5dacd320ed426c2ffd2f9f3727430447500376f5f2a",
+      "origin": "repository"
+    },
+    {
+      "path": "results/detector_comparison/crossing/summary.json",
+      "size_bytes": 209,
+      "sha256": "10cc1a1995b9b6ff092b807f0733f6d974714f17539afb922c20d10dbc917687",
+      "origin": "repository"
+    },
+    {
+      "path": "results/detector_comparison/separate/python_detections.csv",
+      "size_bytes": 2144,
+      "sha256": "080ad578ebe37ebc5ec79ac0edcaf82b43573e98fc16da0ef9fb0580c0875160",
+      "origin": "repository"
+    },
+    {
+      "path": "results/detector_comparison/separate/summary.json",
+      "size_bytes": 209,
+      "sha256": "8be672cec4b3b8b96eb7d204bfcb67cc2ca36a9b9dc05886762205e215d140f9",
+      "origin": "repository"
+    },
+    {
+      "path": "results/detector_variants.csv",
+      "size_bytes": 423,
+      "sha256": "876a67ce268921dd88be7489414e20ca2862449aebcabc0d82341d3238861805",
+      "origin": "repository"
+    },
+    {
+      "path": "results/figures/idf1_methods.png",
+      "size_bytes": 65934,
+      "sha256": "e698b7e50b4787cb642a9fdaebe084b9be3b14a527b9a5232b798c1f628a8163",
+      "origin": "repository"
+    },
+    {
+      "path": "results/figures/noise_robustness.png",
+      "size_bytes": 101293,
+      "sha256": "2d0060f2e7b02e24ced304e335ca479f31b3c8c158b288e2d2b0c048bff39de3",
+      "origin": "repository"
+    },
+    {
+      "path": "results/figures/noisy_detectors.png",
+      "size_bytes": 140666,
+      "sha256": "7f6b404c8f0fc07de74a4cf441ff51fdc5b0828984b03909053627e7bcd65e24",
+      "origin": "repository"
+    },
+    {
+      "path": "results/figures/parameter_sweep.png",
+      "size_bytes": 77932,
+      "sha256": "c2fbc1b12822406d195bf06a140c9304895a6b55f1f40d9b347ea27c2ed3be61",
+      "origin": "repository"
+    },
+    {
+      "path": "results/figures/report/hinh_3_1_wizard.png",
+      "size_bytes": 80767,
+      "sha256": "503d0d602d87c4aff94ee34ebf1c9294df5aabf67963a4f0a1feaa447ddb90b0",
+      "origin": "repository"
+    },
+    {
+      "path": "results/figures/report/hinh_3_2_preview_overlay.png",
+      "size_bytes": 136055,
+      "sha256": "9eb20c24731470e8531167974d639e3a18c5afd3f80ed5e81bbb0a370b4e53e8",
+      "origin": "repository"
+    },
+    {
+      "path": "results/figures/report/hinh_3_3_tracks_table.png",
+      "size_bytes": 19402,
+      "sha256": "9a0c4a1a6ab76b90d2842a87d142c3c532d9e5d0a4be364e981bdb9db02ef267",
+      "origin": "repository"
+    },
+    {
+      "path": "results/figures/report/hinh_3_4_log_noisy.png",
+      "size_bytes": 22280,
+      "sha256": "374faec69dd065bd1b2c53ac64bdb09d5adcd7f31f051d1b21d23718fe4423be",
+      "origin": "repository"
+    },
+    {
+      "path": "results/figures/report/hinh_4_1_segmentation.png",
+      "size_bytes": 72310,
+      "sha256": "b94709216e85fe66e46259609983d49dab2631c85b5b6b3aa1bcf0014f0f58e1",
+      "origin": "repository"
+    },
+    {
+      "path": "results/figures/report/hinh_5_1_scenarios.png",
+      "size_bytes": 178255,
+      "sha256": "b091de584f367c16740ce6d5f0c3d98fe45f247eaf9b3b1b5f3ab29dae2e7527",
+      "origin": "repository"
+    },
+    {
+      "path": "results/figures/report/hinh_5_2_idf1.png",
+      "size_bytes": 65934,
+      "sha256": "e698b7e50b4787cb642a9fdaebe084b9be3b14a527b9a5232b798c1f628a8163",
+      "origin": "repository"
+    },
+    {
+      "path": "results/figures/report/hinh_5_3_trajectories.png",
+      "size_bytes": 313921,
+      "sha256": "7c0a27b8d84c8a59b8d2d4ec8e3f320784e1613158cfa9e1e5b169887cf3bef4",
+      "origin": "repository"
+    },
+    {
+      "path": "results/figures/report/hinh_5_4_sweep.png",
+      "size_bytes": 77932,
+      "sha256": "c2fbc1b12822406d195bf06a140c9304895a6b55f1f40d9b347ea27c2ed3be61",
+      "origin": "repository"
+    },
+    {
+      "path": "results/figures/report/hinh_5_5_noise.png",
+      "size_bytes": 101293,
+      "sha256": "2d0060f2e7b02e24ced304e335ca479f31b3c8c158b288e2d2b0c048bff39de3",
+      "origin": "repository"
+    },
+    {
+      "path": "results/figures/report/hinh_5_6_detectors.png",
+      "size_bytes": 140666,
+      "sha256": "7f6b404c8f0fc07de74a4cf441ff51fdc5b0828984b03909053627e7bcd65e24",
+      "origin": "repository"
+    },
+    {
+      "path": "results/figures/trajectories.png",
+      "size_bytes": 313921,
+      "sha256": "7c0a27b8d84c8a59b8d2d4ec8e3f320784e1613158cfa9e1e5b169887cf3bef4",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/crossing_kalman.csv",
+      "size_bytes": 2041,
+      "sha256": "2921081f60e4251b6aa912bad5ec1f10e79b72500ccb3af7af280463c6272a91",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/crossing_kalman.xml",
+      "size_bytes": 354934,
+      "sha256": "1f978123f9b088e8c8a47642671fafed50fc1194042bff3478a4d5ccc9b9672a",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/crossing_kalman_evaluation.csv",
+      "size_bytes": 1645,
+      "sha256": "30fd967da0d6fce3f29f1bc1ea614e4dc11b15db5e13287c285847e35ae68dde",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/crossing_lap.csv",
+      "size_bytes": 2041,
+      "sha256": "36756376a7ea777aedca3d86a97b0f3f9ebb22d76e90c29f2cf2037211f1c208",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/crossing_lap.xml",
+      "size_bytes": 355491,
+      "sha256": "a5a81f20bf53a11e12be18299c97ec6a2d454ec82ee01798d9f77e66f6f034d9",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/crossing_lap_evaluation.csv",
+      "size_bytes": 1645,
+      "sha256": "30fd967da0d6fce3f29f1bc1ea614e4dc11b15db5e13287c285847e35ae68dde",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/crossing_nearest.csv",
+      "size_bytes": 2041,
+      "sha256": "1f47920bf428b50e76b83e2a170b1ee028156814249403b442f008086cc546e9",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/crossing_nearest.xml",
+      "size_bytes": 352485,
+      "sha256": "c75d5d485ef6ad3d7238e973f76b5c7db9946908319f8c9e916f9273a2ff8ee3",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/crossing_nearest_evaluation.csv",
+      "size_bytes": 1645,
+      "sha256": "351f11a2a2afd6e937753948ad25cc4347158e56bde0a1da1f2d5c763629c9f0",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/dense_kalman.csv",
+      "size_bytes": 2904,
+      "sha256": "0ea07d09632264d51535d9a243719f5099944944d9e5b0856237d74989b0c4df",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/dense_kalman.xml",
+      "size_bytes": 284534,
+      "sha256": "1efcd3a21afefe261c03dcc310faa297fc4eb4566839a827256e46fa27944c7a",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/dense_kalman_evaluation.csv",
+      "size_bytes": 2327,
+      "sha256": "ee641fe4cda3af821059dc532193bfb24023a2a520f569ab2f04bfd7d1b0f844",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/dense_lap.csv",
+      "size_bytes": 2904,
+      "sha256": "cdc8cc63ef51334ac436cfe6e902c12f2e5798b2d7c64d7324af46ccc8b75ade",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/dense_lap.xml",
+      "size_bytes": 284913,
+      "sha256": "471adc28f9f3a62a3934e133f66213c4775ce6f562d89544a64b2822eaeb5260",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/dense_lap_evaluation.csv",
+      "size_bytes": 2327,
+      "sha256": "d52ba7e81146b8692267a6e2003fc74ae68615d2baf850de41a007a240ad1eb1",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/dense_nearest.csv",
+      "size_bytes": 2933,
+      "sha256": "5758137c090d6898298e5accf9390273edab87cea97d3111661626eea0729ef9",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/dense_nearest.xml",
+      "size_bytes": 282412,
+      "sha256": "a7a44e381b08997ce16b0742dc68d5a37109d15964bda5c7e6ebd1be6f7bb1ca",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/dense_nearest_evaluation.csv",
+      "size_bytes": 2356,
+      "sha256": "d04e94e19e3ab5538ef8f86bfa10614f961ffab9de089fb3594db133cc974337",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_kalman.csv",
+      "size_bytes": 5006,
+      "sha256": "e9c17796e2c70325c3b78030bf6989cb00e0a18cba41d90966ee2caf4658a030",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_kalman.xml",
+      "size_bytes": 323634,
+      "sha256": "563d90c1ccd87e1b1787cd2257bead8c3156efe8be85e6d67acf6242c8dea157",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_kalman_evaluation.csv",
+      "size_bytes": 2004,
+      "sha256": "2bde15a6824e3668c23553142f7c79045b98f3ac4a13af893c8364b1d870aa86",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_lap.csv",
+      "size_bytes": 5006,
+      "sha256": "448f150daa5385089e838a98acf2b2884be6c517c29168499494909487581401",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_lap.xml",
+      "size_bytes": 324191,
+      "sha256": "4326697038a93c213ad99cf9fc587ace176135c3a22196058e0cc38e2462d7b1",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_lap_evaluation.csv",
+      "size_bytes": 2004,
+      "sha256": "5f306c48b3cf3447dafbd13022d579fa1a4897bbae31ae0aec0739df1419e6b7",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_log_kalman.csv",
+      "size_bytes": 5195,
+      "sha256": "ee241e575deeb26396be21084d10d4db8901ab7f8a330e45a82fc4ec74ca82f0",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_log_kalman.xml",
+      "size_bytes": 40799,
+      "sha256": "658896af171f15cda1b6c1b1a8939625b1e965548ec7c81ccb4f57ad02f67534",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_log_kalman_evaluation.csv",
+      "size_bytes": 1996,
+      "sha256": "1a3558554cd9e19eabf37074b9880776b9dbc738f7319fb2c846da5025139d2d",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_log_lap.csv",
+      "size_bytes": 5195,
+      "sha256": "78284e40ce8b001d88e65ebbf5eebeb4dec51e40f7433b50288a4e8696d196c8",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_log_lap.xml",
+      "size_bytes": 41356,
+      "sha256": "f84916fe25ef47e0640f4725f757924bb42f4831ddf223b011bc576170aa241b",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_log_lap_evaluation.csv",
+      "size_bytes": 1996,
+      "sha256": "a950836dfcedd12b9b22b50253c2510600f84770ed2e736ecc3f06376572123f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_log_nearest.csv",
+      "size_bytes": 5195,
+      "sha256": "4064e3eaa726752d944b09f58b077fc8923307d9480ffe4b677a6b81d015f3b4",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_log_nearest.xml",
+      "size_bytes": 40788,
+      "sha256": "d6c08687d0e038d8289dfd48289995f0e7a8ff27ac3cfca940b812d020fb4101",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_log_nearest_evaluation.csv",
+      "size_bytes": 1996,
+      "sha256": "0d0a4eac56193125042f41f98278de7ccaf59b45b9de5a66192b4deca5b05ac1",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_nearest.csv",
+      "size_bytes": 5006,
+      "sha256": "bf1bd27f1182cabfa67024c9a447525e92a28d36ec21c2f44810b0ca5d72603a",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_nearest.xml",
+      "size_bytes": 323436,
+      "sha256": "d4248aa827088e703e46884abbd013dbb1cfff8ae91ab40fc793147327b72928",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/noisy_nearest_evaluation.csv",
+      "size_bytes": 2004,
+      "sha256": "00ccb5405df7cd8ecf75880106685cfc17b76bc522e45f90674b122b6996f83f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/crossing_threshold_kalman/01_hyperstack.png",
+      "size_bytes": 60513,
+      "sha256": "eadcb177108f6e6c0c7dd0a653cb7c89e0bc0a176a79eacceee87ab3fcd43bc2",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/crossing_threshold_kalman/02_Start.png",
+      "size_bytes": 24786,
+      "sha256": "72bdbeef42ee630947006159faf2854469e988a58c2a91af7fbea0f530bb7c3c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/crossing_threshold_kalman/03_ChooseDetector.png",
+      "size_bytes": 16058,
+      "sha256": "49c03b4058847c622a4c61764c981b2e8ea9d3f1683ff41f107c021b9c62e210",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/crossing_threshold_kalman/04_Preview_image.png",
+      "size_bytes": 60906,
+      "sha256": "1d621a2154929c7c0e0c6386182f792491abe23c73525b8487fc0e6cae1d5b9d",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/crossing_threshold_kalman/05_ConfigureDetector.png",
+      "size_bytes": 20929,
+      "sha256": "63b6974a27456a96fdcf3e107ed43a78382392cc88c3fb7cff6af76961a793cc",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/crossing_threshold_kalman/06_ExecuteDetection.png",
+      "size_bytes": 37396,
+      "sha256": "b0940f48417b36d9fb7c56bcffe1ce426988b2802cc8064891f9a734a632520f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/crossing_threshold_kalman/07_InitialFiltering.png",
+      "size_bytes": 16359,
+      "sha256": "9eb9ff9847b242343379e542bd165419cd2623dc40dff0b90aceb79c453a2b89",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/crossing_threshold_kalman/08_SpotFilter.png",
+      "size_bytes": 17078,
+      "sha256": "27e52c41d2bb580edfd543b6460a50eefd4d959c9822d5681feac136a6df2ce3",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/crossing_threshold_kalman/09_ChooseTracker.png",
+      "size_bytes": 26344,
+      "sha256": "90cac59548435e254e81efb279ee44551aa54506386beac25ec07a05385c7ba9",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/crossing_threshold_kalman/10_ConfigureTracker.png",
+      "size_bytes": 14964,
+      "sha256": "16812e01c9e01d8d077ac658cf6f8200619172a6a1376a9d79ab9a4f65b47386",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/crossing_threshold_kalman/11_ExecuteTracking.png",
+      "size_bytes": 37894,
+      "sha256": "8a63f185d4aa8e264088e418955944e4fe466e1f49bf28c9d53dbc012578fc28",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/crossing_threshold_kalman/12_TrackFilter.png",
+      "size_bytes": 10713,
+      "sha256": "9b8580a2a4038ab4eb3314fa55416bfe6c12911f84e0c34e3371c26a2ba7406e",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/crossing_threshold_kalman/13_ConfigureViews.png",
+      "size_bytes": 22359,
+      "sha256": "6fe71a93250aeee518976e199ee6d8f94d6361bacd163bd6bc5a0ee9f6dbbbf3",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/crossing_threshold_kalman/14_TracksTable.png",
+      "size_bytes": 19402,
+      "sha256": "9a0c4a1a6ab76b90d2842a87d142c3c532d9e5d0a4be364e981bdb9db02ef267",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/crossing_threshold_kalman/15_Overlay.png",
+      "size_bytes": 64191,
+      "sha256": "9ffbeb50926c514c262b77acda34edae0036565422982a5ad10295522f70b5c4",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/noisy_log_kalman/01_hyperstack.png",
+      "size_bytes": 77220,
+      "sha256": "3681bf88c216cd1b46fd70a6f5eef2e59369c0478bd5dc6172ecc54884f31efc",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/noisy_log_kalman/02_Start.png",
+      "size_bytes": 24796,
+      "sha256": "3deba7094c2891e3d7bcb7ac15584eeebd35d4134a4664dc7202065b0d650ce8",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/noisy_log_kalman/03_ChooseDetector.png",
+      "size_bytes": 13896,
+      "sha256": "db9d084cc5bf0047bec213d4735bad18cc4376d5ba6a2c4b36461c71a1a9f3fd",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/noisy_log_kalman/04_Preview_image.png",
+      "size_bytes": 79536,
+      "sha256": "ebf1de82a0ef205f7373848aafd2ae5cd7994746305004f6329386f47036b3c6",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/noisy_log_kalman/05_ConfigureDetector.png",
+      "size_bytes": 22280,
+      "sha256": "374faec69dd065bd1b2c53ac64bdb09d5adcd7f31f051d1b21d23718fe4423be",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/noisy_log_kalman/06_ExecuteDetection.png",
+      "size_bytes": 35179,
+      "sha256": "f9aeab916a8f2e658a6b18a57e4bda89d2731b0c5dbca873762b4ddf2f26aa30",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/noisy_log_kalman/07_InitialFiltering.png",
+      "size_bytes": 17640,
+      "sha256": "c30de17007b5832cefe31080e40e181a2ee8db6734aa6dd91ff51bb5627ece00",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/noisy_log_kalman/08_SpotFilter.png",
+      "size_bytes": 10396,
+      "sha256": "bfb7ff7b06fba23f11da668b02b1be505db6f5303c23f931689dc127c4106b74",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/noisy_log_kalman/09_ChooseTracker.png",
+      "size_bytes": 26344,
+      "sha256": "90cac59548435e254e81efb279ee44551aa54506386beac25ec07a05385c7ba9",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/noisy_log_kalman/10_ConfigureTracker.png",
+      "size_bytes": 14964,
+      "sha256": "16812e01c9e01d8d077ac658cf6f8200619172a6a1376a9d79ab9a4f65b47386",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/noisy_log_kalman/11_ExecuteTracking.png",
+      "size_bytes": 36855,
+      "sha256": "f4c9d5736794a8b99b93ee90b720acd1c246f081ca39a59fa7569349a8aa7a62",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/noisy_log_kalman/12_TrackFilter.png",
+      "size_bytes": 10713,
+      "sha256": "9b8580a2a4038ab4eb3314fa55416bfe6c12911f84e0c34e3371c26a2ba7406e",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/noisy_log_kalman/13_ConfigureViews.png",
+      "size_bytes": 22359,
+      "sha256": "6fe71a93250aeee518976e199ee6d8f94d6361bacd163bd6bc5a0ee9f6dbbbf3",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/noisy_log_kalman/14_TracksTable.png",
+      "size_bytes": 19718,
+      "sha256": "2b605efb3d3f8a837900393e178d549030381356b0cff9885d622200b5809fc4",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/screenshots/noisy_log_kalman/15_Overlay.png",
+      "size_bytes": 88394,
+      "sha256": "ef54a2e9c02cdcfa4db5cd6922ba5ed7e39b9d0bdfb077bef1984780bfb78c2e",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/separate_kalman.csv",
+      "size_bytes": 2160,
+      "sha256": "9b3f5359f701d5719fe9a74b8dae59ee18d22e36aea65c2292404acbbd286858",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/separate_kalman.xml",
+      "size_bytes": 357955,
+      "sha256": "266d9e5d17e1a2872bda5eee331f25227f22de837b873d234ad4bcf723ac2de4",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/separate_kalman_evaluation.csv",
+      "size_bytes": 1697,
+      "sha256": "414c22463cb3f98a7495e6b4ffc8ae5efd990b691889bbe104990be7314309a1",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/separate_lap.csv",
+      "size_bytes": 2160,
+      "sha256": "07e5d1e8d720ca1088b1590a2c38479962c4865dc341c8fafc310cf75e0e724d",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/separate_lap.xml",
+      "size_bytes": 358512,
+      "sha256": "502bd825587a78d7234f0dcaefbb5791013392606bcd1bfa8c9d3d112b4dab28",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/separate_lap_evaluation.csv",
+      "size_bytes": 1697,
+      "sha256": "23278fbc2f6bd02502d1c4df7ca3b31561228b07f269973387f7c22b28183dcf",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/separate_nearest.csv",
+      "size_bytes": 2160,
+      "sha256": "513ffa3a015c8fc6b67408ce9dd60b1daabef9fa75fea30b48566ab8ec4ed77f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/separate_nearest.xml",
+      "size_bytes": 355466,
+      "sha256": "98f7f076054944091dc6e01b360015e1eeea7473e18af96e6e200a21683f86b3",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/separate_nearest_evaluation.csv",
+      "size_bytes": 1697,
+      "sha256": "23278fbc2f6bd02502d1c4df7ca3b31561228b07f269973387f7c22b28183dcf",
+      "origin": "repository"
+    },
+    {
+      "path": "results/fiji/summary.csv",
+      "size_bytes": 735,
+      "sha256": "aadebcbd1a22a5cacc3a1fde8e479c619333e3cc8e4041845c03542672d789f7",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noise_sweep.csv",
+      "size_bytes": 2886,
+      "sha256": "9064042cb3502ead3d027a6e7f11e477ae16100c33b9d295dbfca13929b766a7",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/detections.csv",
+      "size_bytes": 4661,
+      "sha256": "9854f4e401747984ad9018e53669001fc8cfd1139bcad3e83bcce4c952054366",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/hungarian.csv",
+      "size_bytes": 4478,
+      "sha256": "06cd8587fa1996fb48b3d6c0c24c41f6eed751ca0a6302961308aad5de77bc99",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/hungarian.mp4",
+      "size_bytes": 971556,
+      "sha256": "fa01d81f02c3aa1b35bae0a5cd2a52d2bcdec1abe19ade3cbfce6bf11a6f5bee",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/hungarian_blur.csv",
+      "size_bytes": 4920,
+      "sha256": "d15fc7507e0991b44c66c62b8b11b43b2b0d2cf171f3405a19c41d1b10fae84e",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/hungarian_blur.mp4",
+      "size_bytes": 968338,
+      "sha256": "86cb22ef51cb7dc00de8ba33c5df9e4e0ea337c71e7b830da476d3d63bc01c91",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/hungarian_blur_evaluation.csv",
+      "size_bytes": 1999,
+      "sha256": "eae246eae82d070eb5354692b8909ae4f7202657247f6a144166518e0be3b6aa",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/hungarian_blur_states.csv",
+      "size_bytes": 6668,
+      "sha256": "d2e9264e423d1f8cc1593f79ce9c8dcc5bbba0c66075befa720ee09ff78158be",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/hungarian_evaluation.csv",
+      "size_bytes": 1770,
+      "sha256": "3a9871217bd8b3f1b726e350f1ba2265bb8e1f806526547391ca9e900b6e0c25",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/hungarian_states.csv",
+      "size_bytes": 7308,
+      "sha256": "5ff86f6df26bd497f71e3af6f84827315c2e7ed8f8480dbe80a4bdb50bfe666c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/kalman.csv",
+      "size_bytes": 4478,
+      "sha256": "eb650b931dad0b19f450b76c4e3f605f168e202da2a3454c8e1666572eb699d1",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/kalman.mp4",
+      "size_bytes": 971710,
+      "sha256": "341ff52167ad001fd3a3238b6baf81dfa9a5c57fb9f61836c60e8e00d541aff6",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/kalman_blur.csv",
+      "size_bytes": 4920,
+      "sha256": "6991f549640ba72f6c0f5b7c34a4b518229b98c2f0819e0a26264d149297650b",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/kalman_blur.mp4",
+      "size_bytes": 971929,
+      "sha256": "262f1032a979565d569090d1e407f2900c0b21146305bbd0c38a22412c640237",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/kalman_blur_evaluation.csv",
+      "size_bytes": 1999,
+      "sha256": "253c453f745a1e739ad1b67455b59ab90cece8b4887fd7ee5c53450a7940a346",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/kalman_blur_states.csv",
+      "size_bytes": 10930,
+      "sha256": "d73d0659f3f304fe2d7ac1c52bca2d024078712560a0099bedbcb67e943087f1",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/kalman_evaluation.csv",
+      "size_bytes": 1770,
+      "sha256": "2f52fb3a4dc11f9b7cede5d7e19d6daee19994e9d2cec22ab493830c7accfcec",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/kalman_states.csv",
+      "size_bytes": 11509,
+      "sha256": "e0e2a89ac7ee2c754e13f6e641390aed9952cd9b40072cdc35b34cfc6574de02",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/nearest.csv",
+      "size_bytes": 4478,
+      "sha256": "bf688a1a79c88b31032acefb3e2d97aa3514f5a0b7e5f1ca551021e257023b05",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/nearest.mp4",
+      "size_bytes": 973103,
+      "sha256": "e9944791601d171e6dbb1436a15113443404f4b2128636b4f0b536c7f2c82b9f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/nearest_blur.csv",
+      "size_bytes": 4920,
+      "sha256": "35da3e5aa1d8b7416bd7e30de88b6df65f2b8afb1b1824d32922084cb2b1b82e",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/nearest_blur.mp4",
+      "size_bytes": 977764,
+      "sha256": "881ac34b3d407980e2d336a5c7d51cc078bdd0d7676970aac0934d9498a18e59",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/nearest_blur_evaluation.csv",
+      "size_bytes": 1999,
+      "sha256": "eae246eae82d070eb5354692b8909ae4f7202657247f6a144166518e0be3b6aa",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/nearest_blur_states.csv",
+      "size_bytes": 6668,
+      "sha256": "d2e9264e423d1f8cc1593f79ce9c8dcc5bbba0c66075befa720ee09ff78158be",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/nearest_evaluation.csv",
+      "size_bytes": 1770,
+      "sha256": "9864c9c859348e75e9cb6e153f6160d02e8c714f832037ace68f72e074cdc7f3",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/nearest_states.csv",
+      "size_bytes": 7308,
+      "sha256": "a006788fdcf44b4a9d65a36626218375a21dab81ae409569476a465d5453885f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/png_hungarian.csv",
+      "size_bytes": 4415,
+      "sha256": "72170e11fe9da85d0eda88b5834e0466557264e7c47eb9bda4245f7fa5a9e504",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/png_hungarian_blur.csv",
+      "size_bytes": 4991,
+      "sha256": "acdc6c3df384c423da3c5d5b92d88f721c9174403a55e56b00a404d8cea20cc8",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/png_hungarian_blur_evaluation.csv",
+      "size_bytes": 1996,
+      "sha256": "9521eadd3cfffdc51f291ab3a3095bb83b80559c7c9337d3033004a64c60441c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/png_hungarian_evaluation.csv",
+      "size_bytes": 1744,
+      "sha256": "1238c164161e5bd999dfb9df5c61434e833bd121d1b973dda8620e4f068132db",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/png_kalman.csv",
+      "size_bytes": 4415,
+      "sha256": "f5b9413b65a034f3ab359444012b6522f92b12a149d47464a8410679bdc4afb1",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/png_kalman_blur.csv",
+      "size_bytes": 4991,
+      "sha256": "7f274440ac8206bbcbadf10e0ec8b80f7053931a8c214445d5515d5efe1fa18f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/png_kalman_blur_evaluation.csv",
+      "size_bytes": 1996,
+      "sha256": "2de327a8d13022bd65481f72cd5d1c35c9a0a2f3cf7c493fbbdeee00c936b162",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/png_kalman_evaluation.csv",
+      "size_bytes": 1744,
+      "sha256": "db063bf0f6b313dd47b2e7e7cfe2fe0d59786656334444132d0874c8189d140c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/png_nearest.csv",
+      "size_bytes": 4415,
+      "sha256": "d49827818000097ac4dba6fe20408b3b10722f493e391b01a26d83f9d81b04fb",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/png_nearest_blur.csv",
+      "size_bytes": 4991,
+      "sha256": "65a041ed5c2f30c0a5c1ffcd420e484cb0cb0f307e22ee2f78f0b5cfcc7d871a",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/png_nearest_blur_evaluation.csv",
+      "size_bytes": 1996,
+      "sha256": "9521eadd3cfffdc51f291ab3a3095bb83b80559c7c9337d3033004a64c60441c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/noisy/png_nearest_evaluation.csv",
+      "size_bytes": 1744,
+      "sha256": "1238c164161e5bd999dfb9df5c61434e833bd121d1b973dda8620e4f068132db",
+      "origin": "repository"
+    },
+    {
+      "path": "results/segmentation.png",
+      "size_bytes": 72310,
+      "sha256": "b94709216e85fe66e46259609983d49dab2631c85b5b6b3aa1bcf0014f0f58e1",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/detections.csv",
+      "size_bytes": 1867,
+      "sha256": "64f33b01f1a2c88400fb6ae4f0cca87227f6709056b9390eca9244f7e5582914",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/hungarian.csv",
+      "size_bytes": 2134,
+      "sha256": "6431888fef1b90d4a58a0785d0866b42a3319f6decc4f58196c01d1b3a8b7a9c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/hungarian.mp4",
+      "size_bytes": 164973,
+      "sha256": "053d8fa6906a5ab37e447739e64e81235040954437045e85e9a548f5d0525379",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/hungarian_evaluation.csv",
+      "size_bytes": 1694,
+      "sha256": "cb73b9dd112c0707e4d95cdb2eaa601aa48c4645c65ff651c0d55974a6b9cd04",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/hungarian_states.csv",
+      "size_bytes": 3742,
+      "sha256": "91bbc2d180f80bf8c4ea61da70ec14f2d0d0c251db972067f474b11cefe36e64",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/kalman.csv",
+      "size_bytes": 2134,
+      "sha256": "6431888fef1b90d4a58a0785d0866b42a3319f6decc4f58196c01d1b3a8b7a9c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/kalman.mp4",
+      "size_bytes": 164533,
+      "sha256": "7844131d4be2a7f06650ca782aaf98f7158e0eda028c1c644b6c6fdee043068e",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/kalman_evaluation.csv",
+      "size_bytes": 1694,
+      "sha256": "cb73b9dd112c0707e4d95cdb2eaa601aa48c4645c65ff651c0d55974a6b9cd04",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/kalman_states.csv",
+      "size_bytes": 9304,
+      "sha256": "5d8b003d7888985aebf1b3aefa1ed63fa3a4360b4dedb0db9497be7acb5c6261",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/nearest.csv",
+      "size_bytes": 2134,
+      "sha256": "aaee6a8cf0e96d8dd8b16e45fd8c6b28e40caf6619be80f20d7a5a7120963220",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/nearest.mp4",
+      "size_bytes": 164750,
+      "sha256": "da2bb4f774033a475893223569b1508dfe64f1853e06e365edd1f99bcd16e075",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/nearest_evaluation.csv",
+      "size_bytes": 1694,
+      "sha256": "cb73b9dd112c0707e4d95cdb2eaa601aa48c4645c65ff651c0d55974a6b9cd04",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/nearest_states.csv",
+      "size_bytes": 3742,
+      "sha256": "91bbc2d180f80bf8c4ea61da70ec14f2d0d0c251db972067f474b11cefe36e64",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/png_hungarian.csv",
+      "size_bytes": 2134,
+      "sha256": "6431888fef1b90d4a58a0785d0866b42a3319f6decc4f58196c01d1b3a8b7a9c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/png_hungarian_evaluation.csv",
+      "size_bytes": 1694,
+      "sha256": "cb73b9dd112c0707e4d95cdb2eaa601aa48c4645c65ff651c0d55974a6b9cd04",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/png_kalman.csv",
+      "size_bytes": 2134,
+      "sha256": "6431888fef1b90d4a58a0785d0866b42a3319f6decc4f58196c01d1b3a8b7a9c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/png_kalman_evaluation.csv",
+      "size_bytes": 1694,
+      "sha256": "cb73b9dd112c0707e4d95cdb2eaa601aa48c4645c65ff651c0d55974a6b9cd04",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/png_nearest.csv",
+      "size_bytes": 2134,
+      "sha256": "aaee6a8cf0e96d8dd8b16e45fd8c6b28e40caf6619be80f20d7a5a7120963220",
+      "origin": "repository"
+    },
+    {
+      "path": "results/separate/png_nearest_evaluation.csv",
+      "size_bytes": 1694,
+      "sha256": "cb73b9dd112c0707e4d95cdb2eaa601aa48c4645c65ff651c0d55974a6b9cd04",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/aggregate.csv",
+      "size_bytes": 9437,
+      "sha256": "63bc9ba1c17d35066d1180cca8a979990c0d4344d45af093934f5cd6324c1e6b",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_fixed_hungarian.csv",
+      "size_bytes": 18400,
+      "sha256": "9a6ab2d8f23877c972e7aaf28fd4b6f6fcbef28264a7962229d51f4eee4ee47b",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_fixed_hungarian_evaluation.csv",
+      "size_bytes": 2590,
+      "sha256": "ced202c553ed99ad07c4e6c269b39b4126a137986cdede6e1f543f6d2e617b30",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_fixed_hungarian_states.csv",
+      "size_bytes": 51357,
+      "sha256": "122cda3713b6d49b29bcd2fe923407177d152a2b9caa949c98cf21194acb477c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_fixed_kalman.csv",
+      "size_bytes": 18402,
+      "sha256": "07c0ca1c104a8756eaba96fbe92a25b3ca7188f680fd9bd82369392ebe1da9c0",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_fixed_kalman_evaluation.csv",
+      "size_bytes": 2589,
+      "sha256": "48b0ec85b6054690cb39885cf0b5b700ba84e68c011eb29139b3a0692ae5855d",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_fixed_kalman_states.csv",
+      "size_bytes": 55810,
+      "sha256": "4bb060d0e0337b2b8b9c08178379a6716599f7aeeda32a58ce1125d71801cfff",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_fixed_nearest.csv",
+      "size_bytes": 18408,
+      "sha256": "8b0527fd0a8ee06d0371d874a04c3e2be9d4f7433e29c1f1d85ec1ab18f06f27",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_fixed_nearest_evaluation.csv",
+      "size_bytes": 2590,
+      "sha256": "4951e5e7f95a8727bacc10adade71481cdb1a82ada84ec23e939502d4170ca96",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_fixed_nearest_states.csv",
+      "size_bytes": 53292,
+      "sha256": "ac8cc32c5092d0a176b2836594d59807427561051711b0f5cd01eb2a0a39bc8d",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_otsu_hungarian.csv",
+      "size_bytes": 9637,
+      "sha256": "5f09e51918c0e3695ad5ec4729292f04833055f35a72dfeefd790646f7f24108",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_otsu_hungarian_evaluation.csv",
+      "size_bytes": 3827,
+      "sha256": "a8f933f95dba46d6ac39f50f3514cb93f1952abc1feaa080a66ea52ae32764a2",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_otsu_hungarian_states.csv",
+      "size_bytes": 10138,
+      "sha256": "d149b903948d41b679cff5a9bc8fd036a56514d8f9abd8a06f9b0674f75f50f4",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_otsu_kalman.csv",
+      "size_bytes": 9637,
+      "sha256": "5f09e51918c0e3695ad5ec4729292f04833055f35a72dfeefd790646f7f24108",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_otsu_kalman_evaluation.csv",
+      "size_bytes": 3827,
+      "sha256": "a8f933f95dba46d6ac39f50f3514cb93f1952abc1feaa080a66ea52ae32764a2",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_otsu_kalman_states.csv",
+      "size_bytes": 10594,
+      "sha256": "bffcffe8a45114f7f7ee627087c2b478da03cca6f2622f8ffff0ec605a450bba",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_otsu_nearest.csv",
+      "size_bytes": 9637,
+      "sha256": "4ab07e4d29547acfbcfd812538ed8e52984ec7b0cdae8df847a1d16abc75e111",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_otsu_nearest_evaluation.csv",
+      "size_bytes": 3827,
+      "sha256": "a8f933f95dba46d6ac39f50f3514cb93f1952abc1feaa080a66ea52ae32764a2",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/illumination_otsu_nearest_states.csv",
+      "size_bytes": 10138,
+      "sha256": "d149b903948d41b679cff5a9bc8fd036a56514d8f9abd8a06f9b0674f75f50f4",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_fixed_hungarian.csv",
+      "size_bytes": 6862,
+      "sha256": "313972136277dcb11b80e945131f5f7d62da419417521bfcbb04c14e280eec42",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_fixed_hungarian_evaluation.csv",
+      "size_bytes": 3754,
+      "sha256": "450613646ed5a3e7233474ddb30baaea70812e39bd838f75f455d412b5c5827a",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_fixed_hungarian_states.csv",
+      "size_bytes": 7479,
+      "sha256": "797f5bc7156cb17952797e8656e6b01100418020da55cc1193f845dca5919320",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_fixed_kalman.csv",
+      "size_bytes": 6862,
+      "sha256": "313972136277dcb11b80e945131f5f7d62da419417521bfcbb04c14e280eec42",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_fixed_kalman_evaluation.csv",
+      "size_bytes": 3754,
+      "sha256": "450613646ed5a3e7233474ddb30baaea70812e39bd838f75f455d412b5c5827a",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_fixed_kalman_states.csv",
+      "size_bytes": 9113,
+      "sha256": "aea67642b562b66ca24afb55d4665da0242a25772b6d763b6daa4e1d813a3cc1",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_fixed_nearest.csv",
+      "size_bytes": 6862,
+      "sha256": "91efdda5045a3785fff704e5f312987557789a063d1fcda2b0b9d2d1d68e1181",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_fixed_nearest_evaluation.csv",
+      "size_bytes": 3754,
+      "sha256": "450613646ed5a3e7233474ddb30baaea70812e39bd838f75f455d412b5c5827a",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_fixed_nearest_states.csv",
+      "size_bytes": 7479,
+      "sha256": "797f5bc7156cb17952797e8656e6b01100418020da55cc1193f845dca5919320",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_otsu_hungarian.csv",
+      "size_bytes": 6862,
+      "sha256": "313972136277dcb11b80e945131f5f7d62da419417521bfcbb04c14e280eec42",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_otsu_hungarian_evaluation.csv",
+      "size_bytes": 3754,
+      "sha256": "450613646ed5a3e7233474ddb30baaea70812e39bd838f75f455d412b5c5827a",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_otsu_hungarian_states.csv",
+      "size_bytes": 7479,
+      "sha256": "797f5bc7156cb17952797e8656e6b01100418020da55cc1193f845dca5919320",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_otsu_kalman.csv",
+      "size_bytes": 6862,
+      "sha256": "313972136277dcb11b80e945131f5f7d62da419417521bfcbb04c14e280eec42",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_otsu_kalman_evaluation.csv",
+      "size_bytes": 3754,
+      "sha256": "450613646ed5a3e7233474ddb30baaea70812e39bd838f75f455d412b5c5827a",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_otsu_kalman_states.csv",
+      "size_bytes": 9113,
+      "sha256": "aea67642b562b66ca24afb55d4665da0242a25772b6d763b6daa4e1d813a3cc1",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_otsu_nearest.csv",
+      "size_bytes": 6862,
+      "sha256": "91efdda5045a3785fff704e5f312987557789a063d1fcda2b0b9d2d1d68e1181",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_otsu_nearest_evaluation.csv",
+      "size_bytes": 3754,
+      "sha256": "450613646ed5a3e7233474ddb30baaea70812e39bd838f75f455d412b5c5827a",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/occlusion_otsu_nearest_states.csv",
+      "size_bytes": 7479,
+      "sha256": "797f5bc7156cb17952797e8656e6b01100418020da55cc1193f845dca5919320",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_fixed_hungarian.csv",
+      "size_bytes": 6737,
+      "sha256": "1bfab975cb353c94d6db7d78292ac13bd57db247d9a79e8a0c1a21f0632d7d0f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_fixed_hungarian_evaluation.csv",
+      "size_bytes": 3726,
+      "sha256": "fd8cd55d3d5478567d4265f4cac18581b73586e8fb502f8a2cb9765a57a9386c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_fixed_hungarian_states.csv",
+      "size_bytes": 7334,
+      "sha256": "eb3e56c4e647ca76c532c1a0556c2f39a4faffc0bc17d8132ecab5102de0e74f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_fixed_kalman.csv",
+      "size_bytes": 6737,
+      "sha256": "80d58508c03e4916ebdd281e5ff43de986b6fd492b0cef84ed8413677cdb18e5",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_fixed_kalman_evaluation.csv",
+      "size_bytes": 3726,
+      "sha256": "649dc8774bf87f5c9012e9d432eedbcd0692f06c418324147b03acbaedb1efe2",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_fixed_kalman_states.csv",
+      "size_bytes": 8373,
+      "sha256": "78f39828e44c77338ed13daffab1b8357abe3876e81d2fdf0aa88926d78e61fb",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_fixed_nearest.csv",
+      "size_bytes": 6737,
+      "sha256": "2751edfbea8b9105ccbfe0be7fde7f55c7a3f0c3c12674b96d8feddee5793aa1",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_fixed_nearest_evaluation.csv",
+      "size_bytes": 3726,
+      "sha256": "fd8cd55d3d5478567d4265f4cac18581b73586e8fb502f8a2cb9765a57a9386c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_fixed_nearest_states.csv",
+      "size_bytes": 7334,
+      "sha256": "eb3e56c4e647ca76c532c1a0556c2f39a4faffc0bc17d8132ecab5102de0e74f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_otsu_hungarian.csv",
+      "size_bytes": 6737,
+      "sha256": "1bfab975cb353c94d6db7d78292ac13bd57db247d9a79e8a0c1a21f0632d7d0f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_otsu_hungarian_evaluation.csv",
+      "size_bytes": 3726,
+      "sha256": "fd8cd55d3d5478567d4265f4cac18581b73586e8fb502f8a2cb9765a57a9386c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_otsu_hungarian_states.csv",
+      "size_bytes": 7334,
+      "sha256": "eb3e56c4e647ca76c532c1a0556c2f39a4faffc0bc17d8132ecab5102de0e74f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_otsu_kalman.csv",
+      "size_bytes": 6737,
+      "sha256": "80d58508c03e4916ebdd281e5ff43de986b6fd492b0cef84ed8413677cdb18e5",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_otsu_kalman_evaluation.csv",
+      "size_bytes": 3726,
+      "sha256": "649dc8774bf87f5c9012e9d432eedbcd0692f06c418324147b03acbaedb1efe2",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_otsu_kalman_states.csv",
+      "size_bytes": 8373,
+      "sha256": "78f39828e44c77338ed13daffab1b8357abe3876e81d2fdf0aa88926d78e61fb",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_otsu_nearest.csv",
+      "size_bytes": 6737,
+      "sha256": "2751edfbea8b9105ccbfe0be7fde7f55c7a3f0c3c12674b96d8feddee5793aa1",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_otsu_nearest_evaluation.csv",
+      "size_bytes": 3726,
+      "sha256": "fd8cd55d3d5478567d4265f4cac18581b73586e8fb502f8a2cb9765a57a9386c",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/overlap_otsu_nearest_states.csv",
+      "size_bytes": 7334,
+      "sha256": "eb3e56c4e647ca76c532c1a0556c2f39a4faffc0bc17d8132ecab5102de0e74f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_fixed_hungarian.csv",
+      "size_bytes": 6939,
+      "sha256": "d0756849c8c558ba15281e06d6824cc5d783767bd1a092d69e86604f4d0820b7",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_fixed_hungarian_evaluation.csv",
+      "size_bytes": 3816,
+      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_fixed_hungarian_states.csv",
+      "size_bytes": 7440,
+      "sha256": "cb2648aed67d158d82ee8cf61fb9cf0c8bdb310a96cddb07020ffa3f600f500f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_fixed_kalman.csv",
+      "size_bytes": 6939,
+      "sha256": "d0756849c8c558ba15281e06d6824cc5d783767bd1a092d69e86604f4d0820b7",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_fixed_kalman_evaluation.csv",
+      "size_bytes": 3816,
+      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_fixed_kalman_states.csv",
+      "size_bytes": 9115,
+      "sha256": "f6ba5281e229c00e859116c6722cf90a47fe9d31fcc26fb831b1e65654ecfa77",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_fixed_nearest.csv",
+      "size_bytes": 6939,
+      "sha256": "1d7147100d686888268135a5c7c235befe1ac31ca06529fc072915795a53090f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_fixed_nearest_evaluation.csv",
+      "size_bytes": 3816,
+      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_fixed_nearest_states.csv",
+      "size_bytes": 7440,
+      "sha256": "cb2648aed67d158d82ee8cf61fb9cf0c8bdb310a96cddb07020ffa3f600f500f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_otsu_hungarian.csv",
+      "size_bytes": 6939,
+      "sha256": "d0756849c8c558ba15281e06d6824cc5d783767bd1a092d69e86604f4d0820b7",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_otsu_hungarian_evaluation.csv",
+      "size_bytes": 3816,
+      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_otsu_hungarian_states.csv",
+      "size_bytes": 7440,
+      "sha256": "cb2648aed67d158d82ee8cf61fb9cf0c8bdb310a96cddb07020ffa3f600f500f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_otsu_kalman.csv",
+      "size_bytes": 6939,
+      "sha256": "d0756849c8c558ba15281e06d6824cc5d783767bd1a092d69e86604f4d0820b7",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_otsu_kalman_evaluation.csv",
+      "size_bytes": 3816,
+      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_otsu_kalman_states.csv",
+      "size_bytes": 9115,
+      "sha256": "f6ba5281e229c00e859116c6722cf90a47fe9d31fcc26fb831b1e65654ecfa77",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_otsu_nearest.csv",
+      "size_bytes": 6939,
+      "sha256": "1d7147100d686888268135a5c7c235befe1ac31ca06529fc072915795a53090f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_otsu_nearest_evaluation.csv",
+      "size_bytes": 3816,
+      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/separate_otsu_nearest_states.csv",
+      "size_bytes": 7440,
+      "sha256": "cb2648aed67d158d82ee8cf61fb9cf0c8bdb310a96cddb07020ffa3f600f500f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_fixed_hungarian.csv",
+      "size_bytes": 6922,
+      "sha256": "40fdd7b4db85f695dcb989a41576d8a4d28619785bde7a50b958670be38863c6",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_fixed_hungarian_evaluation.csv",
+      "size_bytes": 3816,
+      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_fixed_hungarian_states.csv",
+      "size_bytes": 7423,
+      "sha256": "f69ab49703e2a20e11568b73175e90d4b8d12db6fdde3b0916d9ad284269e3ba",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_fixed_kalman.csv",
+      "size_bytes": 6922,
+      "sha256": "40fdd7b4db85f695dcb989a41576d8a4d28619785bde7a50b958670be38863c6",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_fixed_kalman_evaluation.csv",
+      "size_bytes": 3816,
+      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_fixed_kalman_states.csv",
+      "size_bytes": 9109,
+      "sha256": "64d37bafbc83ed21d3b541d37076137c86dfbabdb74a8c71a8545b576d570f3f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_fixed_nearest.csv",
+      "size_bytes": 6922,
+      "sha256": "3e1badfac31a80e714ee60b628d6e0580fe706b4282b7771f9a45f7730f49f41",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_fixed_nearest_evaluation.csv",
+      "size_bytes": 3816,
+      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_fixed_nearest_states.csv",
+      "size_bytes": 7423,
+      "sha256": "f69ab49703e2a20e11568b73175e90d4b8d12db6fdde3b0916d9ad284269e3ba",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_otsu_hungarian.csv",
+      "size_bytes": 6922,
+      "sha256": "40fdd7b4db85f695dcb989a41576d8a4d28619785bde7a50b958670be38863c6",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_otsu_hungarian_evaluation.csv",
+      "size_bytes": 3816,
+      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_otsu_hungarian_states.csv",
+      "size_bytes": 7423,
+      "sha256": "f69ab49703e2a20e11568b73175e90d4b8d12db6fdde3b0916d9ad284269e3ba",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_otsu_kalman.csv",
+      "size_bytes": 6922,
+      "sha256": "40fdd7b4db85f695dcb989a41576d8a4d28619785bde7a50b958670be38863c6",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_otsu_kalman_evaluation.csv",
+      "size_bytes": 3816,
+      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_otsu_kalman_states.csv",
+      "size_bytes": 9109,
+      "sha256": "64d37bafbc83ed21d3b541d37076137c86dfbabdb74a8c71a8545b576d570f3f",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_otsu_nearest.csv",
+      "size_bytes": 6922,
+      "sha256": "3e1badfac31a80e714ee60b628d6e0580fe706b4282b7771f9a45f7730f49f41",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_otsu_nearest_evaluation.csv",
+      "size_bytes": 3816,
+      "sha256": "3f6309a591a9f9d281b9fe0c2ad24cece6769e72def51414d3c35abf279de3eb",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/details/turn_otsu_nearest_states.csv",
+      "size_bytes": 7423,
+      "sha256": "f69ab49703e2a20e11568b73175e90d4b8d12db6fdde3b0916d9ad284269e3ba",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/environment.json",
+      "size_bytes": 1067,
+      "sha256": "c6e782a32cd7818eecef78962f7192a25b2da7add0aff2caf540127c56ed0110",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/per_run.csv",
+      "size_bytes": 9142,
+      "sha256": "007086a31a90ee35b2f4808b54eb67a714dc931476492a612578d6f844587618",
+      "origin": "repository"
+    },
+    {
+      "path": "results/stress/solver_timing.csv",
+      "size_bytes": 375,
+      "sha256": "e499ebdc86c06401bef7750bdaf19db7dd6d79756fc3fde6fca7b48984bdb050",
+      "origin": "repository"
+    },
+    {
+      "path": "results/summary.csv",
+      "size_bytes": 787,
+      "sha256": "83a9308572eada0b4bdfde370932abfcb37ec26bab1151d134a26ed963419159",
+      "origin": "repository"
+    },
+    {
+      "path": "results/summary_png.csv",
+      "size_bytes": 788,
+      "sha256": "8d6ebaaf273b120d8901c2e1d3317f420680cc64557c2059630cdd4605c07442",
+      "origin": "repository"
+    },
+    {
+      "path": "results/sweep_png.csv",
+      "size_bytes": 2731,
+      "sha256": "6c857ec006a9f674048a73c42d30d7938a4f14fbd8722da86078bf9ec3930d68",
+      "origin": "repository"
+    },
+    {
+      "path": "results/timing_png.csv",
+      "size_bytes": 513,
+      "sha256": "75deeb288ed304f0c24d234ca43f7967ddd55c0d4385a37bde3b47186df3af2b",
+      "origin": "repository"
+    },
+    {
+      "path": "score_trackmate.py",
+      "size_bytes": 2993,
+      "sha256": "ebcd006962b2ed25d32196ad26fa76d51083da916b3966ea990263e972d22c5c",
+      "origin": "repository"
+    },
+    {
       "path": "scripts/benchmark_real_runtime.py",
-      "size_bytes": 8904,
-      "sha256": "c979d34fe79c06d234a88706e954316c7914e2db451f9a84c3a3e42cae601d60",
+      "size_bytes": 8947,
+      "sha256": "4c37d093129ad7d44ac81e644d185fe5c56146e5106991e73f40f05baae11089",
       "origin": "working_tree"
     },
     {
@@ -6988,8 +7000,8 @@
     },
     {
       "path": "scripts/ground_truth_annotator.py",
-      "size_bytes": 20691,
-      "sha256": "f3a65b456c4a3770bf342fea335c2f182d1a5568784d153bcdfedd21865d5a2d",
+      "size_bytes": 21017,
+      "sha256": "9815ccd30e32b3cada34c97874bf9ff27f032173820e3664aff7b491f24e6242",
       "origin": "working_tree"
     },
     {
@@ -7035,10 +7047,28 @@
       "origin": "working_tree"
     },
     {
+      "path": "tests/test_pipeline.py",
+      "size_bytes": 6558,
+      "sha256": "9f5de5fd43ba24260e5d333313c86dc6af3a0845d084de88feb6d2883e569a81",
+      "origin": "repository"
+    },
+    {
       "path": "tests/test_prepare_real_video.py",
       "size_bytes": 2148,
       "sha256": "741c20e1451f0096d65df4a4fc1b2cde5ee1c0ff396ab10696b47976ab96eeb0",
       "origin": "working_tree"
+    },
+    {
+      "path": "tests/test_review_regressions.py",
+      "origin": "working_tree",
+      "size_bytes": 5062,
+      "sha256": "fc29d9e960388a53f2868ea4840be601ca90255b56dc03297ef15e974e65dd1f"
+    },
+    {
+      "path": "tracking.py",
+      "size_bytes": 14616,
+      "sha256": "3bfb4b73aa259baff406a220a651a890dcd9da078afc1619d5dfe0883b602581",
+      "origin": "repository"
     }
   ],
   "excluded_media": [
