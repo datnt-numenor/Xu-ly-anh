@@ -216,7 +216,7 @@ class AnnotationApp:
     """Small click-to-label Tkinter UI; it never calls an automatic detector."""
     SCALE = 2
 
-    def __init__(self, root, frames, labels_path):
+    def __init__(self, root, frames, labels_path, display_frames=None, start_frame=0):
         import tkinter as tk
         from tkinter import messagebox, ttk
         from PIL import ImageTk
@@ -224,13 +224,14 @@ class AnnotationApp:
         self.tk, self.messagebox, self.ttk = tk, messagebox, ttk
         self.ImageTk = ImageTk
         self.root, self.frames = root, list(frames)
+        self.display_frames = list(display_frames) if display_frames else self.frames
         self.labels_path = Path(labels_path)
         self.rows = load_labels(self.labels_path, len(self.frames))
-        self.frame_index = 0
+        self.frame_index = max(0, min(len(self.frames) - 1, int(start_frame)))
         self.pending_point = None
         self.selected_key = None
         self.dirty = False
-        root.title("Manual ground truth - scene01")
+        root.title(f"Manual ground truth - {self.labels_path.name}")
 
         body = ttk.Frame(root, padding=10)
         body.grid(sticky="nsew")
@@ -296,9 +297,10 @@ class AnnotationApp:
         return [row for row in self.rows if row["frame"] == self.frame_index]
 
     def refresh(self):
-        image = Image.open(self.frames[self.frame_index]).convert("RGB")
-        image = image.resize((WIDTH * self.SCALE, HEIGHT * self.SCALE),
-                             Image.Resampling.NEAREST)
+        image = Image.open(self.display_frames[self.frame_index]).convert("RGB")
+        if image.size != (WIDTH * self.SCALE, HEIGHT * self.SCALE):
+            image = image.resize((WIDTH * self.SCALE, HEIGHT * self.SCALE),
+                                 Image.Resampling.NEAREST)
         from PIL import ImageDraw
         draw = ImageDraw.Draw(image)
         radius = 6
@@ -420,9 +422,22 @@ def main():
     parser.add_argument("--template", type=Path, default=DEFAULT_TEMPLATE)
     parser.add_argument("--prepare", action="store_true",
                         help="validate P4 files and create contact sheet plus empty template")
+    parser.add_argument("--display-frames", type=Path, default=None,
+                        help="optional RGB/zoomed frame folder for GUI display (same frame count/geometry)")
+    parser.add_argument("--start-frame", type=int, default=0,
+                        help="initial zero-based frame index when opening GUI")
+    parser.add_argument("--review", action="store_true",
+                        help="open the F2-AUTO human-in-the-loop review GUI on --review-dir")
+    parser.add_argument("--review-dir", type=Path, default=Path("output/ground_truth_real"),
+                        help="directory containing provisional/status CSVs for --review mode")
     args = parser.parse_args()
     try:
         frames, manifest = validate_p4_dataset(args.frames, args.manifest)
+        display_frames = None
+        if args.display_frames is not None:
+            display_frames = sorted(Path(args.display_frames).glob("frame_*.png"))
+            if len(display_frames) != len(frames):
+                raise ValueError(f"display-frames count ({len(display_frames)}) != validated frames ({len(frames)})")
         if args.prepare:
             key_frames = [0, 1, 2, 48, 49, 50, 74, 75, 76, 88, 89, 90,
                           len(frames) - 3, len(frames) - 2, len(frames) - 1]
@@ -434,9 +449,21 @@ def main():
             print(f"Validated {len(frames)} P4 frames; representative sheet: {contact}; "
                   f"all-frame overview: {overview}; empty template: {template}")
             return
+        if args.review:
+            import tkinter as tk
+            try:
+                from .gt_review_gui import GroundTruthReviewApp
+            except ImportError:
+                from gt_review_gui import GroundTruthReviewApp
+            root = tk.Tk()
+            GroundTruthReviewApp(root, frames, args.review_dir,
+                                 start_frame=args.start_frame if args.start_frame > 0 else None,
+                                 display_frames=display_frames)
+            root.mainloop()
+            return
         import tkinter as tk
         root = tk.Tk()
-        AnnotationApp(root, frames, args.csv)
+        AnnotationApp(root, frames, args.csv, display_frames=display_frames, start_frame=args.start_frame)
         root.mainloop()
     except (OSError, ValueError, json.JSONDecodeError) as error:
         parser.exit(2, f"FAILED: {error}\n")

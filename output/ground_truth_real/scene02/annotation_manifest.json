@@ -1,0 +1,84 @@
+{
+  "task": "F2A \u2014 Scene02 Billiard Real-Video Ground Truth Pilot (Frames 65-84)",
+  "generated_at_utc": "2026-11-17T12:11:25.640555+00:00",
+  "acceptance_state": {
+    "auto_draft_pass": true,
+    "structural_validation_pass": true,
+    "pilot_verified_pass": true,
+    "exported_scope_pass": true,
+    "full_gt_pass": false,
+    "overall_status": "PILOT_VERIFIED_PASS",
+    "official_ground_truth_promoted": true
+  },
+  "source_dataset": {
+    "video_source": "data/real/raw_scene02.mp4",
+    "pexels_id": "6253870",
+    "pexels_url": "https://www.pexels.com/video/snooker-balls-spreading-on-the-billiard-table-6253870/",
+    "source_sha256": "933f1e2da638e1ea5d8e217b83cfc528f2c618f14767331d6a209fc8da57ba22",
+    "grayscale_frames_dir": "data\\real\\scene02",
+    "color_frames_dir": "data\\real\\scene02_color",
+    "color_2x_frames_dir": "data\\real\\scene02_color_2x",
+    "manifest_path": "data\\real\\scene02_manifest.json",
+    "manifest_sha256": "525c10d27f407b0808f692ad36fb16c5cb48d1fdfcb3d5f52a6dfffe7c1deaf1",
+    "lossless_video_path": "data/real/scene02_lossless.mkv",
+    "lossless_video_sha256": "bdac5351797df96d154a856142003779a5d6128c57224e1486ca3c581d0229c1",
+    "total_video_frames_15fps": 124,
+    "width": 320,
+    "height": 180
+  },
+  "selected_pilot_segment": {
+    "start_frame": 65,
+    "end_frame": 84,
+    "frame_count": 20,
+    "target_timestamp_range_seconds": [
+      4.3333,
+      5.6
+    ],
+    "nearest_source_timestamp_range_seconds": [
+      4.32,
+      5.6
+    ],
+    "selection_rationale": "Frames 0-45 show the stationary triangle rack; frames 46-51 show the initial break impact cluster; frames 65-84 (20 consecutive frames) capture well-separated rolling balls, one ball-to-ball collision (ID 4 Red-Stripe #11 vs ID 6 Orange-Stripe #13 at frames 66-69), four cushion rebounds re-entering the table (ID 7 Yellow #1, ID 8 Yellow-Stripe #9, ID 9 Red #3, ID 10 White Cue Ball), and a close pass near ID 2 Black #8."
+  },
+  "ball_catalog": {
+    "1": "Solid Purple (#4) \u2014 near upper-center",
+    "2": "Solid Black (#8) \u2014 near lower-center",
+    "3": "Solid Maroon/Brown-Red (#7) \u2014 rolling right toward cushion (f065-f078)",
+    "4": "Red-Stripe (#11) \u2014 lower-left, collides with #13 at f066-f069 then rolls left (f065-f078)",
+    "5": "Solid Dark Blue (#2) \u2014 exiting right border (f065-f067)",
+    "6": "Orange-Stripe (#13) \u2014 enters lower-left, collides with #11 at f066-f069 then rolls up-right (f065-f084)",
+    "7": "Solid Yellow (#1) \u2014 enters bottom-left at f073 and rolls upward (f073-f084)",
+    "8": "Yellow-Stripe (#9) \u2014 enters right border at f076 and rolls up-left (f076-f084)",
+    "9": "Solid Red (#3) \u2014 enters bottom-right at f077 and rolls up-right (f077-f084)",
+    "10": "White Cue Ball \u2014 enters bottom-center at f078 and rolls up-right near #8 (f078-f084)"
+  },
+  "statistics": {
+    "frames_preannotated": 20,
+    "pilot_frame_range": [
+      65,
+      84
+    ],
+    "total_provisional_rows": 129,
+    "total_proposed_tracks": 10,
+    "pilot_provisional_rows": 129,
+    "pilot_proposed_tracks": 10,
+    "verified_rows_count": 129,
+    "verified_frames_count": 20,
+    "unreviewed_rows_count": 0,
+    "uncertain_rows_count": 0,
+    "uncertain_cases_total": 23,
+    "uncertain_cases_pilot": 23,
+    "rejected_rows_count": 0
+  },
+  "last_human_review_save_utc": "2026-11-17T12:22:58.588586+00:00",
+  "promoted_ground_truth": {
+    "output_scene02_manual_csv": "output\\ground_truth_real\\scene02\\ground_truth_manual.csv",
+    "data_scene02_manual_csv": "data\\real\\scene02_ground_truth_manual.csv",
+    "sha256": "f3395a19b9702a0a7f3d5523124e0b8fe49accb9d014a8279dc3021fa5ad1157",
+    "row_count": 129,
+    "frame_range": [
+      65,
+      84
+    ]
+  }
+}

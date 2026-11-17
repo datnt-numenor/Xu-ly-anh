@@ -17,6 +17,8 @@ from scripts.ground_truth_annotator import (
     validate_labels,
     validate_p4_dataset,
 )
+from scripts.gt_review_gui import propagate_id_change, save_review_state
+from scripts.validate_ground_truth_full import validate_ground_truth_bundle
 
 
 class GroundTruthAnnotatorTests(unittest.TestCase):
@@ -92,6 +94,50 @@ class GroundTruthAnnotatorTests(unittest.TestCase):
             (frame_dir / "frame_001.png").write_bytes(b"modified")
             with self.assertRaises(ValueError):
                 validate_p4_dataset(frame_dir, manifest_path)
+
+    def test_propagate_id_change_reassign_and_swap(self):
+        rows = [
+            {"frame": 70, "object_id": 1, "x": 10.0, "y": 20.0, "visible": 1, "review_timestamp": ""},
+            {"frame": 71, "object_id": 1, "x": 11.0, "y": 21.0, "visible": 1, "review_timestamp": ""},
+            {"frame": 71, "object_id": 2, "x": 50.0, "y": 60.0, "visible": 1, "review_timestamp": ""},
+        ]
+        # Reassign ID 1 -> 5 on frame 70 only
+        reassigned = propagate_id_change(rows, 1, 5, 70, 70, mode="reassign")
+        self.assertEqual(reassigned[0]["object_id"], 5)
+        self.assertEqual(reassigned[1]["object_id"], 1)
+        # Reassigning 1 -> 2 on frame 71 must fail due to collision unless mode="swap"
+        with self.assertRaises(ValueError):
+            propagate_id_change(rows, 1, 2, 71, 71, mode="reassign")
+        swapped = propagate_id_change(rows, 1, 2, 71, 71, mode="swap")
+        f71_ids = {r["object_id"]: r["x"] for r in swapped if r["frame"] == 71}
+        self.assertEqual(f71_ids[2], 11.0)
+        self.assertEqual(f71_ids[1], 50.0)
+
+    def test_validate_ground_truth_bundle_on_workspace_output(self):
+        output_dir = Path("output/ground_truth_real")
+        if output_dir.is_dir() and (output_dir / "annotation_manifest.json").is_file():
+            result = validate_ground_truth_bundle(output_dir)
+            self.assertTrue(result["structural_pass"])
+            self.assertTrue(result["auto_draft_pass"])
+            self.assertFalse(result["full_gt_pass"])
+
+    def test_scene02_verified_pilot_ground_truth_integrity(self):
+        manual_csv = Path("data/real/scene02_ground_truth_manual.csv")
+        reviewed_csv = Path("output/ground_truth_real/scene02/reviewed_gt.csv")
+        frame_status_csv = Path("output/ground_truth_real/scene02/frame_review_status.csv")
+        if not manual_csv.is_file():
+            return
+        rows = load_labels(manual_csv, frame_count=124)
+        reviewed = load_labels(reviewed_csv, frame_count=124)
+        self.assertEqual(rows, reviewed)
+        self.assertEqual(len(rows), 129)
+        self.assertEqual(sorted({r["frame"] for r in rows}), list(range(65, 85)))
+        self.assertEqual(sorted({r["object_id"] for r in rows}), list(range(1, 11)))
+        with frame_status_csv.open(newline="", encoding="utf-8") as stream:
+            f_rows = list(csv.DictReader(stream))
+        self.assertEqual(len(f_rows), 20)
+        self.assertTrue(all(int(r["frame_reviewed_by_human"]) == 1 for r in f_rows))
+        self.assertTrue(all(r["review_timestamp"].strip() != "" for r in f_rows))
 
 
 if __name__ == "__main__":
