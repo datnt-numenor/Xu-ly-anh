@@ -112,7 +112,7 @@ def score_with_identity(truth, observations, gate=8.0):
             continue
         distances = np.linalg.norm(np.asarray(gt)[:, None, 1:] - np.asarray(pred)[None, :, 1:], axis=2)
         for i, j in zip(*np.nonzero(distances <= gate)):
-            overlap[gt_index[gt[i][0]], track_index[pred[j][0]] += 1
+            overlap[gt_index[gt[i][0]], track_index[pred[j][0]]] += 1
     id_true_positive = overlap[linear_sum_assignment(-overlap)].sum() if overlap.size else 0.0
     total_truth = matched + missed
     total = total_truth + sum(len(p) for p in pred_by_frame.values())
