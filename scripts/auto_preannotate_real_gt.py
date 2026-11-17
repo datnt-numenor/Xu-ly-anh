@@ -34,7 +34,10 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-import cv2
+try:
+    import cv2
+except ImportError:  # Allow importing schema/constants in CI without opencv-python installed.
+    cv2 = None
 import numpy as np
 from PIL import Image, ImageDraw
 from scipy import ndimage
@@ -123,6 +126,13 @@ PALETTE = (
 )
 
 
+def _require_cv2() -> None:
+    if cv2 is None:
+        raise RuntimeError(
+            "OpenCV (cv2) is required for video/image pre-annotation. Install opencv-python."
+        )
+
+
 def extract_frame_proposals(
     gray: np.ndarray,
     frame_index: int,
@@ -133,6 +143,7 @@ def extract_frame_proposals(
     nms_size: int = 17,
 ) -> list[dict]:
     """Extract salient physical object proposals using DoG + Sobel sharpness + local basin."""
+    _require_cv2()
     f = gray.astype(np.float32)
     g1 = cv2.GaussianBlur(f, (0, 0), 1.6)
     g2 = cv2.GaussianBlur(f, (0, 0), 5.2)
@@ -206,6 +217,7 @@ def compute_bidirectional_lk(
     prev_gray: np.ndarray, curr_gray: np.ndarray, points_xy: np.ndarray
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Compute forward-backward pyramidal Lucas-Kanade optical flow for Nx2 points."""
+    _require_cv2()
     if len(points_xy) == 0:
         empty2 = np.empty((0, 2), dtype=np.float32)
         empty1 = np.empty((0,), dtype=np.float32)
@@ -1028,6 +1040,7 @@ def main() -> None:
     args = parser.parse_args()
 
     frame_paths, manifest_data = validate_p4_dataset(args.frames, args.manifest)
+    _require_cv2()
     frames = [cv2.imread(str(p), cv2.IMREAD_GRAYSCALE) for p in frame_paths]
 
     output_dir = args.output

@@ -23,7 +23,10 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-import cv2
+try:
+    import cv2
+except ImportError:
+    cv2 = None
 import numpy as np
 from PIL import Image, ImageDraw
 from scipy import ndimage
@@ -104,8 +107,16 @@ BALL_CATALOG = {
 }
 
 
+def _require_cv2() -> None:
+    if cv2 is None:
+        raise RuntimeError(
+            "OpenCV (cv2) is required for scene02 color sphere pre-annotation. Install opencv-python."
+        )
+
+
 def detect_sphere_proposals_color(bgr: np.ndarray, frame_idx: int) -> list[dict]:
     """Detect billiard ball geometric sphere centers in 320x180 RGB/BGR frame."""
+    _require_cv2()
     b = bgr[:, :, 0].astype(float)
     g = bgr[:, :, 1].astype(float)
     r = bgr[:, :, 2].astype(float)
@@ -473,6 +484,7 @@ def render_scene02_overlay(
 
 
 def main() -> None:
+    _require_cv2()
     gray_paths, manifest_data = validate_p4_dataset(SCENE02_GRAY_DIR, SCENE02_MANIFEST)
     color_paths = sorted(SCENE02_COLOR_DIR.glob("frame_*.png"))
     color_2x_paths = sorted(SCENE02_COLOR_2X_DIR.glob("frame_*.png"))

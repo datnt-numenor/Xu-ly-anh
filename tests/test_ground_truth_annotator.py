@@ -115,18 +115,24 @@ class GroundTruthAnnotatorTests(unittest.TestCase):
 
     def test_validate_ground_truth_bundle_on_workspace_output(self):
         output_dir = Path("output/ground_truth_real")
-        if output_dir.is_dir() and (output_dir / "annotation_manifest.json").is_file():
-            result = validate_ground_truth_bundle(output_dir)
-            self.assertTrue(result["structural_pass"])
-            self.assertTrue(result["auto_draft_pass"])
-            self.assertFalse(result["full_gt_pass"])
+        if not (
+            output_dir.is_dir()
+            and (output_dir / "annotation_manifest.json").is_file()
+            and Path("data/real/scene01/frame_000.png").is_file()
+        ):
+            self.skipTest("Unversioned P4 PNG sequence data/real/scene01 is not present in CI checkout.")
+        result = validate_ground_truth_bundle(output_dir)
+        self.assertTrue(result["structural_pass"])
+        self.assertTrue(result["auto_draft_pass"])
+        self.assertFalse(result["full_gt_pass"])
 
     def test_scene02_verified_pilot_ground_truth_integrity(self):
         manual_csv = Path("data/real/scene02_ground_truth_manual.csv")
         reviewed_csv = Path("output/ground_truth_real/scene02/reviewed_gt.csv")
         frame_status_csv = Path("output/ground_truth_real/scene02/frame_review_status.csv")
-        if not manual_csv.is_file():
-            return
+        self.assertTrue(manual_csv.is_file(), f"Missing committed GT CSV: {manual_csv}")
+        self.assertTrue(reviewed_csv.is_file(), f"Missing committed reviewed CSV: {reviewed_csv}")
+        self.assertTrue(frame_status_csv.is_file(), f"Missing committed frame status CSV: {frame_status_csv}")
         rows = load_labels(manual_csv, frame_count=124)
         reviewed = load_labels(reviewed_csv, frame_count=124)
         self.assertEqual(rows, reviewed)
