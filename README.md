@@ -2,11 +2,18 @@
 
 Nhóm 9 · Xử lý ảnh · PTIT
 
+## Hồ sơ nộp và kết quả hiện hành
+
+- [Hướng dẫn nộp bài và checklist](docs/NOP_BAI.md).
+- [Báo cáo tiếng Việt để nhóm hoàn thiện thông tin hành chính và xuất PDF](docs/BAO_CAO_NHOM9.md).
+- [Kịch bản slide và demo](docs/SLIDE_VA_DEMO.md).
+- [Báo cáo thực nghiệm đầy đủ sau PR #2](output/person1/public_release/report.md).
+
 ## Bản cải tiến và tài liệu bảo vệ
 
 - [Cơ sở thuật toán, công thức và liên hệ code](docs/LY_THUYET.md).
 - [Giao thức thực nghiệm, định nghĩa metric và phần còn cần kiểm chứng](docs/THUC_NGHIEM.md).
-- [Kết quả chạy mới và phân tích giới hạn](docs/KET_QUA.md).
+- [Bản lưu kết quả ngày 09/11/2026](docs/KET_QUA.md).
 - Bộ chấm (`evaluation.py`) xét toàn bộ frame; tên `rmse_px` đổi thành `matched_detection_rmse_px` để phân biệt với trạng thái Kalman. `score_with_identity` bổ sung MOTA và IDF1, dùng cho mọi bảng `summary*.csv`.
 - `--threshold otsu` bổ sung ngưỡng tự động; `--solver scipy` là lựa chọn tăng tốc solver. Mặc định vẫn giữ ngưỡng 110 và Hungarian tự cài để minh họa thuật toán.
 - CSV `*_states.csv` tách vị trí đã lọc/dự đoán khỏi `method.csv` chứa detection quan sát. Không trộn dự đoán vào chỉ số phát hiện.
@@ -17,7 +24,7 @@ python experiments.py
 python tracking.py data/crossing.mp4 --method kalman --threshold otsu --solver scipy --output output
 ```
 
-Bộ stress gồm 150 cấu hình tổng hợp, không thay thế video thật. Kết quả Fiji cũ được chấm lại; chưa chạy Fiji trên bộ stress mới. Xem giao thức để hoàn thành hai phần này trên máy nhóm.
+Đã có 150 cấu hình Python, 15 kết quả Fiji trên stress seed0 và 30 lượt đo runtime. Video thật có thống kê đầu ra nhưng chưa có nhãn tay; không dùng để kết luận độ chính xác. Xem báo cáo hiện hành ở trên.
 
 ## Dữ liệu thử
 
@@ -30,7 +37,7 @@ Bốn video tổng hợp 320 × 180, 15 fps, nền tối có nhiễu và vật t
 | `dense` | 30 | 2 đoàn 3 vật nối đuôi, cách nhau 16 px, đoàn trên sang phải, đoàn dưới sang trái, cùng tăng tốc từ 6 lên 11 px/frame | Hungarian (ghép tối ưu toàn cục) |
 | `noisy` | 43 | `crossing` cộng nhiễu Gauss σ = 100 lên mọi điểm ảnh | Detector chịu nhiễu |
 
-Trong `dense`, khi bước di chuyển vượt nửa khoảng cách (8 px, từ frame 16), spot gần nhất của mỗi track lại là vật đi sau. Cách ghép tham lam đổi ID liên tục, còn Hungarian vẫn đúng vì ràng buộc mỗi spot chỉ gán cho một track. Cột `visible` trong `*_truth.csv` đánh dấu khi vật thể xuất hiện trong ảnh.
+Trong `dense`, khi bước di chuyển vượt nửa khoảng cách (8 px, từ frame 16), spot gần nhất của mỗi track lại là vật đi sau. Cả Nearest và Hungarian đều ghép một-một. Nearest chọn tham lam các cặp gần nhất; Hungarian xét toàn bộ ma trận, ưu tiên số cặp hợp lệ rồi tổng khoảng cách. Trên đúng cảnh này Hungarian giữ ID, nhưng tối ưu khoảng cách không bảo đảm đúng danh tính trong mọi cảnh. Cột `visible` trong `*_truth.csv` đánh dấu khi vật thể xuất hiện trong ảnh.
 
 ## Xem demo ngay
 
@@ -133,11 +140,11 @@ python tracking.py data/crossing.mp4 --method kalman --output output
 
 ## Chỉ số đánh giá
 
-Mỗi frame, vật thật và vị trí dự đoán được ghép bằng Hungarian với bán kính 8 px.
+Giao thức `centroid-distance-framewise-v1`: mỗi frame ghép GT thấy được và observations bằng Hungarian, bán kính 8 px, không ưu tiên giữ cặp từ frame trước. Tên CSV `mota` được giữ để tương thích dữ liệu cũ; khi báo cáo phải ghi **MOTA nội bộ**. IDF1 dùng khoảng cách centroid, không dùng IoU bounding box. Xem [quy ước chi tiết](docs/METRICS.md).
 
 - `matched`, `missed`, `false_positive`: số cặp khớp, số vật bị bỏ sót, số phát hiện thừa.
 - `id_switches`: số lần một vật thật đổi sang ID khác so với lần khớp trước. `track_ids` là số ID đã tạo.
-- `mota` = 1 − (missed + false_positive + id_switches) / số vật thật (CLEAR MOT, Bernardin & Stiefelhagen 2008).
+- `mota` = 1 − (missed + false_positive + id_switches) / số vật thật (công thức cùng dạng MOTA, nhưng dùng quy tắc ghép nội bộ; không tương đương CLEAR MOT/MOTChallenge).
 - `idf1` = 2·IDTP / (số vật thật + số dự đoán). IDTP lấy từ cách ghép một-một tốt nhất giữa vật thật và ID trên toàn video (Ristani và cộng sự 2016). MOTA chỉ phạt khoảnh khắc đổi ID. IDF1 phạt cả quãng mang sai ID, nên `crossing` với Nearest có MOTA 0,98 nhưng IDF1 chỉ 0,69.
 - `matched_detection_rmse_px`: sai số vị trí centroid của các cặp khớp.
 
@@ -149,7 +156,7 @@ Mỗi frame, vật thật và vị trí dự đoán được ghép bằng Hungar
 | crossing (IDF1) | 0,69 | 0,69 | 1,00 | 0,68 | 1,00 | 1,00 |
 | dense (IDF1) | 0,53 | 1,00 | 1,00 | 0,74 | 1,00 | 1,00 |
 
-**Nearest của TrackMate khác bản Python.** Ở `dense`, Nearest Python đổi ID ở cả hai đoàn (84 lần), còn Nearest TrackMate chỉ đổi ID ở đoàn dưới (52 lần, toàn bộ ở vật 4–6). Bản Python ghép tham lam theo khoảng cách nhỏ nhất trên toàn frame. Theo tài liệu TrackMate, tracker này nối mỗi spot với spot gần nhất ở frame sau mà không giải bài toán gán toàn cục, nên kết quả phụ thuộc thứ tự duyệt spot. Nhóm suy ra (từ kết quả, chưa đọc mã nguồn) rằng spot được duyệt từ trái sang phải: với đoàn đi sang phải, vật cuối đoàn được xét trước nên chiếm đúng spot của mình; với đoàn đi sang trái, vật đầu đoàn được xét trước và lấy nhầm spot của vật phía sau. Cả hai cách đều không có ràng buộc tối ưu toàn cục, nên đều hỏng khi vật dày đặc. LAP (TrackMate) và Hungarian (Python) thì không hỏng.
+**Nearest của TrackMate khác bản Python.** Ở `dense`, Nearest Python đổi ID ở cả hai đoàn (84 lần), còn Nearest TrackMate chỉ đổi ID ở đoàn dưới (52 lần, toàn bộ ở vật 4–6). Bản Python ghép tham lam theo khoảng cách nhỏ nhất trên toàn frame. Theo tài liệu TrackMate, tracker này nối mỗi spot với spot gần nhất ở frame sau mà không giải bài toán gán toàn cục, nên kết quả phụ thuộc thứ tự duyệt spot. Nhóm suy ra (từ kết quả, chưa đọc mã nguồn) rằng spot được duyệt từ trái sang phải: với đoàn đi sang phải, vật cuối đoàn được xét trước nên chiếm đúng spot của mình; với đoàn đi sang trái, vật đầu đoàn được xét trước và lấy nhầm spot của vật phía sau. Cả hai cách đều không có ràng buộc tối ưu toàn cục, nên đều hỏng khi vật dày đặc. LAP (TrackMate) và Hungarian (Python) giữ ID trong cảnh dense này; không suy rộng thành bảo đảm tổng quát.
 
 **Thí nghiệm nhiễu** (`results/noise_sweep.csv`, hình `noise_robustness.png`) cộng nhiễu Gauss σ = 0–140 lên toàn bộ video `crossing`, lấy trung bình 3 seed. Không làm mượt, pipeline bắt đầu bỏ sót vật từ σ ≈ 80 và IDF1 của Kalman còn 0,44 ở σ = 140. Làm mượt Gauss σ = 1,5 trước khi phân ngưỡng giữ IDF1 = 1,00 và RMSE dưới 0,5 px trên toàn dải.
 
@@ -174,3 +181,11 @@ Với nhiễu dày, vật thể sau phân ngưỡng bị thủng lỗ. Phép ope
 - `results/sweep_png.csv` khảo sát từng tham số, `results/timing_png.csv` ghi trung vị 9 lần theo từng công đoạn, bỏ đọc ảnh và dựng video.
 - CSV và XML trong `results/fiji/` là đầu ra từ TrackMate (phiên bản ghi ở phần Fiji). Bảng `*_evaluation.csv` đánh dấu lần đổi ID bằng cột `id_switch`. Thêm `--details chi_tiet.csv` khi chạy score_trackmate.py để xuất bảng này.
 - Nếu XML hỏi vị trí ảnh, mở chuỗi PNG thành hyperstack, lưu TIFF rồi nạp XML với stack đó. Có thể chạy lại script để tạo CSV mà không cần mở lại XML.
+
+## Đầu ra sau sửa lỗi ngày 17/11/2026
+
+Detection CSV mới là `<method>_detections.csv` hoặc `<method>_blur_detections.csv`, tránh mất dữ liệu khi chạy hai biến thể blur. Các CSV lịch sử giữ tên cũ. Dùng **thư mục output riêng cho mỗi video và cấu hình** (threshold, sigma, gate, diện tích, solver); chạy lại cùng tên ghi đè đầu ra của cấu hình đó.
+
+Với Otsu + Gaussian: làm mượt float, làm tròn/clamp về uint8, tính và áp dụng Otsu trên cùng ảnh đó. Ngưỡng cố định vẫn so với ảnh float sau Gaussian. Không gán kết quả cũ cho cấu hình Otsu + blur mới nếu chưa chạy lại.
+
+Lần chạy `python benchmark_png.py` tiếp theo lưu thêm `results/noise_sweep_per_run.csv` và `results/noise_sweep_std.csv` (độ lệch chuẩn mẫu, số giá trị hợp lệ từng metric). Không có RMSE khi không có cặp ghép; ô trống không được tính là 0. Dữ liệu nhiễu đã lưu trước đây chỉ có trung bình 3 seed.

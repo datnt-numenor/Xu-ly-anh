@@ -1,4 +1,6 @@
-# Kết quả và phân tích thực nghiệm
+# Kết quả và phân tích thực nghiệm — bản lưu 09/11/2026
+
+> Tài liệu lịch sử: trạng thái “chưa làm” dưới đây chỉ đúng tại thời điểm 09/11. Sau PR #2 đã có stress Fiji seed0 và demo/runtime video thật. Xem [báo cáo hiện hành](../output/person1/public_release/report.md) và [hồ sơ nộp](NOP_BAI.md). Không dùng mục 6 dưới đây làm checklist hiện tại.
 
 Bản chụp kết quả chạy ngày 09/11/2026. Nguồn: `results/stress/per_run.csv`, `aggregate.csv`, `solver_timing.csv` và `environment.json`. Đây là thí nghiệm tổng hợp trong môi trường kiểm tra, không phải video thật. Nếu chạy lại với code/cấu hình khác cần cập nhật tài liệu này.
 

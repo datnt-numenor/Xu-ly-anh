@@ -403,8 +403,12 @@ data/stress/turn_seed0/frame_077.png
 data/stress/turn_seed0/frame_078.png
 data/stress/turn_seed0/frame_079.png
 data/stress/turn_seed0_truth.csv
+docs/BAO_CAO_NHOM9.md
 docs/GIT_STAGING_PLAN.md
+docs/METRICS.md
+docs/NOP_BAI.md
 docs/PUBLIC_RELEASE_SCOPE.md
+docs/SLIDE_VA_DEMO.md
 docs/public_stage_paths.txt
 output/person1/f4/comparison.csv
 output/person1/f4/detector_comparison/summary.csv
@@ -696,3 +700,4 @@ tests/test_benchmark_real_runtime.py
 tests/test_evaluate_fiji_stress.py
 tests/test_ground_truth_annotator.py
 tests/test_prepare_real_video.py
+tests/test_review_regressions.py

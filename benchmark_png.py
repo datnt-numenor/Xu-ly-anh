@@ -35,14 +35,14 @@ def timed(run, frame_count):
     return round(median(samples), 4)
 
 
-def noise_sweep():
+def noise_sweep(output_dir=None):
     """Add Gaussian sensor noise to the whole crossing video, with and without
     Gaussian smoothing before thresholding. Each value is the mean of 3 seeds."""
     clean, truth = [], []
     for image, frame_truth in render("crossing"):
         clean.append(image.astype(float))
         truth.extend(frame_truth)
-    rows = []
+    rows, per_run, dispersion = [], [], []
     for sigma in NOISE_LEVELS:
         for blur in BLURS:
             runs = {method: [] for method in METHODS}
@@ -52,10 +52,25 @@ def noise_sweep():
                           for f in clean]
                 spots = detect_all(frames, blur=blur)
                 for method in METHODS:
-                    runs[method].append(score(truth, track_all(spots, method))[0])
+                    metrics = score(truth, track_all(spots, method))[0]
+                    runs[method].append(metrics)
+                    per_run.append((sigma, blur, seed, method, *metrics))
             for method, results in runs.items():
-                mean = [round(float(np.mean([r[k] for r in results])), 4) for k in range(len(METRICS))]
+                mean, std, counts = [], [], []
+                for k in range(len(METRICS)):
+                    values = [r[k] for r in results if r[k] != ""]
+                    counts.append(len(values))
+                    mean.append(round(float(np.mean(values)), 4) if values else "")
+                    std.append(round(float(np.std(values, ddof=1)), 4) if len(values) > 1 else "")
                 rows.append((sigma, blur, method, *mean))
+                dispersion.append((sigma, blur, method, *std, *counts))
+    if output_dir is not None:
+        write_csv(output_dir / "noise_sweep_per_run.csv",
+                  ("noise_sigma", "blur", "seed", "method", *METRICS), per_run)
+        write_csv(output_dir / "noise_sweep_std.csv",
+                  ("noise_sigma", "blur", "method",
+                   *(f"{name}_std" for name in METRICS),
+                   *(f"{name}_n" for name in METRICS)), dispersion)
     return rows
 
 
@@ -120,7 +135,7 @@ def main():
     write_csv(ROOT / "results/timing_png.csv", ("scenario", "stage", "median_ms_per_frame"), timing)
     write_csv(ROOT / "results/sweep_png.csv", ("parameter", "value", "method", *METRICS), sweep)
     write_csv(ROOT / "results/detector_variants.csv", ("scenario", "detector", *METRICS), detector_variants())
-    write_csv(ROOT / "results/noise_sweep.csv", ("noise_sigma", "blur", "method", *METRICS), noise_sweep())
+    write_csv(ROOT / "results/noise_sweep.csv", ("noise_sigma", "blur", "method", *METRICS), noise_sweep(ROOT / "results"))
 
 
 if __name__ == "__main__":

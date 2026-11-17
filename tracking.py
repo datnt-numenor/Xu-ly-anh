@@ -45,9 +45,12 @@ def detect(frame, threshold, min_area, max_area, blur=0.0, opening=True, connect
     """
     if frame.ndim != 2 or frame.dtype != np.uint8 or frame.size == 0:
         raise ValueError("Detector expects a nonempty 2D uint8 grayscale frame.")
-    threshold = otsu_threshold(frame) if threshold == "otsu" else threshold
     if blur > 0:
         frame = ndimage.gaussian_filter(frame.astype(float), blur)
+    if threshold == "otsu":
+        # Otsu and its comparison must use the same 8-bit preprocessed image.
+        frame = np.rint(frame).clip(0, 255).astype(np.uint8)
+        threshold = otsu_threshold(frame)
     mask = frame > threshold
     if opening:
         mask = ndimage.binary_opening(mask, structure=np.ones((3, 3)))
@@ -270,7 +273,7 @@ def run_video(args, collect=True):
             writer = csv.writer(handle, lineterminator="\n")
             writer.writerow(columns)
             return writer
-        detection_csv = csv_sink("detections.csv", ("frame", "x", "y"))
+        detection_csv = csv_sink(f"{stem}_detections.csv", ("frame", "x", "y"))
         observation_csv = csv_sink(f"{stem}.csv", ("frame", "track_id", "x", "y"))
         state_csv = csv_sink(f"{stem}_states.csv",
                              ("frame", "track_id", "state_x", "state_y", "vx_px_per_frame",
