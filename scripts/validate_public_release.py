@@ -15,12 +15,28 @@ LINK = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)|!\[[^\]]*\]\(([^)]+)\)")
 EXCLUDED_PREFIXES = (
     "data/real/", "output/real_suitability/", "output/person1/real_video_tracking/_samples/",
 )
+ALLOWED_REAL_EXACT = {
+    "data/real/scene02_ground_truth_manual.csv",
+    "data/real/scene02_manifest.json",
+}
 EXCLUDED_NAMES = {
-    "raw_scene01.mp4", "scene01_lossless.mkv", "scene01_manifest.json",
-    "evidence_manifest.json", "overlay_samples.png",
+    "raw_scene01.mp4", "raw_scene02.mp4", "scene01_lossless.mkv", "scene02_lossless.mkv",
+    "scene01_manifest.json", "evidence_manifest.json", "overlay_samples.png",
 }
 EXCLUDED_EXACT = {"output/person1/final/report.md"}
 TEXT_SUFFIXES = {".md", ".py", ".json", ".csv", ".xml", ".txt", ".yml", ".yaml", ".log", ".groovy"}
+
+
+def is_allowed_public_path(path: str) -> bool:
+    """Return True only if path is permitted in the public release allowlist."""
+    p = Path(path)
+    if p.is_absolute() or ".." in p.parts:
+        return False
+    if path in EXCLUDED_EXACT or p.name in EXCLUDED_NAMES:
+        return False
+    if path.startswith(EXCLUDED_PREFIXES) and path not in ALLOWED_REAL_EXACT:
+        return False
+    return True
 
 
 def digest(data):
@@ -102,8 +118,7 @@ def main():
     for row in rows:
         path = row["path"]
         assert not Path(path).is_absolute() and ".." not in Path(path).parts, path
-        assert (not path.startswith(EXCLUDED_PREFIXES) and Path(path).name not in EXCLUDED_NAMES
-                and path not in EXCLUDED_EXACT), path
+        assert is_allowed_public_path(path), path
         data = index_blob(path)
         assert digest(data) == row["sha256"], f"checksum mismatch: {path}"
         assert len(data) == row["size_bytes"], f"size mismatch: {path}"

@@ -3,9 +3,9 @@
   "status": "PASS",
   "branch": "fix/review-and-submission",
   "base_commit": "b2446e178a4d5c2a15307fa3d1529f4bde29a14b",
-  "file_count": 1177,
-  "total_bytes": 53888775,
-  "stage_path_count": 703,
+  "file_count": 1195,
+  "total_bytes": 54158571,
+  "stage_path_count": 721,
   "stage_paths_file": "docs/public_stage_paths.txt",
   "files": [
     {
@@ -787,6 +787,18 @@
       "size_bytes": 1816,
       "sha256": "51f217c8371637875bc676baba5f6989dcd1fa9de1d48f7736eec3f5db45e5ce",
       "origin": "repository"
+    },
+    {
+      "path": "data/real/scene02_ground_truth_manual.csv",
+      "size_bytes": 2617,
+      "sha256": "f3395a19b9702a0a7f3d5523124e0b8fe49accb9d014a8279dc3021fa5ad1157",
+      "origin": "working_tree"
+    },
+    {
+      "path": "data/real/scene02_manifest.json",
+      "size_bytes": 53808,
+      "sha256": "df1eb01b417cb2207e248cae704456fbf59964232ea0af4813381b8a525b9bb8",
+      "origin": "working_tree"
     },
     {
       "path": "data/separate.mp4",
@@ -3543,9 +3555,15 @@
       "origin": "git_HEAD"
     },
     {
+      "path": "docs/ground_truth_scene02_pilot.md",
+      "size_bytes": 9702,
+      "sha256": "82399105ea3ed86b22a2e574950264b120a78897120b756c489b8eac30bcd827",
+      "origin": "working_tree"
+    },
+    {
       "path": "docs/public_stage_paths.txt",
-      "size_bytes": 35353,
-      "sha256": "d0a1644a2245a05534b18e18f2b8b8e1bf06e16cf58aebaa0e917acf7a576c25",
+      "size_bytes": 36194,
+      "sha256": "e7bc82ab376d62d5aac332dbb8b2a644d20c6be3aa094249d3c8edc6d15d20f2",
       "origin": "working_tree"
     },
     {
@@ -3559,6 +3577,72 @@
       "size_bytes": 9947,
       "sha256": "4eb3b5f11729fe390d2f308b06781aeb29248ef799171bfa4bd40fcdd6fce63f",
       "origin": "repository"
+    },
+    {
+      "path": "output/ground_truth_real/scene02/annotation_manifest.json",
+      "size_bytes": 3767,
+      "sha256": "ab835035dfcf92ef6723a7b9c7e0da30d2451aaab29d1338c35194152489f8cd",
+      "origin": "working_tree"
+    },
+    {
+      "path": "output/ground_truth_real/scene02/annotation_status.csv",
+      "size_bytes": 26692,
+      "sha256": "a7df7bf8cdb8b226df8b7428a34bb2fd9ccf84f41490e9b0faa10006ddb9a141",
+      "origin": "working_tree"
+    },
+    {
+      "path": "output/ground_truth_real/scene02/frame_review_status.csv",
+      "size_bytes": 1277,
+      "sha256": "23507cea92131e0ce2c636f9eb11b0a67f65f398a0d929df22e3a4dcdc52b624",
+      "origin": "working_tree"
+    },
+    {
+      "path": "output/ground_truth_real/scene02/ground_truth_manual.csv",
+      "size_bytes": 2617,
+      "sha256": "f3395a19b9702a0a7f3d5523124e0b8fe49accb9d014a8279dc3021fa5ad1157",
+      "origin": "working_tree"
+    },
+    {
+      "path": "output/ground_truth_real/scene02/pilot_report.md",
+      "size_bytes": 3403,
+      "sha256": "50f740e2267859196f8e94a4def4a8b065ab3e70d98be4b823da0bfb8bcc0705",
+      "origin": "working_tree"
+    },
+    {
+      "path": "output/ground_truth_real/scene02/pilot_structural_audit.md",
+      "size_bytes": 1662,
+      "sha256": "b26944c65f69ebe66c53760352963fa27362e98f95ea3200625ec66d3eeda1a8",
+      "origin": "working_tree"
+    },
+    {
+      "path": "output/ground_truth_real/scene02/pilot_validation.md",
+      "size_bytes": 1643,
+      "sha256": "13c579e1614fbf4e91bd9bf664446b813bf73ffedb0c0e271ed8ff69552c9c69",
+      "origin": "working_tree"
+    },
+    {
+      "path": "output/ground_truth_real/scene02/provisional_gt.csv",
+      "size_bytes": 2617,
+      "sha256": "f3395a19b9702a0a7f3d5523124e0b8fe49accb9d014a8279dc3021fa5ad1157",
+      "origin": "working_tree"
+    },
+    {
+      "path": "output/ground_truth_real/scene02/provisional_pilot_65_84.csv",
+      "size_bytes": 2617,
+      "sha256": "f3395a19b9702a0a7f3d5523124e0b8fe49accb9d014a8279dc3021fa5ad1157",
+      "origin": "working_tree"
+    },
+    {
+      "path": "output/ground_truth_real/scene02/reviewed_gt.csv",
+      "size_bytes": 2617,
+      "sha256": "f3395a19b9702a0a7f3d5523124e0b8fe49accb9d014a8279dc3021fa5ad1157",
+      "origin": "working_tree"
+    },
+    {
+      "path": "output/ground_truth_real/scene02/uncertain_cases.csv",
+      "size_bytes": 6324,
+      "sha256": "d239da2cd648a75e14447d5a56b3117ab27a530f7be6788864dc3635b2ebeea6",
+      "origin": "working_tree"
     },
     {
       "path": "output/person1/f4/comparison.csv",
@@ -6987,6 +7071,12 @@
       "origin": "repository"
     },
     {
+      "path": "scripts/auto_preannotate_real_gt.py",
+      "size_bytes": 55870,
+      "sha256": "b351ea1c3d00869effdd76f5faeec021e5b41b0f55f3e46da3e9b0ef5fcb081b",
+      "origin": "working_tree"
+    },
+    {
       "path": "scripts/benchmark_real_runtime.py",
       "size_bytes": 8947,
       "sha256": "4c37d093129ad7d44ac81e644d185fe5c56146e5106991e73f40f05baae11089",
@@ -7000,8 +7090,14 @@
     },
     {
       "path": "scripts/ground_truth_annotator.py",
-      "size_bytes": 21017,
-      "sha256": "9815ccd30e32b3cada34c97874bf9ff27f032173820e3664aff7b491f24e6242",
+      "size_bytes": 22868,
+      "sha256": "2a709689c848524fba3b672ea3d02551af249ad0cd46e0752fe7de964dd631dc",
+      "origin": "working_tree"
+    },
+    {
+      "path": "scripts/gt_review_gui.py",
+      "size_bytes": 40403,
+      "sha256": "56acdaa95858e6f800b24f5e5bb97c719ae6a39f803cda820a5604cfcae8246a",
       "origin": "working_tree"
     },
     {
@@ -7011,9 +7107,21 @@
       "origin": "working_tree"
     },
     {
+      "path": "scripts/prepare_scene02_gt.py",
+      "size_bytes": 31535,
+      "sha256": "72adabc2c5e8472a169c828698fbbf2d25126546c8e1e553b2b7f8232b819a5e",
+      "origin": "working_tree"
+    },
+    {
       "path": "scripts/run_fiji_stress.py",
       "size_bytes": 23832,
       "sha256": "071f86ccd4827eedb4fc0df34d34bbe6dc96cbfddd169ff5db4043329934ac3d",
+      "origin": "working_tree"
+    },
+    {
+      "path": "scripts/validate_ground_truth_full.py",
+      "size_bytes": 12952,
+      "sha256": "761a267beb5145fcb08c6e6e15ac7d55c312a8bd9e3678eb4d5e31bd408fdd96",
       "origin": "working_tree"
     },
     {
@@ -7024,8 +7132,8 @@
     },
     {
       "path": "scripts/validate_public_release.py",
-      "size_bytes": 8343,
-      "sha256": "1de23625bf3d3b0189ca801e2cdb92f13960ea04230d8eef09cb4e481a4ae08d",
+      "size_bytes": 8806,
+      "sha256": "00ba798cd6a24cf190f276658bd39ba6009ffa58f7e106e2f0233e3bdca48e17",
       "origin": "working_tree"
     },
     {
@@ -7042,8 +7150,8 @@
     },
     {
       "path": "tests/test_ground_truth_annotator.py",
-      "size_bytes": 4111,
-      "sha256": "4a70795a6ee1d80178a2f47714bb125385508aade65688ee3b4dfaba3b2434a3",
+      "size_bytes": 8629,
+      "sha256": "a506fdaf81c21b254c60ff1a5663f8354135ad88cf33335e703eb182189c0127",
       "origin": "working_tree"
     },
     {

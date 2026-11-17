@@ -19,6 +19,7 @@ from scripts.ground_truth_annotator import (
 )
 from scripts.gt_review_gui import propagate_id_change, save_review_state
 from scripts.validate_ground_truth_full import validate_ground_truth_bundle
+from scripts.validate_public_release import is_allowed_public_path
 
 
 class GroundTruthAnnotatorTests(unittest.TestCase):
@@ -144,6 +145,30 @@ class GroundTruthAnnotatorTests(unittest.TestCase):
         self.assertEqual(len(f_rows), 20)
         self.assertTrue(all(int(r["frame_reviewed_by_human"]) == 1 for r in f_rows))
         self.assertTrue(all(r["review_timestamp"].strip() != "" for r in f_rows))
+
+    def test_public_release_blocks_unapproved_real_media_and_allows_scene02_gt(self):
+        # Negative tests: raw videos, lossless videos, PNG frames, and unverified real files must be blocked
+        forbidden = [
+            "data/real/raw_scene01.mp4",
+            "data/real/raw_scene02.mp4",
+            "data/real/scene01_lossless.mkv",
+            "data/real/scene02_lossless.mkv",
+            "data/real/scene01_manifest.json",
+            "data/real/scene01/frame_000.png",
+            "data/real/scene02/frame_065.png",
+            "data/real/scene02_color/frame_065.png",
+            "data/real/scene02_color_2x/frame_065.png",
+            "data/real/ground_truth_pilot.csv",
+            "data/real/ground_truth_template.csv",
+            "output/real_suitability/annotated_samples.png",
+            "output/person1/final/report.md",
+        ]
+        for path in forbidden:
+            with self.subTest(forbidden=path):
+                self.assertFalse(is_allowed_public_path(path))
+        # Positive tests: only the human-verified scene02 GT CSV and scene02 manifest are allowed under data/real/
+        self.assertTrue(is_allowed_public_path("data/real/scene02_ground_truth_manual.csv"))
+        self.assertTrue(is_allowed_public_path("data/real/scene02_manifest.json"))
 
 
 if __name__ == "__main__":
