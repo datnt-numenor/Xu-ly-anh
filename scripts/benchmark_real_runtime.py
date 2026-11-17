@@ -6,7 +6,8 @@ Run from the repository root, for example:
         --summary-output output/person1/timing/runtime_summary.csv --repeats 5 --warmups 1
 
 Every configuration receives the same input file. The per-run CSV stores
-warm-ups and measured samples; the summary CSV stores measured-run percentiles.
+measured samples only; warm-ups are executed but excluded from both CSVs.
+The summary CSV stores measured-run percentiles.
 No output is replaced.
 """
 import argparse

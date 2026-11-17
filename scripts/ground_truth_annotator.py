@@ -412,6 +412,15 @@ class AnnotationApp:
         self.root.destroy()
 
 
+def representative_indices(frame_count):
+    """Unique in-range preview frames, including clips shorter than 91 frames."""
+    if frame_count < 1:
+        raise ValueError("Need at least one frame.")
+    candidates = [0, 1, 2, 48, 49, 50, 74, 75, 76, 88, 89, 90,
+                  frame_count - 3, frame_count - 2, frame_count - 1]
+    return sorted({index for index in candidates if 0 <= index < frame_count})
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--frames", type=Path, default=DEFAULT_FRAMES)
@@ -439,8 +448,7 @@ def main():
             if len(display_frames) != len(frames):
                 raise ValueError(f"display-frames count ({len(display_frames)}) != validated frames ({len(frames)})")
         if args.prepare:
-            key_frames = [0, 1, 2, 48, 49, 50, 74, 75, 76, 88, 89, 90,
-                          len(frames) - 3, len(frames) - 2, len(frames) - 1]
+            key_frames = representative_indices(len(frames))
             representatives = [frames[index] for index in key_frames]
             contact = create_contact_sheet(representatives, args.contact_sheet,
                                            columns=5, tile_width=320)

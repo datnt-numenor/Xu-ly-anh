@@ -2,10 +2,14 @@
 
 ## Phạm vi đã kiểm chứng
 
-- `data/separate`, `data/crossing`: dữ liệu tổng hợp gốc, 43 frame, 15 fps.
-- `results/fiji`: CSV/XML TrackMate 8.1.6 lưu từ trước. Đợt cải tiến này chấm lại CSV và đọc cấu hình XML; **không chạy lại Fiji**. Chỉ đổi tên cột RMSE trong bảng tổng hợp, không thay số liệu Fiji.
-- `results/stress`: thực nghiệm Python mới, 5 kịch bản × 5 seed × 2 detector × 3 tracker = 150 cấu hình, mỗi chuỗi 80 frame. Tất cả là dữ liệu tổng hợp.
-- Chưa có kết quả video thật được gán nhãn hoặc kết quả Fiji cho bộ stress. Không ghi những phần này là đã hoàn thành.
+Cập nhật sau PR #2: [báo cáo hiện hành](../output/person1/public_release/report.md), [hồ sơ nộp](NOP_BAI.md).
+
+- Bộ gốc gồm separate/crossing/dense/noisy; CSV/XML và ảnh GUI ở `results/fiji`.
+- Stress Python: 150 cấu hình, 5 cảnh × 5 seed nhiễu × 2 detector × 3 tracker, 80 frame/cảnh; nguồn ở `output/person1/stress_full`.
+- Stress Fiji: đã có 15 CSV/XML trên 5 cảnh seed0; đối chiếu Python fixed seed0 ở `output/person1/f4/comparison.csv`.
+- Runtime: 30 lượt đo, 1 warm-up và 5 lượt đo mỗi cấu hình; chỉ decode + detect + update, không gồm xuất overlay.
+- Video thật: có 6 thống kê đầu ra, chưa có GT tay. Media thật không nằm trong gói công khai nên không thể tái lập phần này chỉ từ repo.
+- Sửa code ngày 17/11 không tự biến số liệu lịch sử thành kết quả của code mới. Mỗi lượt chạy mới cần lưu commit, cấu hình và môi trường riêng.
 
 ## Tái lập
 
@@ -30,9 +34,11 @@ python experiments.py --seeds 0 --export-data data/stress --output output/stress
 
 Trong Fiji chạy `TrackMate_Nhom9.groovy`, chọn `data/stress/overlap_seed0` và thư mục đích. Script dùng số frame thực tế của stack. Chấm với `data/stress/overlap_seed0_truth.csv`.
 
-Cấu hình script Fiji hiện dùng ngưỡng cố định 110; không được gọi đây là bản đối chiếu Otsu theo từng frame. Bộ stress phải được chạy Fiji thực tế rồi mới đưa kết quả vào bảng.
+Cấu hình script Fiji hiện dùng ngưỡng cố định 110; không được gọi đây là bản đối chiếu Otsu theo từng frame. Bộ seed0 đã chạy Fiji và lưu bằng chứng; chạy bổ sung seed khác phải lưu CSV/XML/log mới.
 
 ## Định nghĩa chỉ số
+
+MOTA và IDF1 hiện có được diễn giải theo [METRICS.md](METRICS.md). MOTA là bản dùng ghép khoảng cách từng frame, không phải CLEAR chuẩn.
 
 - `matched`: số cặp GT thấy được – detection, khoảng cách không quá 8 px. Ghép một-một, tối đa số cặp rồi tối thiểu tổng khoảng cách.
 - `missed`, `false_positive`: GT thấy được không có cặp; detection không có cặp. Chấm trên hợp các frame trong GT và dự đoán, gồm cả frame chỉ có dự đoán.

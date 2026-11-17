@@ -1,5 +1,7 @@
 # Final experimental report — image detection and object tracking
 
+> Review update 17 November 2026: see [submission guide](../../../docs/NOP_BAI.md) and [metric protocol](../../../docs/METRICS.md). Stored experimental numbers remain historical measurements; the code fixes do not represent a rerun.
+
 ## 1. Objective and scope
 
 The experiment implements the lecturer's requested sequence: detect bright regions, segment them, calculate centroids, associate centroids with Nearest Neighbor or Hungarian, and display persistent track IDs and trajectories. A constant-velocity Kalman tracker is an advanced extension. Fiji TrackMate supplies an independent implementation for stress comparisons. All quantitative accuracy claims in this report use synthetic ground truth. The real video is an output demonstration without ground truth.
@@ -11,9 +13,9 @@ This handoff covers 5 stress scenarios × 5 noise seeds × 2 Python detector cho
 | Synthetic Python | ../stress_full/per_run.csv; ../stress_full/environment.json | 150 |
 | Fiji and Python seed0 scoring | ../f4/comparison.csv; ../f4/validation.json | 15 |
 | Fiji raw outputs | ../fiji_stress/{scenario}_seed0/ | 15 CSV + 15 XML |
-| Runtime measurements | ../timing/runtime_per_run.csv | 30 |
+| Runtime measurements | [data/runtime_per_run.csv](data/runtime_per_run.csv) | 30 |
 | Real video output | ../real_video_tracking/tracking_summary.csv | 6 |
-| Pipeline figures | ../pipeline_demo/manifest.json | 6 |
+| Pipeline figures | [pipeline_map.md](pipeline_map.md) (public synthetic figures) | 6 |
 
 ## 2. Environment and reproducibility
 
@@ -98,7 +100,7 @@ TrackMate 8.1.6 produced 15 CSV and 15 XML artifacts for the five seed0 sequence
 | illumination | lap / hungarian | 147/93/382/0 | 160/80/337/1 | -0.9792 / 0.3823 | -0.7417 / 0.4315 |
 | illumination | kalman / kalman | 147/93/382/0 | 160/80/337/1 | -0.9792 / 0.3823 | -0.7417 / 0.4315 |
 
-Metrics follow the repository's `evaluation.score_with_identity`, not a claim of MOTChallenge standard compliance. `matched` counts one-to-one visible-GT matches within the gate. `missed` and `false_positive` count unmatched visible GT and unmatched predictions. `id_switches` compares the ID last matched to each GT object, including across gaps. `MOTA = 1 − (missed + FP + ID switches) / visible GT observations`. The repository's IDF1 uses its global GT-to-track pairing. RMSE is the root mean squared positional error **only among matched pairs**; it is N/A when no pairs exist. All definitions and exact code are in [evaluation.py](../../../evaluation.py).
+MOTA in all tables and plots means **repository-defined MOTA**, not CLEAR-continuity MOTA. Framewise assignment does not preserve previous-frame matches. CSV column names are retained for historical compatibility. Metrics follow the repository's `evaluation.score_with_identity`, not a claim of MOTChallenge standard compliance. `matched` counts one-to-one visible-GT matches within the gate. `missed` and `false_positive` count unmatched visible GT and unmatched predictions. `id_switches` compares the ID last matched to each GT object, including across gaps. `MOTA = 1 − (missed + FP + ID switches) / visible GT observations`. The repository's IDF1 uses its global GT-to-track pairing. RMSE is the root mean squared positional error **only among matched pairs**; it is N/A when no pairs exist. All definitions and exact code are in [evaluation.py](../../../evaluation.py).
 
 The [detector agreement table](summary_tables/detector_agreement.md) compares Fiji visible XML spot centers and Python fixed-threshold detector centers at its separately recorded agreement gate. Agreement is not accuracy against GT. It cannot by itself establish which tracking algorithm is better.
 
